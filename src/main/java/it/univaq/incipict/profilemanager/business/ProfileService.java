@@ -16,30 +16,16 @@
  * along with Profile Manager.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package it.univaq.disim.danieletellina.profilemanager.business.model;
+package it.univaq.incipict.profilemanager.business;
 
-/**
+import it.univaq.incipict.profilemanager.business.model.Profile;
+
+/*
  * 
- * @author Daniele Tellina (http://www.daniele.tellina/)
- *
  */
+public interface ProfileService {
+   
+   DataTableResponseGrid<Profile> discovery (DataTableRequestGrid requestGrid) throws ProfileManagerException;
 
-public class Information {
-	private int ID;
-	private String description;
-	
-	public int getID() {
-		return ID;
-	}
-	public void setID(int iD) {
-		ID = iD;
-	}
-	public String getDescription() {
-		return description;
-	}
-	public void setDescription(String description) {
-		this.description = description;
-	}
-	
-	
+   Profile detail (String name, String description) throws ProfileManagerException;
 }

@@ -16,7 +16,7 @@
  * along with Profile Manager.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package it.univaq.disim.danieletellina.profilemanager.business;
+package it.univaq.incipict.profilemanager.business;
 
 import java.util.List;
 

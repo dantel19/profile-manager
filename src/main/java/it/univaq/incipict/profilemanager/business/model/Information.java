@@ -16,7 +16,7 @@
  * along with Profile Manager.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package it.univaq.disim.danieletellina.profilemanager.business.model;
+package it.univaq.incipict.profilemanager.business.model;
 
 /**
  * 
@@ -24,21 +24,15 @@ package it.univaq.disim.danieletellina.profilemanager.business.model;
  *
  */
 
-public class Role {
+public class Information {
 	private int ID;
-	private String name;
 	private String description;
+	
 	public int getID() {
 		return ID;
 	}
 	public void setID(int iD) {
 		ID = iD;
-	}
-	public String getName() {
-		return name;
-	}
-	public void setName(String name) {
-		this.name = name;
 	}
 	public String getDescription() {
 		return description;
@@ -46,6 +40,6 @@ public class Role {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-
+	
 	
 }

@@ -16,9 +16,7 @@
  * along with Profile Manager.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package it.univaq.disim.danieletellina.profilemanager.business.model;
-
-import java.util.List;
+package it.univaq.incipict.profilemanager.business.model;
 
 /**
  * 
@@ -26,21 +24,14 @@ import java.util.List;
  *
  */
 
-public class Profile {
+public class User {
 	private int ID;
 	private String name;
-	private String description;
-	private boolean custom;
-	
-	private List<Information> associatedInformations;
-	
-	public Profile(String name, String description) {
-	      super();
-	      this.name = name;
-	      this.description = description;
-	      this.custom = false;
-	   }
-	
+	private String surname;
+	private String email;
+	private String password;
+	private Role role;
+	private Profile profile;
 	public int getID() {
 		return ID;
 	}
@@ -53,24 +44,34 @@ public class Profile {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public String getDescription() {
-		return description;
+	public String getSurname() {
+		return surname;
 	}
-	public void setDescription(String description) {
-		this.description = description;
+	public void setSurname(String surname) {
+		this.surname = surname;
 	}
-	public boolean isCustom() {
-		return custom;
+	public String getEmail() {
+		return email;
 	}
-	public void setCustom(boolean custom) {
-		this.custom = custom;
+	public void setEmail(String email) {
+		this.email = email;
 	}
-	public List<Information> getAssociatedInformations() {
-		return associatedInformations;
+	public String getPassword() {
+		return password;
 	}
-	public void setAssociatedInformations(List<Information> associatedInformations) {
-		this.associatedInformations = associatedInformations;
+	public void setPassword(String password) {
+		this.password = password;
 	}
-	
-
+	public Role getRole() {
+		return role;
+	}
+	public void setRole(Role role) {
+		this.role = role;
+	}
+	public Profile getProfile() {
+		return profile;
+	}
+	public void setProfile(Profile profile) {
+		this.profile = profile;
+	}
 }

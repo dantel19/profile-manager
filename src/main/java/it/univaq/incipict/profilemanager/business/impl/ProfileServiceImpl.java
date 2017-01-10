@@ -16,19 +16,19 @@
  * along with Profile Manager.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package it.univaq.disim.danieletellina.profilemanager.business.impl;
+package it.univaq.incipict.profilemanager.business.impl;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
 
-import it.univaq.disim.danieletellina.profilemanager.business.ProfileService;
-import it.univaq.disim.danieletellina.profilemanager.business.DataTableRequestGrid;
-import it.univaq.disim.danieletellina.profilemanager.business.DataTableRequestGrid.SortType;
-import it.univaq.disim.danieletellina.profilemanager.business.DataTableResponseGrid;
-import it.univaq.disim.danieletellina.profilemanager.business.ProfileManagerException;
-import it.univaq.disim.danieletellina.profilemanager.business.model.Profile;
+import it.univaq.incipict.profilemanager.business.DataTableRequestGrid;
+import it.univaq.incipict.profilemanager.business.DataTableResponseGrid;
+import it.univaq.incipict.profilemanager.business.ProfileManagerException;
+import it.univaq.incipict.profilemanager.business.ProfileService;
+import it.univaq.incipict.profilemanager.business.DataTableRequestGrid.SortType;
+import it.univaq.incipict.profilemanager.business.model.Profile;
 
 /**
  * 

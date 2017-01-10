@@ -16,7 +16,9 @@
  * along with Profile Manager.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package it.univaq.disim.danieletellina.profilemanager.business.model;
+package it.univaq.incipict.profilemanager.business.model;
+
+import java.util.List;
 
 /**
  * 
@@ -24,14 +26,21 @@ package it.univaq.disim.danieletellina.profilemanager.business.model;
  *
  */
 
-public class User {
+public class Profile {
 	private int ID;
 	private String name;
-	private String surname;
-	private String email;
-	private String password;
-	private Role role;
-	private Profile profile;
+	private String description;
+	private boolean custom;
+	
+	private List<Information> associatedInformations;
+	
+	public Profile(String name, String description) {
+	      super();
+	      this.name = name;
+	      this.description = description;
+	      this.custom = false;
+	   }
+	
 	public int getID() {
 		return ID;
 	}
@@ -44,34 +53,24 @@ public class User {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public String getSurname() {
-		return surname;
+	public String getDescription() {
+		return description;
 	}
-	public void setSurname(String surname) {
-		this.surname = surname;
+	public void setDescription(String description) {
+		this.description = description;
 	}
-	public String getEmail() {
-		return email;
+	public boolean isCustom() {
+		return custom;
 	}
-	public void setEmail(String email) {
-		this.email = email;
+	public void setCustom(boolean custom) {
+		this.custom = custom;
 	}
-	public String getPassword() {
-		return password;
+	public List<Information> getAssociatedInformations() {
+		return associatedInformations;
 	}
-	public void setPassword(String password) {
-		this.password = password;
+	public void setAssociatedInformations(List<Information> associatedInformations) {
+		this.associatedInformations = associatedInformations;
 	}
-	public Role getRole() {
-		return role;
-	}
-	public void setRole(Role role) {
-		this.role = role;
-	}
-	public Profile getProfile() {
-		return profile;
-	}
-	public void setProfile(Profile profile) {
-		this.profile = profile;
-	}
+	
+
 }

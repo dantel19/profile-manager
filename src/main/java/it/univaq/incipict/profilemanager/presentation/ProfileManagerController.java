@@ -16,7 +16,7 @@
  * along with Profile Manager.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package it.univaq.disim.danieletellina.profilemanager.presentation;
+package it.univaq.incipict.profilemanager.presentation;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -27,10 +27,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import it.univaq.disim.danieletellina.profilemanager.business.ProfileService;
-import it.univaq.disim.danieletellina.profilemanager.business.DataTableRequestGrid;
-import it.univaq.disim.danieletellina.profilemanager.business.DataTableResponseGrid;
-import it.univaq.disim.danieletellina.profilemanager.business.model.Profile;
+import it.univaq.incipict.profilemanager.business.DataTableRequestGrid;
+import it.univaq.incipict.profilemanager.business.DataTableResponseGrid;
+import it.univaq.incipict.profilemanager.business.ProfileService;
+import it.univaq.incipict.profilemanager.business.model.Profile;
 
 /**
  * 
