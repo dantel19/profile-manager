@@ -1,6 +1,6 @@
 /*
- Profile Manager - Copyright (C) 2016  Alexander Perucci (http://www.alexanderperucci.com/).
- Profile Manager - Copyright (C) 2016  Daniele Tellina (http://www.daniele.tellina/).
+ 
+ Profile Manager - Copyright (C) 2016  Daniele Tellina
 
  Profile Manager is free software: you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
