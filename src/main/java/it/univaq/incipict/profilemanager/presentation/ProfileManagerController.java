@@ -34,7 +34,7 @@ import it.univaq.incipict.profilemanager.business.model.Profile;
 
 /**
  * 
- * @author Daniele Tellina (http://www.daniele.tellina/)
+ * @author Daniele Tellina 
  *
  */
 

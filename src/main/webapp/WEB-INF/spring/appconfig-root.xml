@@ -28,5 +28,5 @@
     <util:properties id="appconfig_properties" location="classpath:appconfig.properties"/>
       
     <!-- Scans within the base package of the application for @Service classes to configure as beans -->
-    <context:component-scan base-package="it.univaq.disim.danieletellina.profilemanager.business.impl"/>   
+    <context:component-scan base-package="it.univaq.incipict.profilemanager.business.impl"/>   
 </beans>

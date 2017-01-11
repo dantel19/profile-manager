@@ -20,7 +20,7 @@ package it.univaq.incipict.profilemanager.business;
 
 /**
  * 
- * @author Daniele Tellina (http://www.daniele.tellina/)
+ * @author Daniele Tellina 
  *
  */
 

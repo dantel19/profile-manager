@@ -22,7 +22,7 @@ import java.util.List;
 
 /**
  * 
- * @author Daniele Tellina (http://www.daniele.tellina/)
+ * @author Daniele Tellina 
  *
  */
 
