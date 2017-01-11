@@ -22,7 +22,7 @@
 
    <groupId>it.univaq.disim.danieletellina</groupId>
    <artifactId>profile-manager</artifactId>
-   <version>0.1.0</version>
+   <version>0.0.1-SNAPSHOT</version>
 
    <name>Profile Manager Web Application - Profile Manager Web Application Bundle</name>
 
