@@ -6,7 +6,7 @@
 				<i class="fa fa-caret-square-o-right"></i>
 			</div>
 			<div class="count">13</div>
-			<h3>Nuovi iscritti</h3>
+			<h3>New members</h3>
 			<p>Lorem ipsum psdea itgum rixt.</p>
 		</div>
 	</div>
@@ -16,7 +16,7 @@
 				<i class="fa fa-comments-o"></i>
 			</div>
 			<div class="count">124</div>
-			<h3>Totale utenti</h3>
+			<h3>Registered users</h3>
 			<p>Lorem ipsum psdea itgum rixt.</p>
 		</div>
 	</div>
@@ -26,7 +26,7 @@
 				<i class="fa fa-sort-amount-desc"></i>
 			</div>
 			<div class="count">6</div>
-			<h3>Totale profili</h3>
+			<h3>Defined profiles</h3>
 			<p>Lorem ipsum psdea itgum rixt.</p>
 		</div>
 	</div>
@@ -35,8 +35,8 @@
 			<div class="icon">
 				<i class="fa fa-check-square-o"></i>
 			</div>
-			<div class="count">179</div>
-			<h3>New Sign ups</h3>
+			<div class="count">49</div>
+			<h3>Associated informations</h3>
 			<p>Lorem ipsum psdea itgum rixt.</p>
 		</div>
 	</div>
