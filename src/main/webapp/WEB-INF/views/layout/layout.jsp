@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-   pageEncoding="ISO-8859-1"%>
+	pageEncoding="ISO-8859-1"%>
 
 <%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles"%>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
@@ -22,48 +22,48 @@
 <title><spring:message code="common.title" /></title>
 
 <link rel="icon" type="image/ico"
-   href="${pageContext.request.contextPath}/resources/favicon.ico" />
+	href="${pageContext.request.contextPath}/resources/favicon.ico" />
 
 <%@include file="layout_css.jsp"%>
 
 <!-- jQuery - leave here because enables the use of $ on jsp pages that they use $(document).ready(function() {...}); -->
 <script
-   src="${pageContext.request.contextPath}/resources/themes/gentelella/vendors/jquery/jquery.min.js"></script>
-   
+	src="${pageContext.request.contextPath}/resources/themes/gentelella/vendors/jquery/jquery.min.js"></script>
+
 </head>
 
 <body class="nav-md">
-   
-   <div class="container body">
-      <div class="main_container">
 
-         <!-- left navigation -->
-         <tiles:insertAttribute name="navigation_left" />
-         <!-- /left navigation -->
+	<div class="container body">
+		<div class="main_container">
 
-         <!-- top navigation -->
-         <tiles:insertAttribute name="navigation_top" />
-         <!-- /top navigation -->
+			<!-- left navigation -->
+			<tiles:insertAttribute name="navigation_left" />
+			<!-- /left navigation -->
 
-         <!-- page content -->
-         <div class="right_col" role="main">
-            <div class="">
-               <!-- top content -->
-               <tiles:insertAttribute name="content_top" />
-               <!-- /top content -->
+			<!-- top navigation -->
+			<tiles:insertAttribute name="navigation_top" />
+			<!-- /top navigation -->
 
-               <!-- content -->
-               <tiles:insertAttribute name="content" />
-               <!-- /content -->
-            </div>
-         </div>
-         <!-- /page content -->
+			<!-- page content -->
+			<div class="right_col" role="main">
+				<div class="">
+					<!-- top content -->
+					<tiles:insertAttribute name="content_top" />
+					<!-- /top content -->
 
-         <!-- footer content -->
-         <tiles:insertAttribute name="footer" />
-         <!-- /footer content -->
-      </div>
-   </div>
-   <%@include file="layout_javascript.jsp"%>
+					<!-- content -->
+					<tiles:insertAttribute name="content" />
+					<!-- /content -->
+				</div>
+			</div>
+			<!-- /page content -->
+
+			<!-- footer content -->
+			<tiles:insertAttribute name="footer" />
+			<!-- /footer content -->
+		</div>
+	</div>
+	<%@include file="layout_javascript.jsp"%>
 </body>
 </html>

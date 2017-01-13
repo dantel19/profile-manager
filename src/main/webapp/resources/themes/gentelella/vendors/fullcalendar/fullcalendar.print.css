@@ -9,15 +9,12 @@
  * When including this stylesheet, use the media='print' attribute of the <link> tag.
  * Make sure to include this stylesheet IN ADDITION to the regular fullcalendar.css.
  */
-
 .fc {
 	max-width: 100% !important;
 }
 
-
 /* Global Event Restyling
 --------------------------------------------------------------------------------------------------*/
-
 .fc-event {
 	background: #fff !important;
 	color: #000 !important;
@@ -28,47 +25,41 @@
 	display: none;
 }
 
-
 /* Table & Day-Row Restyling
 --------------------------------------------------------------------------------------------------*/
-
-th,
-td,
-hr,
-thead,
-tbody,
-.fc-row {
+th, td, hr, thead, tbody, .fc-row {
 	border-color: #ccc !important;
 	background: #fff !important;
 }
 
 /* kill the overlaid, absolutely-positioned components */
 /* common... */
-.fc-bg,
-.fc-bgevent-skeleton,
-.fc-highlight-skeleton,
-.fc-helper-skeleton,
-/* for timegrid. within cells within table skeletons... */
-.fc-bgevent-container,
-.fc-business-container,
-.fc-highlight-container,
-.fc-helper-container {
+.fc-bg, .fc-bgevent-skeleton, .fc-highlight-skeleton,
+	.fc-helper-skeleton,
+	/* for timegrid. within cells within table skeletons... */
+	.fc-bgevent-container, .fc-business-container, .fc-highlight-container,
+	.fc-helper-container {
 	display: none;
 }
 
 /* don't force a min-height on rows (for DayGrid) */
 .fc tbody .fc-row {
-	height: auto !important; /* undo height that JS set in distributeHeight */
-	min-height: 0 !important; /* undo the min-height from each view's specific stylesheet */
+	height: auto !important;
+	/* undo height that JS set in distributeHeight */
+	min-height: 0 !important;
+	/* undo the min-height from each view's specific stylesheet */
 }
 
 .fc tbody .fc-row .fc-content-skeleton {
 	position: static; /* undo .fc-rigid */
-	padding-bottom: 0 !important; /* use a more border-friendly method for this... */
+	padding-bottom: 0 !important;
+	/* use a more border-friendly method for this... */
 }
 
-.fc tbody .fc-row .fc-content-skeleton tbody tr:last-child td { /* only works in newer browsers */
-	padding-bottom: 1em; /* ...gives space within the skeleton. also ensures min height in a way */
+.fc tbody .fc-row .fc-content-skeleton tbody tr:last-child td {
+	/* only works in newer browsers */
+	padding-bottom: 1em;
+	/* ...gives space within the skeleton. also ensures min height in a way */
 }
 
 .fc tbody .fc-row .fc-content-skeleton table {
@@ -77,12 +68,9 @@ tbody,
 	height: 1em;
 }
 
-
 /* Undo month-view event limiting. Display all events and hide the "more" links
 --------------------------------------------------------------------------------------------------*/
-
-.fc-more-cell,
-.fc-more {
+.fc-more-cell, .fc-more {
 	display: none !important;
 }
 
@@ -98,7 +86,6 @@ tbody,
 	display: none; /* never display the "more.." popover in print mode */
 }
 
-
 /* TimeGrid Restyling
 --------------------------------------------------------------------------------------------------*/
 
@@ -113,8 +100,8 @@ tbody,
 }
 
 /* don't display the horizontal lines */
-.fc-slats,
-.fc-time-grid hr { /* this hr is used when height is underused and needs to be filled */
+.fc-slats, .fc-time-grid hr {
+	/* this hr is used when height is underused and needs to be filled */
 	display: none !important; /* important overrides inline declaration */
 }
 
@@ -132,7 +119,6 @@ tbody,
 .fc-time-grid .fc-event-container {
 	margin: 0 !important;
 }
-
 
 /* TimeGrid *Event* Restyling
 --------------------------------------------------------------------------------------------------*/
@@ -180,14 +166,13 @@ tbody,
 	content: attr(data-full);
 }
 
-
 /* Vertical Scroller & Containers
 --------------------------------------------------------------------------------------------------*/
 
 /* kill the scrollbars and allow natural height */
-.fc-scroller,
-.fc-day-grid-container,    /* these divs might be assigned height, which we need to cleared */
-.fc-time-grid-container {  /* */
+.fc-scroller, .fc-day-grid-container,
+	/* these divs might be assigned height, which we need to cleared */
+	.fc-time-grid-container { /* */
 	overflow: visible !important;
 	height: auto !important;
 }
@@ -198,11 +183,8 @@ tbody,
 	margin: 0 !important;
 }
 
-
 /* Button Controls
 --------------------------------------------------------------------------------------------------*/
-
-.fc-button-group,
-.fc button {
+.fc-button-group, .fc button {
 	display: none; /* don't display any button-related controls */
 }

@@ -1,53 +1,50 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- 
-	Profile Manager - Copyright (C) 2016  Daniele Tellina
-	
-	Profile Manager is free software: you can redistribute it and/or modify
-	it under the terms of the GNU General Public License as published by
-	the Free Software Foundation, either version 3 of the License, or
-	(at your option) any later version.
-	  
-	Profile Manager is distributed in the hope that it will be useful,
-	but WITHOUT ANY WARRANTY; without even the implied warranty of
-	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-	GNU General Public License for more details.
-	  
-	You should have received a copy of the GNU General Public License
-	along with Profile Manager.  If not, see <http://www.gnu.org/licenses/>.
- -->
-<assembly xmlns="http://maven.apache.org/plugins/maven-assembly-plugin/assembly/1.1.3"
-          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-          xsi:schemaLocation="http://maven.apache.org/plugins/maven-assembly-plugin/assembly/1.1.3
+   Profile Manager - Copyright (C) 2016  Daniele Tellina
+
+   Profile Manager is free software: you can redistribute it and/or modify
+   it under the terms of the GNU General Public License as published by
+   the Free Software Foundation, either version 3 of the License, or
+   (at your option) any later version.
+  
+   Profile Manager is distributed in the hope that it will be useful,
+   but WITHOUT ANY WARRANTY; without even the implied warranty of
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+   GNU General Public License for more details.
+  
+   You should have received a copy of the GNU General Public License
+   along with Profile Manager.  If not, see <http://www.gnu.org/licenses/>.
+   -->
+<assembly
+   xmlns="http://maven.apache.org/plugins/maven-assembly-plugin/assembly/1.1.3"
+   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+   xsi:schemaLocation="http://maven.apache.org/plugins/maven-assembly-plugin/assembly/1.1.3
                               http://maven.apache.org/xsd/assembly-1.1.3.xsd">
 
-    <id>tomcat-${apache-tomcat.version}</id>
-    
-    <formats>
-        <format>zip</format>
-    </formats>
-    
-    <fileSets>
-        <fileSet>
-            <useDefaultExcludes>false</useDefaultExcludes>
-            <directory>${project.build.directory}/${apache-tomcat.dir.name}</directory>
-             <includes>
-                <include>**</include>
-              </includes>
-            <outputDirectory></outputDirectory>
-           <!-- <excludes>
-                <exclude>**/webapps/docs/**</exclude>
-                <exclude>**/webapps/examples/**</exclude>
-                <exclude>**/webapps/host-manager/**</exclude>
-                <exclude>**/webapps/manager/**</exclude>
-            </excludes>
-        -->
-        </fileSet>
-        <fileSet>
-            <directory>${project.build.directory}</directory>
-            <includes>
-                <include>${webapplication.name}.${webapplication.extension}</include>
-              </includes>
-            <outputDirectory>webapps</outputDirectory>
-        </fileSet>
-    </fileSets>
+   <id>tomcat-${apache-tomcat.version}</id>
+
+   <formats>
+      <format>zip</format>
+   </formats>
+
+   <fileSets>
+      <fileSet>
+         <useDefaultExcludes>false</useDefaultExcludes>
+         <directory>${project.build.directory}/${apache-tomcat.dir.name}</directory>
+         <includes>
+            <include>**</include>
+         </includes>
+         <outputDirectory></outputDirectory>
+         <!-- <excludes> <exclude>**/webapps/docs/**</exclude> <exclude>**/webapps/examples/**</exclude> 
+            <exclude>**/webapps/host-manager/**</exclude> <exclude>**/webapps/manager/**</exclude> 
+            </excludes> -->
+      </fileSet>
+      <fileSet>
+         <directory>${project.build.directory}</directory>
+         <includes>
+            <include>${webapplication.name}.${webapplication.extension}</include>
+         </includes>
+         <outputDirectory>webapps</outputDirectory>
+      </fileSet>
+   </fileSets>
 </assembly>

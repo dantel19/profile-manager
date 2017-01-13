@@ -1,91 +1,100 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- 
-	
-	Profile Manager - Copyright (C) 2016  Daniele Tellina
-	
-	Profile Manager is free software: you can redistribute it and/or modify
-	it under the terms of the GNU General Public License as published by
-	the Free Software Foundation, either version 3 of the License, or
-	(at your option) any later version.
-	  
-	Profile Manager is distributed in the hope that it will be useful,
-	but WITHOUT ANY WARRANTY; without even the implied warranty of
-	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-	GNU General Public License for more details.
-	  
-	You should have received a copy of the GNU General Public License
-	along with Profile Manager.  If not, see <http://www.gnu.org/licenses/>.
- -->
+   Profile Manager - Copyright (C) 2016  Daniele Tellina
+
+   Profile Manager is free software: you can redistribute it and/or modify
+   it under the terms of the GNU General Public License as published by
+   the Free Software Foundation, either version 3 of the License, or
+   (at your option) any later version.
+  
+   Profile Manager is distributed in the hope that it will be useful,
+   but WITHOUT ANY WARRANTY; without even the implied warranty of
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+   GNU General Public License for more details.
+  
+   You should have received a copy of the GNU General Public License
+   along with Profile Manager.  If not, see <http://www.gnu.org/licenses/>.
+-->
 <beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xmlns="http://www.springframework.org/schema/beans"
-       xmlns:mvc="http://www.springframework.org/schema/mvc"
-       xmlns:context="http://www.springframework.org/schema/context"
-       
-       xsi:schemaLocation="
+   xmlns="http://www.springframework.org/schema/beans" xmlns:mvc="http://www.springframework.org/schema/mvc"
+   xmlns:context="http://www.springframework.org/schema/context"
+
+   xsi:schemaLocation="
           http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
           http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
           http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
 
 
-	<!-- Enable Spring Annotation -->
-    <mvc:annotation-driven content-negotiation-manager="contentNegotiationManager"/>
-    <bean id="contentNegotiationManager" class="org.springframework.web.accept.ContentNegotiationManagerFactoryBean">
-        <property name="favorPathExtension" value="false" />
-        <property name="favorParameter" value="false" />
-        <property name="ignoreAcceptHeader" value="false" />
-        <property name="mediaTypes" >
-            <value>
-                atom=application/atom+xml
-                html=text/html
-                json=application/json
-                *=*/*
-            </value>
-        </property>
-    </bean>
-    
-    <!-- Scans within the base package of the application for @Controller classes to configure as beans -->
-    <context:component-scan base-package="it.univaq.incipict.profilemanager.presentation" scoped-proxy="targetClass"/>
-    
-    <!-- Handles HTTP GET requests for /resources/** by efficiently serving  up static resources in the ${webappRoot}/resources/ directory -->
-    <mvc:resources mapping="/resources/**" location="/resources/"/>
-    
-    <!-- Forwards requests to the "/" resource to the "home" view -->
-    <mvc:view-controller path="/" view-name="content.profile.list"/>
-    
-   <!-- ================= INTERNATIONALIZATION ================= --> 
-    <!-- Declare the Internationalization Interceptor -->
-    <mvc:interceptors>
-        <bean class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor">
-            <property name="paramName" value="lang" />
-        </bean>
-    </mvc:interceptors>
-    
-    <!-- Load Internationalization message files -->
-    <bean id="messageSource" class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
-        <property name="fallbackToSystemLocale" value="false"/>	
-        <property name="basenames">
-            <list>
-                <value>classpath:/i18n/profilemanager</value>
-            </list>
-        </property>
-    </bean>
-         <!-- Declare the Internationalization Resolver -->
-    <bean id="localeResolver" class="org.springframework.web.servlet.i18n.SessionLocaleResolver" />
-    
-    <!-- ================= TILES ================= -->
-    <bean id="tilesConfigurer"
-          class="org.springframework.web.servlet.view.tiles3.TilesConfigurer">
-        <property name="definitions">
-            <list>
-                <value>/WEB-INF/spring/tiles-defs.xml</value>
-            </list>
-        </property>
-    </bean>
-    
-    <bean id="tilesViewResolver" class="org.springframework.web.servlet.view.tiles3.TilesViewResolver"/>
-    
-    <bean id="viewResolver" class="org.springframework.web.servlet.view.ResourceBundleViewResolver">
-        <property name="basename" value="views"/>
-    </bean>
+   <!-- Enable Spring Annotation -->
+   <mvc:annotation-driven
+      content-negotiation-manager="contentNegotiationManager" />
+   <bean id="contentNegotiationManager"
+      class="org.springframework.web.accept.ContentNegotiationManagerFactoryBean">
+      <property name="favorPathExtension" value="false" />
+      <property name="favorParameter" value="false" />
+      <property name="ignoreAcceptHeader" value="false" />
+      <property name="mediaTypes">
+         <value>
+            atom=application/atom+xml
+            html=text/html
+            json=application/json
+            *=*/*
+         </value>
+      </property>
+   </bean>
+
+   <!-- Scans within the base package of the application for @Controller 
+      classes to configure as beans -->
+   <context:component-scan
+      base-package="it.univaq.incipict.profilemanager.presentation"
+      scoped-proxy="targetClass" />
+
+   <!-- Handles HTTP GET requests for /resources/** by efficiently serving 
+      up static resources in the ${webappRoot}/resources/ directory -->
+   <mvc:resources mapping="/resources/**" location="/resources/" />
+
+   <!-- Forwards requests to the "/" resource to the "home" view -->
+   <mvc:view-controller path="/" view-name="content.profile.list" />
+
+   <!-- ================= INTERNATIONALIZATION ================= -->
+   <!-- Declare the Internationalization Interceptor -->
+   <mvc:interceptors>
+      <bean
+         class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor">
+         <property name="paramName" value="lang" />
+      </bean>
+   </mvc:interceptors>
+
+   <!-- Load Internationalization message files -->
+   <bean id="messageSource"
+      class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
+      <property name="fallbackToSystemLocale" value="false" />
+      <property name="basenames">
+         <list>
+            <value>classpath:/i18n/profilemanager</value>
+         </list>
+      </property>
+   </bean>
+   <!-- Declare the Internationalization Resolver -->
+   <bean id="localeResolver"
+      class="org.springframework.web.servlet.i18n.SessionLocaleResolver" />
+
+   <!-- ================= TILES ================= -->
+   <bean id="tilesConfigurer"
+      class="org.springframework.web.servlet.view.tiles3.TilesConfigurer">
+      <property name="definitions">
+         <list>
+            <value>/WEB-INF/spring/tiles-defs.xml</value>
+         </list>
+      </property>
+   </bean>
+
+   <bean id="tilesViewResolver"
+      class="org.springframework.web.servlet.view.tiles3.TilesViewResolver" />
+
+   <bean id="viewResolver"
+      class="org.springframework.web.servlet.view.ResourceBundleViewResolver">
+      <property name="basename" value="views" />
+   </bean>
 
 </beans>

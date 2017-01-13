@@ -1,4 +1,4 @@
-<%@taglib uri="http://www.springframework.org/tags" prefix="spring" %>
+<%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <div class="top_nav">
 	<div class="nav_menu">
 		<nav>
@@ -9,8 +9,9 @@
 			<ul class="nav navbar-nav navbar-right">
 				<li class=""><a href="javascript:;"
 					class="user-profile dropdown-toggle" data-toggle="dropdown"
-					aria-expanded="false"> <img src="${pageContext.request.contextPath}/resources/images/user.png" alt="">John
-						Doe <span class=" fa fa-angle-down"></span>
+					aria-expanded="false"> <img
+						src="${pageContext.request.contextPath}/resources/images/user.png"
+						alt="">John Doe <span class=" fa fa-angle-down"></span>
 				</a>
 					<ul class="dropdown-menu dropdown-usermenu pull-right">
 						<li><a href="javascript:;"> Profile</a></li>
@@ -30,26 +31,30 @@
 					<ul id="menu1" class="dropdown-menu list-unstyled msg_list"
 						role="menu">
 						<li><a> <span class="image"><img
-									src="${pageContext.request.contextPath}/resources/images/user.png" alt="Profile Image" /></span> <span> <span>John
-										Smith</span> <span class="time">3 mins ago</span>
+									src="${pageContext.request.contextPath}/resources/images/user.png"
+									alt="Profile Image" /></span> <span> <span>John Smith</span> <span
+									class="time">3 mins ago</span>
 							</span> <span class="message"> Film festivals used to be
 									do-or-die moments for movie makers. They were where... </span>
 						</a></li>
 						<li><a> <span class="image"><img
-									src="${pageContext.request.contextPath}/resources/images/user.png" alt="Profile Image" /></span> <span> <span>John
-										Smith</span> <span class="time">3 mins ago</span>
+									src="${pageContext.request.contextPath}/resources/images/user.png"
+									alt="Profile Image" /></span> <span> <span>John Smith</span> <span
+									class="time">3 mins ago</span>
 							</span> <span class="message"> Film festivals used to be
 									do-or-die moments for movie makers. They were where... </span>
 						</a></li>
 						<li><a> <span class="image"><img
-									src="${pageContext.request.contextPath}/resources/images/user.png" alt="Profile Image" /></span> <span> <span>John
-										Smith</span> <span class="time">3 mins ago</span>
+									src="${pageContext.request.contextPath}/resources/images/user.png"
+									alt="Profile Image" /></span> <span> <span>John Smith</span> <span
+									class="time">3 mins ago</span>
 							</span> <span class="message"> Film festivals used to be
 									do-or-die moments for movie makers. They were where... </span>
 						</a></li>
 						<li><a> <span class="image"><img
-									src="${pageContext.request.contextPath}/resources/images/user.png" alt="Profile Image" /></span> <span> <span>John
-										Smith</span> <span class="time">3 mins ago</span>
+									src="${pageContext.request.contextPath}/resources/images/user.png"
+									alt="Profile Image" /></span> <span> <span>John Smith</span> <span
+									class="time">3 mins ago</span>
 							</span> <span class="message"> Film festivals used to be
 									do-or-die moments for movie makers. They were where... </span>
 						</a></li>

@@ -1,5 +1,4 @@
 /*
- 
  Profile Manager - Copyright (C) 2016  Daniele Tellina
 
  Profile Manager is free software: you can redistribute it and/or modify
@@ -14,7 +13,7 @@
   
  You should have received a copy of the GNU General Public License
  along with Profile Manager.  If not, see <http://www.gnu.org/licenses/>.
-*/
+ */
 
 var socket
 
@@ -23,12 +22,13 @@ $(document)
             function() {
                if (!("WebSocket" in window)) {
                   $('#chatLog, input, button, #examples').fadeOut("fast");
-                  $('<p>Oh no, you need a browser that supports WebSockets. How about <a href="http://www.google.com/chrome">Google Chrome</a>?</p>')
+                  $(
+                        '<p>Oh no, you need a browser that supports WebSockets. How about <a href="http://www.google.com/chrome">Google Chrome</a>?</p>')
                         .appendTo('#container');
                } else {
                   // The user has WebSockets
 
-                 //listen();
+                  // listen();
                }
 
             });
