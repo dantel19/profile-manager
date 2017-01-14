@@ -51,6 +51,7 @@
       <apache-tomcat.server.port>9091</apache-tomcat.server.port>
       <apache-tomcat.users.name>tomcat</apache-tomcat.users.name>
       <apache-tomcat.users.password>tomcat</apache-tomcat.users.password>
+      <mysql-connector.version>6.0.5</mysql-connector.version>
 
       <springframework.version>4.2.8.RELEASE</springframework.version>
       <javax.servlet.version>3.1.0</javax.servlet.version>
@@ -246,7 +247,7 @@
                   <version>2.10</version>
                   <executions>
                      <execution>
-                        <id>unpack</id>
+                        <id>download-tomcat</id>
                         <phase>process-sources</phase>
                         <goals>
                            <goal>unpack</goal>
@@ -261,6 +262,26 @@
                                  <type>zip</type>
                                  <overWrite>true</overWrite>
                                  <outputDirectory>${project.build.directory}</outputDirectory>
+                              </artifactItem>
+                           </artifactItems>
+                        </configuration>
+                     </execution>
+                     <execution>
+                        <id>download-mysql-connector</id>
+                        <phase>process-sources</phase>
+                        <goals>
+                           <goal>copy</goal>
+                        </goals>
+                        <configuration>
+                           <artifactItems>
+                              <!-- see https://mvnrepository.com/artifact/mysql/mysql-connector-java/ -->
+                              <artifactItem>
+                                 <groupId>mysql</groupId>
+                                 <artifactId>mysql-connector-java</artifactId>
+                                 <version>${mysql-connector.version}</version>
+                                 <type>jar</type>
+                                 <overWrite>true</overWrite>
+                                 <outputDirectory>${project.build.directory}/${apache-tomcat.dir.name}/lib</outputDirectory>
                               </artifactItem>
                            </artifactItems>
                         </configuration>
@@ -291,7 +312,6 @@
                            </resources>
                         </configuration>
                      </execution>
-
                      <execution>
                         <id>copy-tomcat-users.xml</id>
                         <phase>process-sources</phase>
