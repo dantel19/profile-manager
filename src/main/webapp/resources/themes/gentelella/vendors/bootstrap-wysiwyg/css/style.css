@@ -1,34 +1,30 @@
 /* this CSS is not part of the widget, it is here just as an example of the demo page styling.... Don't copy this one, roll your own. One
  * of the key things about the widget is that it allows you to do your own styling!
  */
+
+
 #editor, #first-editor, #second-editor {
 	max-height: 250px;
 	height: 250px;
 	background-color: white;
 	border-collapse: separate;
-	border: 1px solid rgb(204, 204, 204);
-	padding: 4px;
-	box-sizing: content-box;
-	-webkit-box-shadow: rgba(0, 0, 0, 0.0745098) 0 1px 1px 0 inset;
-	box-shadow: rgba(0, 0, 0, 0.0745098) 0 1px 1px 0 inset;
-	border-top-right-radius: 3px;
-	border-bottom-right-radius: 3px;
-	border-bottom-left-radius: 3px;
-	border-top-left-radius: 3px;
+  	border: 1px solid rgb(204, 204, 204);
+ 	padding: 4px;
+ 	box-sizing: content-box;
+ 	-webkit-box-shadow: rgba(0, 0, 0, 0.0745098) 0 1px 1px 0 inset;
+ 	box-shadow: rgba(0, 0, 0, 0.0745098) 0 1px 1px 0 inset;
+	border-top-right-radius: 3px; border-bottom-right-radius: 3px;
+	border-bottom-left-radius: 3px; border-top-left-radius: 3px;
 	overflow: scroll;
 	outline: none;
 }
-
-#editor:focus {
-	border-color: rgba(82, 168, 236, 0.8);
-	outline: 0;
-	outline: thin dotted \9;
-	-webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 8px
-		rgba(82, 168, 236, .6);
-	-moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 8px
-		rgba(82, 168, 236, .6);
-	box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 8px
-		rgba(82, 168, 236, .6);
+#editor:focus{
+    border-color:rgba(82, 168, 236, 0.8);
+    outline:0;
+    outline:thin dotted \9;
+    -webkit-box-shadow:inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(82,168,236,.6);
+    -moz-box-shadow:inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(82,168,236,.6);
+    box-shadow:inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(82,168,236,.6);
 }
 
 .voiceBtn {
@@ -54,23 +50,23 @@ div[data-role="editor-toolbar"] {
 .dropdown-menu a {
 	cursor: pointer;
 }
-
 .btn-toolbar {
 	padding: 10px 0px 10px 0px;
 }
 
-[contentEditable=true]:empty:not (:focus ):before {
-	content: attr(data-placeholder)
+[contentEditable=true]:empty:not(:focus):before {
+	content:attr(data-placeholder)
 }
 
 .placeholderText {
 	color: #777;
 }
 
-.imgUpload {
+.imgUpload
+{
 	width: 0;
 	height: 0;
-	position: absolute
+	position:absolute
 }
 
 /*
@@ -78,6 +74,7 @@ div[data-role="editor-toolbar"] {
 	fs represents the font-size attribute; therefore,
 	fs-five would be the equivalent to font-size: 5;	
 */
+
 .fs-One {
 	font-size: x-small;
 }
