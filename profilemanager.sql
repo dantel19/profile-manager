@@ -1,12 +1,11 @@
 SET foreign_key_checks = 0;
 DROP DATABASE IF EXISTS profilemanager;
 SET foreign_key_checks = 1;
-SET SESSION sql_mode='NO_AUTO_VALUE_ON_ZERO';
 
 CREATE DATABASE IF NOT EXISTS profilemanager DEFAULT CHARACTER SET utf8;
 
 CREATE TABLE profilemanager.Profile (
-    id INT NOT NULL AUTO_INCREMENT,
+    id INT UNSIGNED NOT NULL AUTO_INCREMENT,
     name VARCHAR(64) NOT NULL,
     description TEXT(512) NULL,
     custom BOOLEAN NOT NULL DEFAULT 0,
@@ -14,19 +13,19 @@ CREATE TABLE profilemanager.Profile (
 )  ENGINE=INNODB;
 
 CREATE TABLE profilemanager.Role (
-    id INT NOT NULL AUTO_INCREMENT,
+    id INT UNSIGNED NOT NULL AUTO_INCREMENT,
     name VARCHAR(64) NOT NULL,
     description TEXT(512) NULL,
     PRIMARY KEY (id)
 )  ENGINE=INNODB;
 
 CREATE TABLE profilemanager.User (
-    id INT NOT NULL AUTO_INCREMENT,
+    id INT UNSIGNED NOT NULL AUTO_INCREMENT,
     name VARCHAR(64) NOT NULL,
     surname VARCHAR(64) NULL,
     email VARCHAR(128) NOT NULL,
     password VARCHAR(32) NOT NULL,
-    id_profile INT NOT NULL,
+    id_profile INT UNSIGNED NOT NULL,
     PRIMARY KEY (id),
     FOREIGN KEY (id_profile)
         REFERENCES profilemanager.Profile (id)
@@ -34,8 +33,8 @@ CREATE TABLE profilemanager.User (
 )  ENGINE=INNODB;
 
 CREATE TABLE profilemanager.User_Role (
-    id_user INT NOT NULL,
-    id_role INT NOT NULL,
+    id_user INT UNSIGNED NOT NULL,
+    id_role INT UNSIGNED NOT NULL,
     PRIMARY KEY (id_user , id_role),
     FOREIGN KEY (id_user)
         REFERENCES profilemanager.User (id)
@@ -47,16 +46,16 @@ CREATE TABLE profilemanager.User_Role (
 
 
 CREATE TABLE profilemanager.Information (
-    id INT NOT NULL AUTO_INCREMENT,
+    id INT UNSIGNED NOT NULL AUTO_INCREMENT,
     description TEXT(512) NULL,
     PRIMARY KEY (id)
 )  ENGINE=INNODB;
 
 /* This table represents the Knowledge Base */
 CREATE TABLE profilemanager.Information_Profile (
-    id_profile INT NOT NULL,
-    id_information INT NOT NULL,
-    rank DOUBLE NOT NULL DEFAULT 0,
+    id_profile INT UNSIGNED NOT NULL,
+    id_information INT UNSIGNED NOT NULL,
+    rank DOUBLE UNSIGNED NOT NULL DEFAULT 0,
     PRIMARY KEY (id_profile , id_information),
     FOREIGN KEY (id_profile)
         REFERENCES profilemanager.Profile (id)
