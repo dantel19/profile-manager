@@ -1,11 +1,11 @@
 SET foreign_key_checks = 0;
-DROP DATABASE IF EXISTS profile_manager;
+DROP DATABASE IF EXISTS profilemanager;
 SET foreign_key_checks = 1;
 SET SESSION sql_mode='NO_AUTO_VALUE_ON_ZERO';
 
-CREATE DATABASE IF NOT EXISTS profile_manager DEFAULT CHARACTER SET utf8;
+CREATE DATABASE IF NOT EXISTS profilemanager DEFAULT CHARACTER SET utf8;
 
-CREATE TABLE profile_manager.Profile (
+CREATE TABLE profilemanager.Profile (
     id INT NOT NULL AUTO_INCREMENT,
     name VARCHAR(64) NOT NULL,
     description TEXT(512) NULL,
@@ -13,14 +13,14 @@ CREATE TABLE profile_manager.Profile (
     PRIMARY KEY (id)
 )  ENGINE=INNODB;
 
-CREATE TABLE profile_manager.Role (
+CREATE TABLE profilemanager.Role (
     id INT NOT NULL AUTO_INCREMENT,
     name VARCHAR(64) NOT NULL,
     description TEXT(512) NULL,
     PRIMARY KEY (id)
 )  ENGINE=INNODB;
 
-CREATE TABLE profile_manager.User (
+CREATE TABLE profilemanager.User (
     id INT NOT NULL AUTO_INCREMENT,
     name VARCHAR(64) NOT NULL,
     surname VARCHAR(64) NULL,
@@ -29,69 +29,69 @@ CREATE TABLE profile_manager.User (
     id_profile INT NOT NULL,
     PRIMARY KEY (id),
     FOREIGN KEY (id_profile)
-        REFERENCES profile_manager.Profile (id)
+        REFERENCES profilemanager.Profile (id)
         ON DELETE NO ACTION ON UPDATE NO ACTION
 )  ENGINE=INNODB;
 
-CREATE TABLE profile_manager.User_Role (
+CREATE TABLE profilemanager.User_Role (
     id_user INT NOT NULL,
     id_role INT NOT NULL,
     PRIMARY KEY (id_user , id_role),
     FOREIGN KEY (id_user)
-        REFERENCES profile_manager.User (id)
+        REFERENCES profilemanager.User (id)
         ON DELETE NO ACTION ON UPDATE NO ACTION,
     FOREIGN KEY (id_role)
-        REFERENCES profile_manager.Role (id)
+        REFERENCES profilemanager.Role (id)
         ON DELETE NO ACTION ON UPDATE NO ACTION
 )  ENGINE=INNODB;
 
 
-CREATE TABLE profile_manager.Information (
+CREATE TABLE profilemanager.Information (
     id INT NOT NULL AUTO_INCREMENT,
     description TEXT(512) NULL,
     PRIMARY KEY (id)
 )  ENGINE=INNODB;
 
 /* This table represents the Knowledge Base */
-CREATE TABLE profile_manager.Information_Profile (
+CREATE TABLE profilemanager.Information_Profile (
     id_profile INT NOT NULL,
     id_information INT NOT NULL,
     rank DOUBLE NOT NULL DEFAULT 0,
     PRIMARY KEY (id_profile , id_information),
     FOREIGN KEY (id_profile)
-        REFERENCES profile_manager.Profile (id)
+        REFERENCES profilemanager.Profile (id)
         ON DELETE CASCADE ON UPDATE CASCADE,
     FOREIGN KEY (id_information)
-        REFERENCES profile_manager.Information (id)
+        REFERENCES profilemanager.Information (id)
         ON DELETE CASCADE ON UPDATE CASCADE
 )  ENGINE=INNODB;
 
 /* INSERT statements */
  
 /* Table: Profile */
-INSERT INTO profile_manager.Profile (name, description, custom) VALUES ("Unknown", "Profilo di default", 0);
-INSERT INTO profile_manager.Profile (name, description, custom) VALUES ("Ingegnere Civile", "Ingegnere Civile: generalizza le due figure di Ingegnere Civile ed Ingegnere Edile. (Rif. albo degli ingegneri, settore a: civile ed ambientale)", 0);
-INSERT INTO profile_manager.Profile (name, description, custom) VALUES ("Architetto", "Architettura o discipline affini", 0);
-INSERT INTO profile_manager.Profile (name, description, custom) VALUES ("Energy Manager", "Energy Manager", 0);
-INSERT INTO profile_manager.Profile (name, description, custom) VALUES ("Ingegnere Elettronico e dell'Automazione", "Ingegnere Elettronico e dell'Automazione", 0);
-INSERT INTO profile_manager.Profile (name, description, custom) VALUES ("Storico dell'Arte", "Storico dell'Arte o discipline affini", 0);
-INSERT INTO profile_manager.Profile (name, description, custom) VALUES ("Turista", "Turista", 0);
+INSERT INTO profilemanager.Profile (name, description, custom) VALUES ("Unknown", "Profilo di default", 0);
+INSERT INTO profilemanager.Profile (name, description, custom) VALUES ("Ingegnere Civile", "Ingegnere Civile: generalizza le due figure di Ingegnere Civile ed Ingegnere Edile. (Rif. albo degli ingegneri, settore a: civile ed ambientale)", 0);
+INSERT INTO profilemanager.Profile (name, description, custom) VALUES ("Architetto", "Architettura o discipline affini", 0);
+INSERT INTO profilemanager.Profile (name, description, custom) VALUES ("Energy Manager", "Energy Manager", 0);
+INSERT INTO profilemanager.Profile (name, description, custom) VALUES ("Ingegnere Elettronico e dell'Automazione", "Ingegnere Elettronico e dell'Automazione", 0);
+INSERT INTO profilemanager.Profile (name, description, custom) VALUES ("Storico dell'Arte", "Storico dell'Arte o discipline affini", 0);
+INSERT INTO profilemanager.Profile (name, description, custom) VALUES ("Turista", "Turista", 0);
 
 /* Table: Role */
-INSERT INTO profile_manager.Role (name, description) VALUES ("administrator", "Ruolo di Amministratore");
-INSERT INTO profile_manager.Role (name, description) VALUES ("user", "Ruolo di utente semplice");
+INSERT INTO profilemanager.Role (name, description) VALUES ("administrator", "Ruolo di Amministratore");
+INSERT INTO profilemanager.Role (name, description) VALUES ("user", "Ruolo di utente semplice");
 
 /* Table: User */
-INSERT INTO profile_manager.User (name, surname, email, password, id_profile) VALUES ("Daniele", "Tellina", "danieletellina@gmail.com", "c6009f08fc5fc6385f1ea1f5840e179f", 1);
-INSERT INTO profile_manager.User (name, surname, email, password, id_profile) VALUES ("Alexander", "Perucci", "aleale89@hotmail.it", "0c88028bf3aa6a6a143ed846f2be1ea4", 1);
+INSERT INTO profilemanager.User (name, surname, email, password, id_profile) VALUES ("Daniele", "Tellina", "danieletellina@gmail.com", "c6009f08fc5fc6385f1ea1f5840e179f", 1);
+INSERT INTO profilemanager.User (name, surname, email, password, id_profile) VALUES ("Alexander", "Perucci", "aleale89@hotmail.it", "0c88028bf3aa6a6a143ed846f2be1ea4", 1);
 
 /* Table: User_Role */
-INSERT INTO profile_manager.User_Role (id_user, id_role) VALUES
+INSERT INTO profilemanager.User_Role (id_user, id_role) VALUES
 (1, 1),
 (2, 1);
 
 /* Table: Information */
-INSERT INTO profile_manager.Information (description) VALUES
+INSERT INTO profilemanager.Information (description) VALUES
 ("Chi ha costruito l'edificio"),
 ("Altre opere dello stesso autore"),
 ("Altri edifici nel territorio con stesse caratteristiche architettoniche"),
@@ -143,7 +143,7 @@ INSERT INTO profile_manager.Information (description) VALUES
 ("Siti archeologici");
 
 /* Table: Information_Profile */
-INSERT INTO profile_manager.Information_Profile (id_profile, id_information, rank) VALUES
+INSERT INTO profilemanager.Information_Profile (id_profile, id_information, rank) VALUES
 /* IngegnereCivile */
 (2, 1, 4.0),(2, 2, 3.5),(2, 3, 3.5),(2, 4, 4.0),(2, 5, 4.0),(2, 6, 4.5),(2, 7, 4.0),(2, 8, 4.0),(2, 9, 4.0),(2, 10, 5.0),(2, 11, 5.0),(2, 12, 5.0),(2, 13, 3.5),(2, 14, 5.0),(2, 15, 4.5),(2, 16, 2.5),(2, 17, 3.0),(2, 18, 3.5),(2, 19, 1.5),(2, 20, 2.0),(2, 21, 2.5),(2, 22, 2.0),(2, 23, 1.5),(2, 24, 1.5),(2, 25, 2.0),(2, 26, 1.5),(2, 27, 2.0),(2, 28, 1.0),(2, 29, 0.5),(2, 30, 0.0),(2, 31, 0.0),(2, 32, 0.5),(2, 33, 0.0),(2, 34, 0.0),(2, 35, 1.0),(2, 36, 0.0),(2, 37, 1.0),(2, 38, 1.0),(2, 39, 1.0),(2, 40, 0.0),(2, 41, 0.0),(2, 42, 1.0),(2, 43, 0.0),(2, 44, 0.0),(2, 45, 1.0),(2, 46, 0.5),(2, 47, 0.0),(2, 48, 0.5),(2, 49, 0.5), 
 /* Architetto */
