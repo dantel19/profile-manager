@@ -14,29 +14,33 @@
  * You should have received a copy of the GNU General Public License
  * along with Profile Manager.  If not, see <http://www.gnu.org/licenses/>.
  */
-package it.univaq.incipict.profilemanager.business;
+package it.univaq.incipict.profilemanager.common.spring.security;
+
+import org.springframework.security.core.GrantedAuthority;
+
+import it.univaq.incipict.profilemanager.business.model.Role;
 
 /**
  * 
- * @author Daniele Tellina 
+ * @author Alexander Perucci (http://www.alexanderperucci.com/)
  *
  */
-public class ProfileManagerException extends  RuntimeException {
-   private static final long serialVersionUID = -2747157039796007525L;
+public class GrantedAuthorityImpl implements GrantedAuthority {
+   private static final long serialVersionUID = -6656718807102452484L;
+   private Role role;
 
-   public ProfileManagerException() {
+   public GrantedAuthorityImpl(Role role) {
       super();
+      this.role = role;
    }
 
-   public ProfileManagerException(String message, Throwable cause) {
-      super(message, cause);
+   @Override
+   public String getAuthority() {
+      return role.getName();
    }
 
-   public ProfileManagerException(String message) {
-      super(message);
-   }
-
-   public ProfileManagerException(Throwable cause) {
-      super(cause);
+   @Override
+   public String toString() {
+      return "[autority=" + role.getName() + "]";
    }
 }

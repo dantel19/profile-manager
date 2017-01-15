@@ -16,27 +16,14 @@
  */
 package it.univaq.incipict.profilemanager.business;
 
+import it.univaq.incipict.profilemanager.business.model.User;
+
 /**
  * 
- * @author Daniele Tellina 
+ * @author Alexander Perucci (http://www.alexanderperucci.com/)
  *
  */
-public class ProfileManagerException extends  RuntimeException {
-   private static final long serialVersionUID = -2747157039796007525L;
-
-   public ProfileManagerException() {
-      super();
-   }
-
-   public ProfileManagerException(String message, Throwable cause) {
-      super(message, cause);
-   }
-
-   public ProfileManagerException(String message) {
-      super(message);
-   }
-
-   public ProfileManagerException(Throwable cause) {
-      super(cause);
-   }
+public interface SecurityService {
+   
+   User authenticate(String username) throws ProfileManagerException;
 }

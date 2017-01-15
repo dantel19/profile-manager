@@ -1,5 +1,4 @@
 /*
- * 
  * Profile Manager - Copyright (C) 2016  Daniele Tellina
  *
  * Profile Manager is free software: you can redistribute it and/or modify
@@ -15,37 +14,52 @@
  * You should have received a copy of the GNU General Public License
  * along with Profile Manager.  If not, see <http://www.gnu.org/licenses/>.
  */
-
 package it.univaq.incipict.profilemanager.business.model;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
 /**
  * 
- * @author Daniele Tellina 
+ * @author Alexander Perucci (http://www.alexanderperucci.com/)
+ * @author Daniele Tellina
  *
  */
+@Entity
+@Table(name = "Role")
+public class Role implements java.io.Serializable{
+   private static final long serialVersionUID = -5400383771991397808L;
 
-public class Role {
-	private int ID;
-	private String name;
-	private String description;
-	public int getID() {
-		return ID;
-	}
-	public void setID(int iD) {
-		ID = iD;
-	}
-	public String getName() {
-		return name;
-	}
-	public void setName(String name) {
-		this.name = name;
-	}
-	public String getDescription() {
-		return description;
-	}
-	public void setDescription(String description) {
-		this.description = description;
-	}
+   @Id
+   @GeneratedValue(strategy = GenerationType.IDENTITY)
+   @Column(name = "id")
+   private int id;
 
-	
+   @Column(name = "name", nullable = false, length = 64)
+   private String name;
+   
+   @Column(name = "description", nullable = true, length = 512)
+   private String description;
+
+   public int getId() {
+      return id;
+   }
+
+   public void setId(int id) {
+      this.id = id;
+   }
+
+   public String getName() {
+      return name;
+   }
+
+   public void setName(String name) {
+      this.name = name;
+   }
+
+
 }

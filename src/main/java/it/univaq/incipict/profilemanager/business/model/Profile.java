@@ -1,5 +1,4 @@
 /*
- * 
  * Profile Manager - Copyright (C) 2016  Daniele Tellina
  *
  * Profile Manager is free software: you can redistribute it and/or modify
@@ -15,7 +14,6 @@
  * You should have received a copy of the GNU General Public License
  * along with Profile Manager.  If not, see <http://www.gnu.org/licenses/>.
  */
-
 package it.univaq.incipict.profilemanager.business.model;
 
 import java.util.List;

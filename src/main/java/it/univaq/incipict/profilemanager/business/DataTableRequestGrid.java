@@ -1,5 +1,4 @@
 /*
- * 
  * Profile Manager - Copyright (C) 2016  Daniele Tellina
  *
  * Profile Manager is free software: you can redistribute it and/or modify
@@ -15,7 +14,6 @@
  * You should have received a copy of the GNU General Public License
  * along with Profile Manager.  If not, see <http://www.gnu.org/licenses/>.
  */
-
 package it.univaq.incipict.profilemanager.business;
 
 /**
@@ -23,9 +21,8 @@ package it.univaq.incipict.profilemanager.business;
  * @author Alexander Perucci (http://www.alexanderperucci.com/)
  *
  */
-
 public class DataTableRequestGrid implements java.io.Serializable {
-   private static final long serialVersionUID = 8763752345678639200L;
+   private static final long serialVersionUID = 1L;
 
    private Integer iDisplayStart;
    private Integer iDisplayLength;

@@ -18,16 +18,18 @@
 <beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
    xmlns="http://www.springframework.org/schema/beans" xmlns:mvc="http://www.springframework.org/schema/mvc"
    xmlns:context="http://www.springframework.org/schema/context"
+   xmlns:aop="http://www.springframework.org/schema/aop"
 
    xsi:schemaLocation="
           http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
           http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
-          http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
-
+          http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+          http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
 
    <!-- Enable Spring Annotation -->
    <mvc:annotation-driven
       content-negotiation-manager="contentNegotiationManager" />
+   
    <bean id="contentNegotiationManager"
       class="org.springframework.web.accept.ContentNegotiationManagerFactoryBean">
       <property name="favorPathExtension" value="false" />
@@ -45,17 +47,25 @@
 
    <!-- Scans within the base package of the application for @Controller 
       classes to configure as beans -->
-   <context:component-scan
-      base-package="it.univaq.incipict.profilemanager.presentation"
-      scoped-proxy="targetClass" />
+   <context:component-scan base-package="it.univaq.incipict.profilemanager.presentation" scoped-proxy="targetClass" />
 
    <!-- Handles HTTP GET requests for /resources/** by efficiently serving 
       up static resources in the ${webappRoot}/resources/ directory -->
    <mvc:resources mapping="/resources/**" location="/resources/" />
 
    <!-- Forwards requests to the "/" resource to the "home" view -->
-   <mvc:view-controller path="/" view-name="content.profile.list" />
+   <mvc:view-controller path="/" view-name="standalone.login" />
+   <mvc:view-controller path="/login" view-name="standalone.login"/>
+   <mvc:view-controller path="/accessdenied" view-name="standalone.accessdenied"/>
+   <mvc:view-controller path="/welcome" view-name="common.welcome"/>
+   
+   <!-- ================= AUTHENTICATION HOLDER ================= -->   
+   <bean id="authenticationHolder" class="it.univaq.incipict.profilemanager.common.spring.security.AuthenticationHolder"/>
 
+    <bean scope="request" factory-bean="authenticationHolder" factory-method="getUser">
+        <aop:scoped-proxy/>
+    </bean>
+    
    <!-- ================= INTERNATIONALIZATION ================= -->
    <!-- Declare the Internationalization Interceptor -->
    <mvc:interceptors>

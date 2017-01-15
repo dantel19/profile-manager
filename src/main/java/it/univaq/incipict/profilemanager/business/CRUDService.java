@@ -16,27 +16,21 @@
  */
 package it.univaq.incipict.profilemanager.business;
 
+import java.util.List;
+
+import it.univaq.incipict.profilemanager.business.model.User;
+
 /**
  * 
- * @author Daniele Tellina 
+ * @author Alexander Perucci (http://www.alexanderperucci.com/)
  *
  */
-public class ProfileManagerException extends  RuntimeException {
-   private static final long serialVersionUID = -2747157039796007525L;
-
-   public ProfileManagerException() {
-      super();
-   }
-
-   public ProfileManagerException(String message, Throwable cause) {
-      super(message, cause);
-   }
-
-   public ProfileManagerException(String message) {
-      super(message);
-   }
-
-   public ProfileManagerException(Throwable cause) {
-      super(cause);
-   }
+public interface CRUDService<PK, MODEL> {
+   List<MODEL> findAll() throws ProfileManagerException;
+   DataTableResponseGrid<MODEL> findAllPaginated(DataTableRequestGrid dataTableRequestGrid) throws ProfileManagerException;
+   
+   void create(MODEL model, User user) throws ProfileManagerException;
+   MODEL findByPK(PK pk) throws ProfileManagerException;
+   void update(MODEL model, User user) throws ProfileManagerException;
+   void delete(MODEL model, User user) throws ProfileManagerException;
 }

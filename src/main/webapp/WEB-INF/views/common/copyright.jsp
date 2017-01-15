@@ -1,0 +1,1 @@
+Profile Manager - Copyright © 2016 <a href="#">Daniele Tellina</a>
