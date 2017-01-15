@@ -108,6 +108,7 @@
       <slf4j-log4j12.version>1.7.12</slf4j-log4j12.version>
       <junit.version>4.12</junit.version>
       <commons-io.version>2.5</commons-io.version>
+      <commons-codec.version>1.10</commons-codec.version>
    </properties>
 
    <dependencies>
@@ -224,6 +225,13 @@
          <artifactId>commons-io</artifactId>
          <version>${commons-io.version}</version>
       </dependency>
+      <!-- https://mvnrepository.com/artifact/commons-codec/commons-codec -->
+      <dependency>
+          <groupId>commons-codec</groupId>
+          <artifactId>commons-codec</artifactId>
+          <version>${commons-codec.version}</version>
+      </dependency>
+            
       <!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind 
          used to return JSON data from spring Controller using @ResponseBody -->
       <dependency>

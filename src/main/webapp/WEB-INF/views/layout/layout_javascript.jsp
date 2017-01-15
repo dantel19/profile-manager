@@ -12,6 +12,7 @@
 <script src="${pageContext.request.contextPath}/resources/themes/gentelella/vendors/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
 <script src="${pageContext.request.contextPath}/resources/themes/gentelella/vendors/datatables.net-responsive/dataTables.responsive.min.js"></script>
 <script src="${pageContext.request.contextPath}/resources/themes/gentelella/vendors/datatables.net-responsive-bs/js/responsive.bootstrap.js"></script>
+<script src='${pageContext.request.contextPath}/resources/columnfilter151.js'></script>
 
 <%-- Custom Theme Scripts --%>
 <script src="${pageContext.request.contextPath}/resources/themes/gentelella/gentelella.min.js"></script>

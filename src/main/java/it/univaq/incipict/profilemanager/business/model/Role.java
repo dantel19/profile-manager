@@ -33,6 +33,7 @@ import javax.persistence.Table;
 @Table(name = "Role")
 public class Role implements java.io.Serializable{
    private static final long serialVersionUID = -5400383771991397808L;
+   public static final String USER_ROLE_NAME = "user";
 
    @Id
    @GeneratedValue(strategy = GenerationType.IDENTITY)

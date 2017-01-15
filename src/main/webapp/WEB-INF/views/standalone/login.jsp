@@ -58,16 +58,19 @@
 
         <div id="register" class="animate form registration_form">
           <section class="login_content">
-            <form>
+            <form action="${pageContext.request.contextPath}/user/create" method="POST">
               <h1><spring:message code="common.create.account" /></h1>
               <div>
-                <input type="text" class="form-control" placeholder="Username" required="" />
+                <input name="name" type="text" class="form-control" placeholder="Name" required="" />
               </div>
               <div>
-                <input type="email" class="form-control" placeholder="Email" required="" />
+                <input name="surname" type="text" class="form-control" placeholder="Surname" required="" />
               </div>
               <div>
-                <input type="password" class="form-control" placeholder="Password" required="" />
+                <input name="email" type="email" class="form-control" placeholder="Email" required="" />
+              </div>
+              <div>
+                <input name="password" type="password" class="form-control" placeholder="Password" required="" />
               </div>
               <div>
                 <button class="btn btn-theme btn-block" type="submit"><spring:message code="common.signup"/></button>

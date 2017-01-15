@@ -34,5 +34,14 @@
       <put-attribute name="content" value="/WEB-INF/views/common/welcome.jsp" />
    </definition>
 
+   <definition name="user.update" extends="base">
+        <put-attribute name="modifica" value="true"/>
+        <put-attribute name="action" value="/user/update"/>
+        <put-attribute name="content" value="/WEB-INF/views/user/setting.jsp"/>
+    </definition>
+    
+    <definition name="user.list" extends="base">
+      <put-attribute name="content" value="/WEB-INF/views/administration/user_list.jsp" />
+   </definition>
 
 </tiles-definitions>

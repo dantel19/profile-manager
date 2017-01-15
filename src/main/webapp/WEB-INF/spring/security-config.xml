@@ -30,8 +30,8 @@
       <security:intercept-url pattern="/resources/**" access="permitAll" />
       <security:intercept-url pattern="/" access="permitAll" />
       <security:intercept-url pattern="/welcome/**" access="isAuthenticated()" />
-
-      <!-- <security:intercept-url pattern="/profile/**" access="hasAnyRole('administrator', 'user')"/> -->
+      <security:intercept-url pattern="/user/update/**" access="isAuthenticated()" />
+      <security:intercept-url pattern="/administration/**" access="hasAnyRole('administrator')" />
 
       <security:form-login login-page="/login" authentication-failure-url="/login" 
                            default-target-url="/welcome" always-use-default-target="false" />

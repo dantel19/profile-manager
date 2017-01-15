@@ -14,22 +14,19 @@
  * You should have received a copy of the GNU General Public License
  * along with Profile Manager.  If not, see <http://www.gnu.org/licenses/>.
  */
-package it.univaq.incipict.profilemanager.business;
+package it.univaq.incipict.profilemanager.common.utility;
 
-import java.util.List;
+import java.util.Date;
 
 /**
  * 
- * @author Alexander Perucci (http://www.alexanderperucci.com/)
+ * @author Daniele Tellina
  *
  */
-public interface CRUDService<PK, MODEL> {
-   List<MODEL> findAll() throws ProfileManagerException;
-  // DataTableResponseGrid<MODEL> findAllPaginated(DataTableRequestGrid dataTableRequestGrid) throws ProfileManagerException;
-   ResponseGrid<MODEL> findAllPaginated(RequestGrid dataTableRequestGrid) throws ProfileManagerException;
-   void create(MODEL model) throws ProfileManagerException;
-   MODEL findByPK(PK pk) throws ProfileManagerException;
-   void update(MODEL model) throws ProfileManagerException;
-   void delete(MODEL model) throws ProfileManagerException;
+public class Utility {
+
+   public static Date actualDate() {
+        return new Date();
+    }
 
 }

@@ -16,20 +16,13 @@
  */
 package it.univaq.incipict.profilemanager.business;
 
-import java.util.List;
+import it.univaq.incipict.profilemanager.business.model.Role;
 
 /**
  * 
  * @author Alexander Perucci (http://www.alexanderperucci.com/)
  *
  */
-public interface CRUDService<PK, MODEL> {
-   List<MODEL> findAll() throws ProfileManagerException;
-  // DataTableResponseGrid<MODEL> findAllPaginated(DataTableRequestGrid dataTableRequestGrid) throws ProfileManagerException;
-   ResponseGrid<MODEL> findAllPaginated(RequestGrid dataTableRequestGrid) throws ProfileManagerException;
-   void create(MODEL model) throws ProfileManagerException;
-   MODEL findByPK(PK pk) throws ProfileManagerException;
-   void update(MODEL model) throws ProfileManagerException;
-   void delete(MODEL model) throws ProfileManagerException;
-
+public interface RoleService extends CRUDService<Long, Role>{
+   
 }
