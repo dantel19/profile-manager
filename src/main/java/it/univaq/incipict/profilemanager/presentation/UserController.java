@@ -60,7 +60,7 @@ public class UserController {
 
       user.setPassword(DigestUtils.md5Hex(user.getPassword()));
 
-      // TODO check authenticate the user and redirect on the welcome page
+      // TODO authenticate the user and redirect on the welcome page
       userService.create(user);
       return "redirect:/login";
    }
@@ -77,7 +77,9 @@ public class UserController {
 
    @RequestMapping(value = "/update", method = { RequestMethod.POST })
    public String modifica(@ModelAttribute User user) {
+      //TODO remove this set
       user.setRoles(userService.findByPK(user.getId()).getRoles());
+      
       userService.update(user);
       User authenticatedUser = (new AuthenticationHolder()).getUser();
       authenticatedUser.setName(user.getName());
