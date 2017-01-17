@@ -13,7 +13,11 @@
 <%-- Datatables Responsive --%>
 <link href="${pageContext.request.contextPath}/resources/themes/gentelella/vendors/datatables.net-bs/css/dataTables.bootstrap.min.css" rel="stylesheet">
 <link href="${pageContext.request.contextPath}/resources/themes/gentelella/vendors/datatables.net-responsive-bs/css/responsive.bootstrap.min.css" rel="stylesheet">
+<link href="${pageContext.request.contextPath}/resources/plugin_extension/datatables/datatables-columnfilter.css" rel="stylesheet">
 
+<!-- Select2 -->
+<link href="${pageContext.request.contextPath}/resources/themes/gentelella/vendors/select2/css/select2.min.css" rel="stylesheet">
+    
 <%-- Theme Style --%>
 <link href="${pageContext.request.contextPath}/resources/themes/gentelella/gentelella.min.css" rel="stylesheet">
 </head>

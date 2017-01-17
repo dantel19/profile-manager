@@ -25,8 +25,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import it.univaq.incipict.profilemanager.business.DataTableRequestGrid;
-import it.univaq.incipict.profilemanager.business.DataTableResponseGrid;
+import it.univaq.incipict.profilemanager.business.DataTablesRequestGrid;
+import it.univaq.incipict.profilemanager.business.DataTablesResponseGrid;
 import it.univaq.incipict.profilemanager.business.ProfileService;
 import it.univaq.incipict.profilemanager.business.model.Profile;
 
@@ -43,8 +43,8 @@ public class ProfileManagerController {
    private ProfileService discoveryService;
 
    @RequestMapping(value = "/discovery", method = RequestMethod.GET)
-   public @ResponseBody DataTableResponseGrid<Profile> discovery(
-         @ModelAttribute DataTableRequestGrid requestGrid) {
+   public @ResponseBody DataTablesResponseGrid<Profile> discovery(
+         @ModelAttribute DataTablesRequestGrid requestGrid) {
       return discoveryService.discovery(requestGrid);
    }
 

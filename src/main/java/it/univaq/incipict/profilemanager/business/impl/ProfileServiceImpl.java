@@ -21,11 +21,10 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
-import it.univaq.incipict.profilemanager.business.DataTableRequestGrid;
-import it.univaq.incipict.profilemanager.business.DataTableResponseGrid;
+import it.univaq.incipict.profilemanager.business.DataTablesRequestGrid;
+import it.univaq.incipict.profilemanager.business.DataTablesResponseGrid;
 import it.univaq.incipict.profilemanager.business.ProfileManagerException;
 import it.univaq.incipict.profilemanager.business.ProfileService;
-import it.univaq.incipict.profilemanager.business.DataTableRequestGrid.SortType;
 import it.univaq.incipict.profilemanager.business.model.Profile;
 
 /**
@@ -45,59 +44,8 @@ public class ProfileServiceImpl implements ProfileService {
     */
 
    @Override
-   public DataTableResponseGrid<Profile> discovery(DataTableRequestGrid requestGrid) throws ProfileManagerException {
-      // search all profiles
-      List<Profile> allProfiles = getInitElement();
-      
-
-      // filter
-      List<Profile> filtered = new ArrayList<Profile>();
-      for (Profile profile : allProfiles) {
-         if (!filtered.contains(profile)) {
-            if (profile.getName().contains(requestGrid.getsSearch())
-                  || profile.getDescription().contains(requestGrid.getsSearch())) {
-               filtered.add(profile);
-            }
-         }
-      }
-
-      // order filtered element
-      int colSort = Integer.parseInt(requestGrid.getiSortCol_0());
-      if (requestGrid.getSortDirType() == SortType.ASC) {
-         switch (colSort) {
-         case 0:
-            filtered.sort((a, b) -> a.getName().compareTo(b.getName()));
-            break;
-         case 1:
-            filtered.sort((a, b) -> a.getDescription().compareTo(b.getDescription()));
-            break;
-         }
-      } else if (requestGrid.getSortDirType() == SortType.DESC) {
-         switch (colSort) {
-         case 0:
-            filtered.sort((a, b) -> b.getName().compareTo(a.getName()));
-            break;
-         case 1:
-            filtered.sort((a, b) -> b.getDescription().compareTo(a.getDescription()));
-            break;
-         }
-      }
-      
-      // show required user 
-      List<Profile> result = new ArrayList<Profile>();
-      int fromIndex = requestGrid.getiDisplayStart();
-      int toIndex = fromIndex + requestGrid.getiDisplayLength();
-
-      if (!(fromIndex < 0 || fromIndex > toIndex)) {
-         if (toIndex > filtered.size()) {
-            result.addAll(filtered.subList(fromIndex, filtered.size()));
-         } else {
-            result.addAll(filtered.subList(fromIndex, toIndex));
-         }
-
-      }
-
-      return new DataTableResponseGrid<Profile>(requestGrid.getsEcho(), filtered.size(), filtered.size(), result);
+   public DataTablesResponseGrid<Profile> discovery(DataTablesRequestGrid requestGrid) throws ProfileManagerException {
+      return null;
    }
    
    @Override

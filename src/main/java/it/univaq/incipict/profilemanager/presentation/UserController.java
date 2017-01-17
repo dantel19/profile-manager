@@ -16,8 +16,6 @@
  */
 package it.univaq.incipict.profilemanager.presentation;
 
-import java.util.List;
-
 import org.apache.commons.codec.digest.DigestUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -27,7 +25,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import it.univaq.incipict.profilemanager.business.RoleService;
 import it.univaq.incipict.profilemanager.business.UserService;
 import it.univaq.incipict.profilemanager.business.model.Role;
 import it.univaq.incipict.profilemanager.business.model.User;
@@ -44,31 +41,25 @@ public class UserController {
 
    @Autowired
    private UserService userService;
-
-   @Autowired
-   private RoleService roleService;
-
+   
    @RequestMapping(value = "/create", method = { RequestMethod.POST })
    public String crea(@ModelAttribute User user) {
-
-      List<Role> roles = roleService.findAll();
-      for (Role role : roles) {
-         if (role.getName().equals(Role.USER_ROLE_NAME)) {
-            user.getRoles().add(role);
-         }
-      }
-
+      Role userRole = new Role();
+      userRole.setId(Role.USER_ROLE_ID);
+      user.getRoles().add(userRole);
       user.setPassword(DigestUtils.md5Hex(user.getPassword()));
-
-      // TODO authenticate the user and redirect on the welcome page
       userService.create(user);
-      return "redirect:/login";
+
+      // authenticate the user and redirect on the welcome page
+      new AuthenticationHolder().updateUser(userService.findByPK(user.getId()));
+      
+      return "redirect:/welcome";
    }
 
    @RequestMapping(value = "/update", method = { RequestMethod.GET })
    public String modifica_start(@RequestParam("id") Long id, Model model) {
       User user = userService.findByPK(id);
-      if (!((new AuthenticationHolder()).getUser()).getEmail().equals(user.getEmail())){
+      if (!(new AuthenticationHolder().isAuthenticated(user))){
          return "standalone.accessdenied";
       }
       model.addAttribute("user", user);
@@ -79,13 +70,11 @@ public class UserController {
    public String modifica(@ModelAttribute User user) {
       // TODO remove this set
       user.setRoles(userService.findByPK(user.getId()).getRoles());
-      
       userService.update(user);
-      User authenticatedUser = (new AuthenticationHolder()).getUser();
-      authenticatedUser.setName(user.getName());
-      authenticatedUser.setSurname(user.getSurname());
-      authenticatedUser.setEmail(user.getEmail());
-      authenticatedUser.setPassword(user.getPassword());
+      
+      // authenticate the user and redirect on the welcome page
+      new AuthenticationHolder().updateUser(userService.findByPK(user.getId()));
+      
       return "redirect:/welcome";
    }
 

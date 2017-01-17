@@ -16,6 +16,7 @@
  */
 package it.univaq.incipict.profilemanager.common.spring.security;
 
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 
@@ -37,5 +38,15 @@ public class AuthenticationHolder {
          }
       }
       return new User();
+   }
+   
+   public void updateUser(User user) {
+      UserDetailsImpl userDetails = new UserDetailsImpl(user);
+      Authentication authentication = new UsernamePasswordAuthenticationToken(userDetails, userDetails.getPassword(), userDetails.getAuthorities());
+      SecurityContextHolder.getContext().setAuthentication(authentication);
+   }
+   
+   public boolean isAuthenticated (User user){
+      return getUser().equals(user);
    }
 }

@@ -26,7 +26,7 @@ import java.util.List;
 public interface CRUDService<PK, MODEL> {
    List<MODEL> findAll() throws ProfileManagerException;
   // DataTableResponseGrid<MODEL> findAllPaginated(DataTableRequestGrid dataTableRequestGrid) throws ProfileManagerException;
-   ResponseGrid<MODEL> findAllPaginated(RequestGrid dataTableRequestGrid) throws ProfileManagerException;
+   DataTablesResponseGrid<MODEL> findAllPaginated(DataTablesRequestGrid dataTableRequestGrid) throws ProfileManagerException;
    void create(MODEL model) throws ProfileManagerException;
    MODEL findByPK(PK pk) throws ProfileManagerException;
    void update(MODEL model) throws ProfileManagerException;

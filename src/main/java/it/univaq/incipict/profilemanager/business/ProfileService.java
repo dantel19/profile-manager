@@ -25,7 +25,7 @@ import it.univaq.incipict.profilemanager.business.model.Profile;
  */
 public interface ProfileService {
    
-   DataTableResponseGrid<Profile> discovery (DataTableRequestGrid requestGrid) throws ProfileManagerException;
+   DataTablesResponseGrid<Profile> discovery (DataTablesRequestGrid requestGrid) throws ProfileManagerException;
 
    Profile detail (String name, String description) throws ProfileManagerException;
 }

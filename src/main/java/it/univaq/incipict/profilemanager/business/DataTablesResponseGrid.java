@@ -23,15 +23,15 @@ import java.util.List;
  * @author Alexander Perucci (http://www.alexanderperucci.com/)
  *
  */
-public class DataTableResponseGrid<R> implements java.io.Serializable {
-   private static final long serialVersionUID = 2758192036976188694L;
-   
+public class DataTablesResponseGrid<R> implements java.io.Serializable {
+   private static final long serialVersionUID = -4020873311617510331L;
+
    private String sEcho;
    private long iTotalRecords;
    private long iTotalDisplayRecords;
    private List<R> rows;
 
-   public DataTableResponseGrid(String sEcho, long iTotalRecords, long iTotalDisplayRecords, List<R> rows) {
+   public DataTablesResponseGrid(String sEcho, long iTotalRecords, long iTotalDisplayRecords, List<R> rows) {
       super();
       this.sEcho = sEcho;
       this.iTotalRecords = iTotalRecords;

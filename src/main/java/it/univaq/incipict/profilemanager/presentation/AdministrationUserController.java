@@ -16,103 +16,130 @@
  */
 package it.univaq.incipict.profilemanager.presentation;
 
+import java.beans.PropertyEditorSupport;
+
+import javax.servlet.http.HttpServletRequest;
+
+import org.apache.commons.codec.digest.DigestUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.ServletRequestDataBinder;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import it.univaq.incipict.profilemanager.business.RequestGrid;
-import it.univaq.incipict.profilemanager.business.ResponseGrid;
+import it.univaq.incipict.profilemanager.business.DataTablesRequestGrid;
+import it.univaq.incipict.profilemanager.business.DataTablesResponseGrid;
+import it.univaq.incipict.profilemanager.business.RoleService;
 import it.univaq.incipict.profilemanager.business.UserService;
+import it.univaq.incipict.profilemanager.business.model.Role;
 import it.univaq.incipict.profilemanager.business.model.User;
+import it.univaq.incipict.profilemanager.common.spring.security.AuthenticationHolder;
 
 /**
  * 
- * @author Daniele Tellina 
+ * @author Alexander Perucci (http://www.alexanderperucci.com/)
  *
  */
 @Controller
 @RequestMapping("/administration/user")
 public class AdministrationUserController {
-   
+
    @Autowired
    private UserService userService;
+
+   @Autowired
+   private RoleService roleService;
    
+   @InitBinder
+   protected void initBinder(HttpServletRequest request, ServletRequestDataBinder binder) throws Exception {
+      binder.registerCustomEditor(Role.class, "roles", new PropertyEditorSupport() {
+         @Override
+         public void setAsText(String text) {
+            Role role = roleService.findByPK(Long.parseLong(text));
+            setValue(role);
+         }
+      });
+   }
+
    @RequestMapping("/list")
    public String elenco() {
-       return "user.list";
+      return "administration.user.list";
    }
 
    @RequestMapping("/findallpaginated")
-   public @ResponseBody
-   ResponseGrid<User> findallpaginated(@ModelAttribute RequestGrid requestGrid) {
-       return userService.findAllPaginated(requestGrid);
+   public @ResponseBody DataTablesResponseGrid<User> findallpaginated(
+         @ModelAttribute DataTablesRequestGrid requestGrid) {
+      return userService.findAllPaginated(requestGrid);
    }
-/*
-   @RequestMapping(value = "/crea", method = {RequestMethod.GET})
-   public String crea_start(Model model) {
-       Domanda domanda = new Domanda();
-       model.addAttribute("tipologieSoggettoDomanda", tipologiaSoggettoDomandaService.findAll());
-       model.addAttribute("domanda", domanda);
-       model.addAttribute("categorie", categorieService.findAll());
-       return "domanda.crea";
+   
+   @RequestMapping(value = "/create", method = { RequestMethod.GET })
+   public String create_start(Model model) {
+      model.addAttribute("user", new User());
+      model.addAttribute("availableRoles", roleService.findAll());
+      return "administration.user.create";
    }
 
-   @RequestMapping(value = "/crea", method = {RequestMethod.POST})
-   public String crea(@ModelAttribute Domanda domanda, @RequestParam(value = "categorie", required = false) Long[] categorie) {
-       if (categorie != null && categorie.length != 0) {
-           for (Long categoria : categorie) {
-               CategoriaDomanda categoriaDomanda = new CategoriaDomanda();
-               Categoria cat = new Categoria();
-               cat.setId(categoria);
-               categoriaDomanda.setCategoria(cat);
-               domanda.addCategoriaDomanda(categoriaDomanda);
-           }
-       }
-       if (domanda.getSoggettoImprenditoriale().getComuneSedeLegale().getId() == null) {
-           domanda.getSoggettoImprenditoriale().setComuneSedeLegale(null);
-       }
-       if (domanda.getSoggettoImprenditoriale().getComuneSedeINPS().getId() == null) {
-           domanda.getSoggettoImprenditoriale().setComuneSedeINPS(null);
-       }
-       domanda.setDataEvento(Utility.actualDate());
-       domanda.setStato(StatoDomanda.INCOMPLETA);
-       domandaService.create(domanda, utente);
-       return "redirect:/persona/elenco?idSoggettoImprenditoriale=" + domanda.getSoggettoImprenditoriale().getId();
+   @RequestMapping(value = "/create", method = { RequestMethod.POST })
+   public String create(@ModelAttribute User user) {
+      user.setPassword(DigestUtils.md5Hex(user.getPassword()));
+      userService.create(user);
+      return "redirect:/administration/user/list";
+   }
+   
+   @RequestMapping(value = "/update", method = { RequestMethod.GET })
+   public String update_start(@RequestParam("id") Long id, Model model) {
+      User user = userService.findByPK(id);
+      model.addAttribute("user", user);
+      model.addAttribute("availableRoles", roleService.findAll());
+      return "administration.user.update";
    }
 
-   @RequestMapping(value = "/modifica", method = {RequestMethod.GET})
-   public String modifica_start(@RequestParam("id") Long id, Model model) {
-       Domanda domanda = domandaService.findByPK(id);
-       model.addAttribute("tipologieSoggettoDomanda", tipologiaSoggettoDomandaService.findAll());
-       model.addAttribute("domanda", domanda);
-       model.addAttribute("categorie", categorieService.findAll());
-       return "domanda.modifica";
+   @RequestMapping(value = "/update", method = { RequestMethod.POST })
+   public String update(@ModelAttribute User user) {
+      if (isPasswordChanged(user)){
+         user.setPassword(DigestUtils.md5Hex(user.getPassword()));
+      }
+      
+      userService.update(user);
+
+      // change session user information
+      if (new AuthenticationHolder().isAuthenticated(user)) {
+         new AuthenticationHolder().updateUser(user);
+         Role administratorRole = new Role();
+         administratorRole.setId(Role.ADMINISTRATOR_ROLE_ID);
+         if (!user.getRoles().contains(administratorRole)) {
+            return "redirect:/welcome";
+         }
+      }
+
+      return "redirect:/administration/user/list";
    }
 
-   @RequestMapping(value = "/modifica", method = {RequestMethod.POST})
-   public String modifica(@ModelAttribute Domanda domanda, @RequestParam(value = "categorie", required = false) Long[] categorie) {
-       if (categorie != null && categorie.length != 0) {
-           for (Long categoria : categorie) {
-               CategoriaDomanda categoriaDomanda = new CategoriaDomanda();
-               Categoria cat = new Categoria();
-               cat.setId(categoria);
-               categoriaDomanda.setCategoria(cat);
-               domanda.addCategoriaDomanda(categoriaDomanda);
-           }
-       }
-
-       if (domanda.getSoggettoImprenditoriale().getComuneSedeLegale().getId() == null) {
-           domanda.getSoggettoImprenditoriale().setComuneSedeLegale(null);
-       }
-       if (domanda.getSoggettoImprenditoriale().getComuneSedeINPS().getId() == null) {
-           domanda.getSoggettoImprenditoriale().setComuneSedeINPS(null);
-       }
-       domandaService.deleteCategorieDomanda(domanda.getId());
-       domandaService.update(domanda, utente);
-       return "redirect:/partecipazione/elenco?iddomanda=" + domanda.getId();
+   @RequestMapping(value = "/delete", method = { RequestMethod.GET })
+   public String delete_start(@RequestParam("id") Long id, Model model) {
+      User user = userService.findByPK(id);
+      model.addAttribute("user", user);
+      model.addAttribute("availableRoles", roleService.findAll());
+      return "administration.user.delete";
    }
 
-*/
+   @RequestMapping(value = "/delete", method = { RequestMethod.POST })
+   public String delete(@ModelAttribute User user) {
+      userService.delete(user);
+      
+      // TODO if the user equals to the session user remove it in the session
+      
+      return "redirect:/administration/user/list";
+   }
+   
+   
+   private boolean isPasswordChanged(User user){
+      User persistentUser = userService.findByPK(user.getId());
+      return persistentUser.getId().equals(user.getId());
+   }
 }
