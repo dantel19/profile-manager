@@ -25,7 +25,7 @@ CREATE TABLE profilemanager.User (
     surname VARCHAR(64) NULL,
     email VARCHAR(128) NOT NULL,
     password VARCHAR(32) NOT NULL,
-    id_profile INT UNSIGNED NOT NULL,
+    id_profile INT UNSIGNED NOT NULL DEFAULT 1,
     PRIMARY KEY (id),
     FOREIGN KEY (id_profile)
         REFERENCES profilemanager.Profile (id)
