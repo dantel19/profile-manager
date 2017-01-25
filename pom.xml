@@ -258,11 +258,11 @@
                <plugin>
                   <groupId>org.apache.maven.plugins</groupId>
                   <artifactId>maven-dependency-plugin</artifactId>
-                  <version>2.10</version>
+                  <version>3.0.0</version>
                   <executions>
                      <execution>
                         <id>download-tomcat</id>
-                        <phase>process-sources</phase>
+                        <phase>package</phase>
                         <goals>
                            <goal>unpack</goal>
                         </goals>
@@ -282,7 +282,7 @@
                      </execution>
                      <execution>
                         <id>download-mysql-connector</id>
-                        <phase>process-sources</phase>
+                        <phase>package</phase>
                         <goals>
                            <goal>copy</goal>
                         </goals>
@@ -309,7 +309,7 @@
                   <executions>
                      <execution>
                         <id>copy-server.xml</id>
-                        <phase>process-sources</phase>
+                        <phase>package</phase>
                         <goals>
                            <goal>copy-resources</goal>
                         </goals>
@@ -328,7 +328,7 @@
                      </execution>
                      <execution>
                         <id>copy-tomcat-users.xml</id>
-                        <phase>process-sources</phase>
+                        <phase>package</phase>
                         <goals>
                            <goal>copy-resources</goal>
                         </goals>

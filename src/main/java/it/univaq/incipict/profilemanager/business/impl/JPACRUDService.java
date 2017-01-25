@@ -22,13 +22,14 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+import javax.persistence.TypedQuery;
 
 import org.springframework.transaction.annotation.Transactional;
 
 import it.univaq.incipict.profilemanager.business.CRUDService;
-import it.univaq.incipict.profilemanager.business.ProfileManagerException;
 import it.univaq.incipict.profilemanager.business.DataTablesRequestGrid;
 import it.univaq.incipict.profilemanager.business.DataTablesResponseGrid;
+import it.univaq.incipict.profilemanager.business.ProfileManagerException;
 import it.univaq.incipict.profilemanager.business.SearchField;
 
 /**
@@ -45,18 +46,17 @@ public class JPACRUDService<PK, MODEL> implements CRUDService<PK, MODEL> {
    protected Class<MODEL> persistentClass;
    @PersistenceContext
    protected EntityManager em;
-
+   
+   @SuppressWarnings("unchecked")
    public JPACRUDService() {
-      this.persistentClass = (Class<MODEL>) ((ParameterizedType) getClass().getGenericSuperclass())
-            .getActualTypeArguments()[1];
-
+      this.persistentClass  = (Class<MODEL>) ((ParameterizedType) getClass().getGenericSuperclass()).getActualTypeArguments()[1];
    }
 
    @Override
    @Transactional
    public List<MODEL> findAll() throws ProfileManagerException {
       String sql = "from " + persistentClass.getSimpleName() + " order by id";
-      Query q = em.createQuery(sql);
+      TypedQuery<MODEL> q = em.createQuery(sql, persistentClass);
       return q.getResultList();
    }
 
@@ -175,7 +175,7 @@ public class JPACRUDService<PK, MODEL> implements CRUDService<PK, MODEL> {
 
       sql.append(" order by e.").append(requestGrid.getSortCol()).append(" ").append(requestGrid.getSortDir());
 
-      Query query = em.createQuery(sql.toString());
+      TypedQuery<MODEL> query = em.createQuery(sql.toString(), persistentClass);
       Query queryCount = em.createQuery(sqlCount.toString());
       for (SearchField sf : searchFields) {
          if (!sf.isEmpty() && !sf.isIsNull() && !sf.isIsNotNull()) {
