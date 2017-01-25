@@ -21,7 +21,7 @@
    xsi:schemaLocation="http://maven.apache.org/plugins/maven-assembly-plugin/assembly/1.1.3
                               http://maven.apache.org/xsd/assembly-1.1.3.xsd">
 
-   <id>tomcat-${apache-tomcat.version}</id>
+   <id>build-tomcat</id>
 
    <formats>
       <format>zip</format>
@@ -35,9 +35,14 @@
             <include>**</include>
          </includes>
          <outputDirectory></outputDirectory>
-         <!-- <excludes> <exclude>**/webapps/docs/**</exclude> <exclude>**/webapps/examples/**</exclude> 
-            <exclude>**/webapps/host-manager/**</exclude> <exclude>**/webapps/manager/**</exclude> 
-            </excludes> -->
+         <!--
+         <excludes>
+            <exclude>**/webapps/docs/**</exclude>
+            <exclude>**/webapps/examples/**</exclude>
+            <exclude>**/webapps/host-manager/**</exclude>
+            <exclude>**/webapps/manager/**</exclude>
+         </excludes>
+         -->
       </fileSet>
       <fileSet>
          <directory>${project.build.directory}</directory>
