@@ -32,15 +32,6 @@ limitations under the License.
       <directory>${project.build.directory}/classes</directory>
       <outputDirectory></outputDirectory>
     </fileSet>
-   <!-- <fileSet>
-      <directory>${basedir}</directory>
-      <includes>
-        <include>LICENSE</include>
-        <include>NOTICE</include>
-      </includes>
-      <outputDirectory>META-INF</outputDirectory>
-    </fileSet>
-  -->
   </fileSets>
  
   <dependencySets>
