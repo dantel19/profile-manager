@@ -68,6 +68,9 @@ public class UserController {
 
    @RequestMapping(value = "/update", method = { RequestMethod.POST })
    public String modifica(@ModelAttribute User user) {
+      if (isPasswordChanged(user)){
+         user.setPassword(DigestUtils.md5Hex(user.getPassword()));
+      }
       // TODO remove this set
       user.setRoles(userService.findByPK(user.getId()).getRoles());
       userService.update(user);
@@ -76,6 +79,11 @@ public class UserController {
       new AuthenticationHolder().updateUser(userService.findByPK(user.getId()));
       
       return "redirect:/welcome";
+   }
+   
+   private boolean isPasswordChanged(User user){
+      User persistentUser = userService.findByPK(user.getId());
+      return !persistentUser.getPassword().equals(user.getPassword());
    }
 
 }

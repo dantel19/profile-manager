@@ -140,6 +140,6 @@ public class AdministrationUserController {
    
    private boolean isPasswordChanged(User user){
       User persistentUser = userService.findByPK(user.getId());
-      return !persistentUser.getId().equals(user.getId());
+      return !persistentUser.getPassword().equals(user.getPassword());
    }
 }
