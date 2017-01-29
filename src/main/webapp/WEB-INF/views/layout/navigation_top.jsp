@@ -13,7 +13,7 @@
 					class="user-profile dropdown-toggle" data-toggle="dropdown"
 					aria-expanded="false"> <img
 						src="${pageContext.request.contextPath}/resources/images/user-template_2.jpg"
-						alt=""><security:authentication property="principal.user.name" /> <security:authentication property="principal.user.surname" /> <span class=" fa fa-angle-down"></span>
+						alt=""><security:authentication property="principal.user.firstname" /> <security:authentication property="principal.user.lastname" /> <span class=" fa fa-angle-down"></span>
 				</a>
 					<ul class="dropdown-menu dropdown-usermenu pull-right">
 						<li><a href="javascript:;"> Profile</a></li>

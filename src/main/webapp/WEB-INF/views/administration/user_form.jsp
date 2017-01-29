@@ -27,17 +27,17 @@
             <form:form modelAttribute="user" id="user_form" action="${pageContext.request.contextPath}${requestScope.action}"  class="form-horizontal form-label-left" method="POST">
                <form:hidden path="id"/>
                <div class="form-group">
-                  <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name"><spring:message code="user.firstname" /> <span class="required">*</span>
+                  <label class="control-label col-md-3 col-sm-3 col-xs-12" for="firstname"><spring:message code="user.firstname" /> <span class="required">*</span>
                   </label>
                   <div class="col-md-6 col-sm-6 col-xs-12">
-                     <form:input path="name" type="text" name="name" required="required" class="form-control col-md-7 col-xs-12"/>
+                     <form:input path="firstname" type="text" name="firstname" required="required" class="form-control col-md-7 col-xs-12"/>
                   </div>
                </div>
                <div class="form-group">
-                  <label class="control-label col-md-3 col-sm-3 col-xs-12" for="surname"><spring:message code="user.lastname" /> <span class="required">*</span>
+                  <label class="control-label col-md-3 col-sm-3 col-xs-12" for="lastname"><spring:message code="user.lastname" /> <span class="required">*</span>
                   </label>
                   <div class="col-md-6 col-sm-6 col-xs-12">
-                     <form:input path="surname" type="text" name="surname" required="required" class="form-control col-md-7 col-xs-12"/>
+                     <form:input path="lastname" type="text" name="lastname" required="required" class="form-control col-md-7 col-xs-12"/>
                   </div>
                </div>
                <div class="form-group">

@@ -48,11 +48,11 @@ public class User implements java.io.Serializable {
    @Column(name = "id")
    private Long id;
 
-   @Column(name = "name", nullable = false, length = 64)
-   private String name;
+   @Column(name = "firstname", nullable = false, length = 64)
+   private String firstname;
 
-   @Column(name = "surname", nullable = false, length = 64)
-   private String surname;
+   @Column(name = "lastname", nullable = false, length = 64)
+   private String lastname;
 
    @Column(name = "email", nullable = false, length = 128)
    private String email;
@@ -73,20 +73,20 @@ public class User implements java.io.Serializable {
       this.id = id;
    }
 
-   public String getName() {
-      return name;
+   public String getFirstname() {
+      return firstname;
    }
 
-   public void setName(String name) {
-      this.name = name;
+   public void setFirstname(String firstname) {
+      this.firstname = firstname;
    }
 
-   public String getSurname() {
-      return surname;
+   public String getLastname() {
+      return lastname;
    }
 
-   public void setSurname(String surname) {
-      this.surname = surname;
+   public void setLastname(String lastname) {
+      this.lastname = lastname;
    }
 
    public String getEmail() {

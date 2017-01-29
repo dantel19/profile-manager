@@ -21,11 +21,11 @@ CREATE TABLE profilemanager.Role (
 
 CREATE TABLE profilemanager.User (
     id INT UNSIGNED NOT NULL AUTO_INCREMENT,
-    name VARCHAR(64) NOT NULL,
-    surname VARCHAR(64) NULL,
+    firstname VARCHAR(64) NOT NULL,
+    lastname VARCHAR(64) NULL,
     email VARCHAR(128) NOT NULL,
     password VARCHAR(32) NOT NULL,
-    id_profile INT UNSIGNED NOT NULL DEFAULT 1,
+    id_profile INT UNSIGNED,
     PRIMARY KEY (id),
     FOREIGN KEY (id_profile)
         REFERENCES profilemanager.Profile (id)
@@ -81,8 +81,8 @@ INSERT INTO profilemanager.Role (name, description) VALUES ("administrator", "Ru
 INSERT INTO profilemanager.Role (name, description) VALUES ("user", "Ruolo di utente semplice");
 
 /* Table: User */
-INSERT INTO profilemanager.User (name, surname, email, password, id_profile) VALUES ("Daniele", "Tellina", "danieletellina@gmail.com", "c6009f08fc5fc6385f1ea1f5840e179f", 1);
-INSERT INTO profilemanager.User (name, surname, email, password, id_profile) VALUES ("Alexander", "Perucci", "aleale89@hotmail.it", "0c88028bf3aa6a6a143ed846f2be1ea4", 1);
+INSERT INTO profilemanager.User (firstname, lastname, email, password) VALUES ("Daniele", "Tellina", "danieletellina@gmail.com", "c6009f08fc5fc6385f1ea1f5840e179f");
+INSERT INTO profilemanager.User (firstname, lastname, email, password) VALUES ("Alexander", "Perucci", "aleale89@hotmail.it", "0c88028bf3aa6a6a143ed846f2be1ea4");
 
 /* Table: User_Role */
 INSERT INTO profilemanager.User_Role (id_user, id_role) VALUES

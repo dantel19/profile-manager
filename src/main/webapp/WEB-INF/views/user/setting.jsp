@@ -23,17 +23,17 @@
                             <form:hidden path="roles" value="${role.id}"/>
                </c:forEach>
                <div class="form-group">
-                  <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Name <span class="required">*</span>
+                  <label class="control-label col-md-3 col-sm-3 col-xs-12" for="firstname">First Name <span class="required">*</span>
                   </label>
                   <div class="col-md-6 col-sm-6 col-xs-12">
-                     <form:input path="name" type="text" name="name" required="required" class="form-control col-md-7 col-xs-12"/>
+                     <form:input path="firstname" type="text" name="firstname" required="required" class="form-control col-md-7 col-xs-12"/>
                   </div>
                </div>
                <div class="form-group">
-                  <label class="control-label col-md-3 col-sm-3 col-xs-12" for="surname">Surname <span class="required">*</span>
+                  <label class="control-label col-md-3 col-sm-3 col-xs-12" for="lastname">Last Name <span class="required">*</span>
                   </label>
                   <div class="col-md-6 col-sm-6 col-xs-12">
-                     <form:input path="surname" type="text" name="surname" required="required" class="form-control col-md-7 col-xs-12"/>
+                     <form:input path="lastname" type="text" name="lastname" required="required" class="form-control col-md-7 col-xs-12"/>
                   </div>
                </div>
                <div class="form-group">

@@ -12,11 +12,11 @@
         <%-- menu profile quick info --%>
         <div class="profile">
            <div class="profile_pic">
-              <img src="${pageContext.request.contextPath}/resources/images/user-template_2.jpg" alt="<security:authentication property="principal.user.name" /> <security:authentication property="principal.user.surname" />" class="img-circle profile_img">
+              <img src="${pageContext.request.contextPath}/resources/images/user-template_2.jpg" alt="<security:authentication property="principal.user.firstname" /> <security:authentication property="principal.user.lastname" />" class="img-circle profile_img">
            </div>
            <div class="profile_info">
               <span><spring:message code="common.welcome" />,</span>
-              <h2><security:authentication property="principal.user.name" /> <security:authentication property="principal.user.surname" /></h2>
+              <h2><security:authentication property="principal.user.firstname" /> <security:authentication property="principal.user.lastname" /></h2>
            </div>
         </div>
         <%-- /menu profile quick info --%>

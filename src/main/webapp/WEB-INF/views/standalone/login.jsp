@@ -61,10 +61,10 @@
             <form action="${pageContext.request.contextPath}/user/create" method="POST">
               <h1><spring:message code="common.create.account" /></h1>
               <div>
-                <input name="name" type="text" class="form-control" placeholder="Name" required="" />
+                <input name="firstname" type="text" class="form-control" placeholder="First Name" required="" />
               </div>
               <div>
-                <input name="surname" type="text" class="form-control" placeholder="Surname" required="" />
+                <input name="lastname" type="text" class="form-control" placeholder="Last Name" required="" />
               </div>
               <div>
                 <input name="email" type="email" class="form-control" placeholder="Email" required="" />

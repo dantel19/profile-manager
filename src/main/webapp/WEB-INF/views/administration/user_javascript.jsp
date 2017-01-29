@@ -7,8 +7,8 @@
           "sPaginationType": "full_numbers",
           "sAjaxDataProp": "rows",
           "aoColumns": [
-              {"mData": "name"},
-              {"mData": "surname"},
+              {"mData": "firstname"},
+              {"mData": "lastname"},
               {"mData": "email"},
               {"sName": "Actions",
                  "bSearchable": false,
