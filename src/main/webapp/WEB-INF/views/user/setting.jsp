@@ -1,5 +1,6 @@
-<%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
+<%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
 <div class="row">
    <div class="col-md-12 col-sm-12 col-xs-12">
@@ -18,6 +19,9 @@
             <br />
             <form:form modelAttribute="user" id="user_form" action="${pageContext.request.contextPath}${requestScope.action}"  class="form-horizontal form-label-left" method="POST">
                <form:hidden path="id"/>
+               <c:forEach var="role" items="${user.roles}">
+                            <form:hidden path="roles" value="${role.id}"/>
+               </c:forEach>
                <div class="form-group">
                   <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Name <span class="required">*</span>
                   </label>
@@ -43,7 +47,7 @@
                   <label class="control-label col-md-3 col-sm-3 col-xs-12" for="password">Password <span class="required">*</span>
                   </label>
                   <div class="col-md-6 col-sm-6 col-xs-12">
-                     <form:input path="password" type="password" name="password" required="required" readonly="true" class="form-control col-md-7 col-xs-12"/>
+                     <form:input path="password" type="password" name="password" required="required" class="form-control col-md-7 col-xs-12"/>
                   </div>
                </div>
                <div class="ln_solid"></div>

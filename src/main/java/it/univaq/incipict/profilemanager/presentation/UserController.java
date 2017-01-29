@@ -16,15 +16,22 @@
  */
 package it.univaq.incipict.profilemanager.presentation;
 
+import java.beans.PropertyEditorSupport;
+
+import javax.servlet.http.HttpServletRequest;
+
 import org.apache.commons.codec.digest.DigestUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.ServletRequestDataBinder;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import it.univaq.incipict.profilemanager.business.RoleService;
 import it.univaq.incipict.profilemanager.business.UserService;
 import it.univaq.incipict.profilemanager.business.model.Role;
 import it.univaq.incipict.profilemanager.business.model.User;
@@ -41,6 +48,20 @@ public class UserController {
 
    @Autowired
    private UserService userService;
+   
+   @Autowired
+   private RoleService roleService;
+   
+   @InitBinder
+   protected void initBinder(HttpServletRequest request, ServletRequestDataBinder binder) throws Exception {
+      binder.registerCustomEditor(Role.class, "roles", new PropertyEditorSupport() {
+         @Override
+         public void setAsText(String text) {
+            Role role = roleService.findByPK(Long.parseLong(text));
+            setValue(role);
+         }
+      });
+   }
    
    @RequestMapping(value = "/create", method = { RequestMethod.POST })
    public String crea(@ModelAttribute User user) {
@@ -71,12 +92,10 @@ public class UserController {
       if (isPasswordChanged(user)){
          user.setPassword(DigestUtils.md5Hex(user.getPassword()));
       }
-      // TODO remove this set
-      user.setRoles(userService.findByPK(user.getId()).getRoles());
       userService.update(user);
       
       // authenticate the user and redirect on the welcome page
-      new AuthenticationHolder().updateUser(userService.findByPK(user.getId()));
+      new AuthenticationHolder().updateUser(user);
       
       return "redirect:/welcome";
    }
