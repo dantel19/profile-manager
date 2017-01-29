@@ -29,7 +29,7 @@
 
    <definition name="user.update" extends="base">
       <put-attribute name="action" value="/user/update" />
-      <put-attribute name="content" value="/WEB-INF/views/user/setting.jsp" />
+      <put-attribute name="content" value="/WEB-INF/views/user/settings.jsp" />
    </definition>
 
    <definition name="administration.user.list" extends="base">
