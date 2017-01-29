@@ -27,3 +27,13 @@ footer {
 	height: 51px;
 }
 /* END common */
+
+/* START administration */
+
+/* search input box in dataTables, page:administration.user.list */
+table.table-bordered.dataTable tfoot tr th input {
+    width: 100%;
+    margin-left: 0;
+    text-align: center;
+}
+/* END administration */

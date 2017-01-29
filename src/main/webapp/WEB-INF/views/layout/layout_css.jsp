@@ -20,7 +20,6 @@
     
 <%-- Theme Style --%>
 <link href="${pageContext.request.contextPath}/resources/themes/gentelella/gentelella.min.css" rel="stylesheet">
-</head>
 
 <%-- Custom Theme Style --%>
 <link href="${pageContext.request.contextPath}/resources/themes/gentelella/custom-gentelella.css" rel="stylesheet">
