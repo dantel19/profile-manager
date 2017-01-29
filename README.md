@@ -1,7 +1,7 @@
 #Profile Manager
 <sub>*User preferences are different from each other and constantly evolving. Every person has different interests and if they all look the same object each of us looks different aspects of it.*</sub>
 
-**Profile Manager** is a Java Web. It allows registered users of a service to specify a few simple preferences (e.g., preferences on their work or on their passions) to automatically define the type of their profile and the associated informations of interest to the user.
+**Profile Manager** is a Java Web Application. It allows registered users of a service to specify a few simple preferences (e.g., preferences on their work or on their passions) to automatically define the type of their profile and the associated informations of interest to the user.
 
 **Profile Manager** is a support tool to the analysis carried out in a particular case study (about the users profiling in the field of Smart Mobility and Tourism) of a European project called [INCIPICT](http://incipict.univaq.it/)
 
