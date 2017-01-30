@@ -82,7 +82,7 @@ INSERT INTO profilemanager.Role (name, description) VALUES ("user", "Ruolo di ut
 
 /* Table: User */
 INSERT INTO profilemanager.User (firstname, lastname, email, password) VALUES ("Daniele", "Tellina", "danieletellina@gmail.com", "c6009f08fc5fc6385f1ea1f5840e179f");
-INSERT INTO profilemanager.User (firstname, lastname, email, password) VALUES ("Alexander", "Perucci", "aleale89@hotmail.it", "0c88028bf3aa6a6a143ed846f2be1ea4");
+INSERT INTO profilemanager.User (firstname, lastname, email, password) VALUES ("Alexander", "Perucci", "aleale89@hotmail.it", "21232f297a57a5a743894a0e4a801fc3");
 
 /* Table: User_Role */
 INSERT INTO profilemanager.User_Role (id_user, id_role) VALUES
