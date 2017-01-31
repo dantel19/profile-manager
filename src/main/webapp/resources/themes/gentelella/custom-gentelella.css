@@ -26,6 +26,12 @@ ul.nav.navbar-right.panel_toolbox {
 footer {
 	height: 51px;
 }
+
+/* change <i> padding in left-panel */
+.site_title i {
+	padding: 6px;
+}
+
 /* END common */
 
 /* START administration */

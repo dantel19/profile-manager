@@ -48,7 +48,7 @@
                 <br />
 
                 <div>
-                  <h1><i class="fa fa-paw"></i> <spring:message code="common.application.title" /></h1>
+                  <h1><i class="fa fa-users"></i> <spring:message code="common.application.title" /></h1>
                   <p><%@include file="../common/copyright.jsp"%></p>
                 </div>
               </div>
@@ -87,7 +87,7 @@
                 <br />
 
                 <div>
-                  <h1><i class="fa fa-paw"></i> <spring:message code="common.application.title" /></h1>
+                  <h1><i class="fa fa-users"></i> <spring:message code="common.application.title" /></h1>
                   <p><%@include file="../common/copyright.jsp"%></p>
                 </div>
               </div>

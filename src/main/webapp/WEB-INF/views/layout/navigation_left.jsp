@@ -4,11 +4,13 @@
 <div class="col-md-3 left_col">
 	<div class="left_col scroll-view">
 	    <div class="navbar nav_title" style="border: 0;">
-           <a href="${pageContext.request.contextPath}/welcome" class="site_title"><i class="fa fa-paw"></i> <span><spring:message code="common.application.title" /></span></a>
+           <a href="${pageContext.request.contextPath}/welcome" class="site_title">
+           		<i class="fa fa-users"></i> <span><spring:message code="common.application.title" /></span>
+           </a>
         </div>
 
         <div class="clearfix"></div>
-
+		
         <%-- menu profile quick info --%>
         <div class="profile">
            <div class="profile_pic">
@@ -20,14 +22,12 @@
            </div>
         </div>
         <%-- /menu profile quick info --%>
-
-        <br /> <br /> <br /> <br />
         
         <%-- sidebar menu --%>
 		<div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
             <security:authorize access="hasAnyRole('administrator')">
 			<div class="menu_section">
-			    <h3></h3>
+			    <h3>profilo</h3>
 				<ul class="nav side-menu">
 					<li><a><i class="fa fa-bug"></i> Administration <span class="fa fa-chevron-down"></span></a>
 						   <ul class="nav child_menu">
