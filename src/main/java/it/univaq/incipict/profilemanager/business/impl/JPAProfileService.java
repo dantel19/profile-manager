@@ -14,8 +14,11 @@
  * You should have received a copy of the GNU General Public License
  * along with Profile Manager.  If not, see <http://www.gnu.org/licenses/>.
  */
-package it.univaq.incipict.profilemanager.business;
+package it.univaq.incipict.profilemanager.business.impl;
 
+import org.springframework.stereotype.Service;
+
+import it.univaq.incipict.profilemanager.business.ProfileService;
 import it.univaq.incipict.profilemanager.business.model.Profile;
 
 /**
@@ -23,6 +26,7 @@ import it.univaq.incipict.profilemanager.business.model.Profile;
  * @author Daniele Tellina
  *
  */
-public interface ProfileService extends CRUDService<Long, Profile>{
+@Service
+public class JPAProfileService extends JPACRUDService<Long, Profile> implements ProfileService {
 
 }

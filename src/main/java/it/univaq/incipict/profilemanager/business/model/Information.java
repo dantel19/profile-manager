@@ -16,21 +16,36 @@
  */
 package it.univaq.incipict.profilemanager.business.model;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
 /**
  * 
  * @author Daniele Tellina 
  *
  */
-
-public class Information {
-	private int ID;
+@Entity
+@Table(name = "Information")
+public class Information implements java.io.Serializable {
+   private static final long serialVersionUID = -8647660001088003407L;
+   
+   @Id
+   @GeneratedValue(strategy = GenerationType.IDENTITY)
+   @Column(name = "id")
+   private Long id;
+   
+   @Column(name = "description", nullable = true, length = 512)
 	private String description;
 	
-	public int getID() {
-		return ID;
+	public Long getId() {
+		return id;
 	}
-	public void setID(int iD) {
-		ID = iD;
+	public void setId(Long id) {
+		this.id = id;
 	}
 	public String getDescription() {
 		return description;
@@ -39,5 +54,29 @@ public class Information {
 		this.description = description;
 	}
 	
+	@Override
+   public int hashCode() {
+      final int prime = 31;
+      int result = 1;
+      result = prime * result + ((id == null) ? 0 : id.hashCode());
+      return result;
+   }
+
+   @Override
+   public boolean equals(Object obj) {
+      if (this == obj)
+         return true;
+      if (obj == null)
+         return false;
+      if (getClass() != obj.getClass())
+         return false;
+      Information other = (Information) obj;
+      if (id == null) {
+         if (other.id != null)
+            return false;
+      } else if (!id.equals(other.id))
+         return false;
+      return true;
+   }
 	
 }

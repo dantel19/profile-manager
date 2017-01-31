@@ -16,34 +16,56 @@
  */
 package it.univaq.incipict.profilemanager.business.model;
 
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 /**
  * 
  * @author Daniele Tellina 
  *
  */
-
-public class Profile {
-	private int ID;
+@Entity
+@Table(name = "Profile")
+public class Profile implements java.io.Serializable {
+   private static final long serialVersionUID = -4246602064783577064L;
+   
+   @Id
+   @GeneratedValue(strategy = GenerationType.IDENTITY)
+   @Column(name = "id")
+   private Long id;
+   
+   @Column(name = "name", nullable = false, length = 64)
 	private String name;
+   
+   @Column(name = "description", nullable = true, length = 512)
 	private String description;
+   
+   @Column(name = "custom", nullable = false)
 	private boolean custom;
 	
-	private List<Information> associatedInformations;
-	
-	public Profile(String name, String description) {
-	      super();
-	      this.name = name;
-	      this.description = description;
-	      this.custom = false;
-	   }
-	
-	public int getID() {
-		return ID;
+   @JsonIgnore
+   @ManyToMany(fetch = FetchType.EAGER)
+	@JoinTable(name = "Information_Profile", joinColumns = { @JoinColumn(name = "id_information") }, inverseJoinColumns = {@JoinColumn(name = "id_profile")})
+   private Set<Information> associatedInformations = new HashSet<Information>();
+   
+	public Long getId() {
+		return id;
 	}
-	public void setID(int iD) {
-		ID = iD;
+	public void setId(Long id) {
+	   this.id = id;
 	}
 	public String getName() {
 		return name;
@@ -63,12 +85,36 @@ public class Profile {
 	public void setCustom(boolean custom) {
 		this.custom = custom;
 	}
-	public List<Information> getAssociatedInformations() {
+	public Set<Information> getAssociatedInformations() {
 		return associatedInformations;
 	}
-	public void setAssociatedInformations(List<Information> associatedInformations) {
+	public void setAssociatedInformations(Set<Information> associatedInformations) {
 		this.associatedInformations = associatedInformations;
 	}
 	
+   @Override
+   public int hashCode() {
+      final int prime = 31;
+      int result = 1;
+      result = prime * result + ((id == null) ? 0 : id.hashCode());
+      return result;
+   }
+
+   @Override
+   public boolean equals(Object obj) {
+      if (this == obj)
+         return true;
+      if (obj == null)
+         return false;
+      if (getClass() != obj.getClass())
+         return false;
+      Profile other = (Profile) obj;
+      if (id == null) {
+         if (other.id != null)
+            return false;
+      } else if (!id.equals(other.id))
+         return false;
+      return true;
+   }
 
 }

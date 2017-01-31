@@ -57,5 +57,31 @@
       <put-attribute name="action_cancel" value="/administration/user/list" />
       <put-attribute name="content" value="/WEB-INF/views/administration/user_form.jsp" />
    </definition>
+   
+   <definition name="administration.profile.list" extends="base">
+      <put-attribute name="view_type" value="list" />
+      <put-attribute name="content" value="/WEB-INF/views/administration/profile_list.jsp" />
+   </definition>
+   
+   <definition name="administration.profile.create" extends="base">
+      <put-attribute name="view_type" value="create" />
+      <put-attribute name="action" value="/administration/profile/create" />
+      <put-attribute name="action_cancel" value="/administration/profile/list" />
+      <put-attribute name="content" value="/WEB-INF/views/administration/profile_form.jsp" />
+   </definition>
+   
+   <definition name="administration.profile.update" extends="base">
+      <put-attribute name="view_type" value="update" />
+      <put-attribute name="action" value="/administration/profile/update" />
+      <put-attribute name="action_cancel" value="/administration/profile/list" />
+      <put-attribute name="content" value="/WEB-INF/views/administration/profile_form.jsp" />
+   </definition>
+   
+   <definition name="administration.profile.delete" extends="base">
+      <put-attribute name="view_type" value="delete" />
+      <put-attribute name="action" value="/administration/profile/delete" />
+      <put-attribute name="action_cancel" value="/administration/profile/list" />
+      <put-attribute name="content" value="/WEB-INF/views/administration/profile_form.jsp" />
+   </definition>
 
 </tiles-definitions>

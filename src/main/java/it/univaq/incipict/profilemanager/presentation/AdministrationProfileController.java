@@ -16,8 +16,19 @@
  */
 package it.univaq.incipict.profilemanager.presentation;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import it.univaq.incipict.profilemanager.business.DataTablesRequestGrid;
+import it.univaq.incipict.profilemanager.business.DataTablesResponseGrid;
+import it.univaq.incipict.profilemanager.business.ProfileService;
+import it.univaq.incipict.profilemanager.business.model.Profile;
 
 /**
  * 
@@ -28,4 +39,56 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/administration/profile")
 public class AdministrationProfileController {
    
+   @Autowired
+   private ProfileService profileService;
+   
+   @RequestMapping("/list")
+   public String list() {
+      return "administration.profile.list";
+   }
+   
+   @RequestMapping("/findallpaginated")
+   public @ResponseBody DataTablesResponseGrid<Profile> findallpaginated(
+         @ModelAttribute DataTablesRequestGrid requestGrid) {
+      return profileService.findAllPaginated(requestGrid);
+   }
+   
+   @RequestMapping(value = "/create", method = { RequestMethod.GET })
+   public String create_start(Model model) {
+      model.addAttribute("profile", new Profile());
+      return "administration.profile.create";
+   }
+
+   @RequestMapping(value = "/create", method = { RequestMethod.POST })
+   public String create(@ModelAttribute Profile profile) {
+      profileService.create(profile);
+      return "redirect:/administration/profile/list";
+   }
+   
+   @RequestMapping(value = "/update", method = { RequestMethod.GET })
+   public String update_start(@RequestParam("id") Long id, Model model) {
+      Profile profile = profileService.findByPK(id);
+      model.addAttribute("profile", profile);
+      return "administration.profile.update";
+   }
+
+   @RequestMapping(value = "/update", method = { RequestMethod.POST })
+   public String update(@ModelAttribute Profile profile) {
+      profileService.update(profile);
+      return "redirect:/administration/profile/list";
+   }
+   
+   @RequestMapping(value = "/delete", method = { RequestMethod.GET })
+   public String delete_start(@RequestParam("id") Long id, Model model) {
+      Profile profile = profileService.findByPK(id);
+      model.addAttribute("profile", profile);
+      return "administration.profile.delete";
+   }
+
+   @RequestMapping(value = "/delete", method = { RequestMethod.POST })
+   public String delete(@ModelAttribute Profile profile) {
+      profileService.delete(profile);
+      return "redirect:/administration/profile/list";
+   }
+
 }

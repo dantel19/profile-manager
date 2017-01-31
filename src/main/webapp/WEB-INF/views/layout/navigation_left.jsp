@@ -32,7 +32,7 @@
 					<li><a><i class="fa fa-bug"></i> Administration <span class="fa fa-chevron-down"></span></a>
 						   <ul class="nav child_menu">
 							   <li><a href="${pageContext.request.contextPath}/administration/user/list">User</a></li>
-							   <li><a href="projects.html">Profile</a></li>
+							   <li><a href="${pageContext.request.contextPath}/administration/profile/list">Profile</a></li>
 						   </ul>
                     </li>
 					<%--
