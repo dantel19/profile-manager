@@ -38,21 +38,21 @@ import it.univaq.incipict.profilemanager.business.model.Profile;
 @Controller
 @RequestMapping("/administration/profile")
 public class AdministrationProfileController {
-   
+
    @Autowired
    private ProfileService profileService;
-   
+
    @RequestMapping("/list")
    public String list() {
       return "administration.profile.list";
    }
-   
+
    @RequestMapping("/findallpaginated")
    public @ResponseBody DataTablesResponseGrid<Profile> findallpaginated(
          @ModelAttribute DataTablesRequestGrid requestGrid) {
       return profileService.findAllPaginated(requestGrid);
    }
-   
+
    @RequestMapping(value = "/create", method = { RequestMethod.GET })
    public String create_start(Model model) {
       model.addAttribute("profile", new Profile());
@@ -64,7 +64,7 @@ public class AdministrationProfileController {
       profileService.create(profile);
       return "redirect:/administration/profile/list";
    }
-   
+
    @RequestMapping(value = "/update", method = { RequestMethod.GET })
    public String update_start(@RequestParam("id") Long id, Model model) {
       Profile profile = profileService.findByPK(id);
@@ -77,7 +77,7 @@ public class AdministrationProfileController {
       profileService.update(profile);
       return "redirect:/administration/profile/list";
    }
-   
+
    @RequestMapping(value = "/delete", method = { RequestMethod.GET })
    public String delete_start(@RequestParam("id") Long id, Model model) {
       Profile profile = profileService.findByPK(id);

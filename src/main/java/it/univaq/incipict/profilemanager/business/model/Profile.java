@@ -41,57 +41,67 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 @Table(name = "Profile")
 public class Profile implements java.io.Serializable {
    private static final long serialVersionUID = -4246602064783577064L;
-   
+
    @Id
    @GeneratedValue(strategy = GenerationType.IDENTITY)
    @Column(name = "id")
    private Long id;
-   
+
    @Column(name = "name", nullable = false, length = 64)
-	private String name;
-   
+   private String name;
+
    @Column(name = "description", nullable = true, length = 512)
-	private String description;
-   
+   private String description;
+
    @Column(name = "custom", nullable = false)
-	private boolean custom;
-	
+   private boolean custom;
+
    @JsonIgnore
    @ManyToMany(fetch = FetchType.EAGER)
-	@JoinTable(name = "Information_Profile", joinColumns = { @JoinColumn(name = "id_information") }, inverseJoinColumns = {@JoinColumn(name = "id_profile")})
-   private Set<Information> associatedInformations = new HashSet<Information>();
-   
-	public Long getId() {
-		return id;
-	}
-	public void setId(Long id) {
-	   this.id = id;
-	}
-	public String getName() {
-		return name;
-	}
-	public void setName(String name) {
-		this.name = name;
-	}
-	public String getDescription() {
-		return description;
-	}
-	public void setDescription(String description) {
-		this.description = description;
-	}
-	public boolean isCustom() {
-		return custom;
-	}
-	public void setCustom(boolean custom) {
-		this.custom = custom;
-	}
-	public Set<Information> getAssociatedInformations() {
-		return associatedInformations;
-	}
-	public void setAssociatedInformations(Set<Information> associatedInformations) {
-		this.associatedInformations = associatedInformations;
-	}
-	
+   @JoinTable(name = "Information_Profile", joinColumns = {
+         @JoinColumn(name = "id_information") }, inverseJoinColumns = { @JoinColumn(name = "id_profile") })
+   private Set<Information> associatedInformationSet = new HashSet<Information>();
+
+   public Long getId() {
+      return id;
+   }
+
+   public void setId(Long id) {
+      this.id = id;
+   }
+
+   public String getName() {
+      return name;
+   }
+
+   public void setName(String name) {
+      this.name = name;
+   }
+
+   public String getDescription() {
+      return description;
+   }
+
+   public void setDescription(String description) {
+      this.description = description;
+   }
+
+   public boolean isCustom() {
+      return custom;
+   }
+
+   public void setCustom(boolean custom) {
+      this.custom = custom;
+   }
+
+   public Set<Information> getassociatedInformationSet() {
+      return associatedInformationSet;
+   }
+
+   public void setassociatedInformationSet(Set<Information> associatedInformationSet) {
+      this.associatedInformationSet = associatedInformationSet;
+   }
+
    @Override
    public int hashCode() {
       final int prime = 31;

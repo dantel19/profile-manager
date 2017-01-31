@@ -63,13 +63,14 @@ public class User implements java.io.Serializable {
 
    @JsonIgnore
    @ManyToMany(fetch = FetchType.EAGER)
-   @JoinTable(name = "User_Role", joinColumns = { @JoinColumn(name = "id_user") }, inverseJoinColumns = {@JoinColumn(name = "id_role")})
+   @JoinTable(name = "User_Role", joinColumns = { @JoinColumn(name = "id_user") }, inverseJoinColumns = {
+         @JoinColumn(name = "id_role") })
    private Set<Role> roles = new HashSet<Role>();
 
    @ManyToOne
    @JoinColumn(name = "id_profile", nullable = true)
    private Profile profile;
-   
+
    public Long getId() {
       return id;
    }
@@ -101,7 +102,7 @@ public class User implements java.io.Serializable {
    public void setEmail(String email) {
       this.email = email;
    }
-   
+
    public String getPassword() {
       return password;
    }
@@ -117,7 +118,7 @@ public class User implements java.io.Serializable {
    public void setRoles(Set<Role> roles) {
       this.roles = roles;
    }
-   
+
    public Profile getProfile() {
       return profile;
    }
@@ -150,5 +151,5 @@ public class User implements java.io.Serializable {
          return false;
       return true;
    }
-   
+
 }

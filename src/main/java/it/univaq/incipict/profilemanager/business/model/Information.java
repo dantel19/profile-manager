@@ -32,29 +32,32 @@ import javax.persistence.Table;
 @Table(name = "Information")
 public class Information implements java.io.Serializable {
    private static final long serialVersionUID = -8647660001088003407L;
-   
+
    @Id
    @GeneratedValue(strategy = GenerationType.IDENTITY)
    @Column(name = "id")
    private Long id;
-   
+
    @Column(name = "description", nullable = true, length = 512)
-	private String description;
-	
-	public Long getId() {
-		return id;
-	}
-	public void setId(Long id) {
-		this.id = id;
-	}
-	public String getDescription() {
-		return description;
-	}
-	public void setDescription(String description) {
-		this.description = description;
-	}
-	
-	@Override
+   private String description;
+
+   public Long getId() {
+      return id;
+   }
+
+   public void setId(Long id) {
+      this.id = id;
+   }
+
+   public String getDescription() {
+      return description;
+   }
+
+   public void setDescription(String description) {
+      this.description = description;
+   }
+
+   @Override
    public int hashCode() {
       final int prime = 31;
       int result = 1;
@@ -78,5 +81,5 @@ public class Information implements java.io.Serializable {
          return false;
       return true;
    }
-	
+
 }
