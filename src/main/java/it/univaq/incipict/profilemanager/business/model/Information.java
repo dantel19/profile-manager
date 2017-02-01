@@ -16,11 +16,15 @@
  */
 package it.univaq.incipict.profilemanager.business.model;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
@@ -45,6 +49,9 @@ public class Information implements java.io.Serializable {
       return id;
    }
 
+   @OneToMany(mappedBy = "information")
+   private Set<InformationProfile> KnowledgeBase = new HashSet<InformationProfile>();
+
    public void setId(Long id) {
       this.id = id;
    }
@@ -55,6 +62,14 @@ public class Information implements java.io.Serializable {
 
    public void setDescription(String description) {
       this.description = description;
+   }
+
+   public Set<InformationProfile> getKnowledgeBase() {
+      return KnowledgeBase;
+   }
+
+   public void setKnowledgeBase(Set<InformationProfile> knowledgeBase) {
+      KnowledgeBase = knowledgeBase;
    }
 
    @Override

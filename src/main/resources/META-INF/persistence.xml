@@ -27,6 +27,7 @@
       <class>it.univaq.incipict.profilemanager.business.model.Role</class>
       <class>it.univaq.incipict.profilemanager.business.model.Profile</class>
       <class>it.univaq.incipict.profilemanager.business.model.Information</class>
+      <class>it.univaq.incipict.profilemanager.business.model.InformationProfile</class>
 
       <exclude-unlisted-classes>true</exclude-unlisted-classes>
      

@@ -1,18 +1,18 @@
 /*
- * Profile Manager - Copyright (C) 2016  Daniele Tellina
+ * Category Manager - Copyright (C) 2016  Daniele Tellina
  *
- * Profile Manager is free software: you can redistribute it and/or modify
+ * Category Manager is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
  *  
- * Profile Manager is distributed in the hope that it will be useful,
+ * Category Manager is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
  *  
  * You should have received a copy of the GNU General Public License
- * along with Profile Manager.  If not, see <http://www.gnu.org/licenses/>.
+ * along with Category Manager.  If not, see <http://www.gnu.org/licenses/>.
  */
 package it.univaq.incipict.profilemanager.business.model;
 
@@ -21,21 +21,26 @@ import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 /**
  * 
- * @author Daniele Tellina 
+ * @author Daniele Tellina
  *
  */
 @Entity
-@Table(name = "Profile")
-public class Profile implements java.io.Serializable {
-   private static final long serialVersionUID = -4246602064783577064L;
+@Table(name = "Category")
+public class Category implements java.io.Serializable {
+   private static final long serialVersionUID = -6135122607145028378L;
 
    @Id
    @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -45,14 +50,11 @@ public class Profile implements java.io.Serializable {
    @Column(name = "name", nullable = false, length = 64)
    private String name;
 
-   @Column(name = "description", nullable = true, length = 512)
-   private String description;
-
-   @Column(name = "custom", nullable = false)
-   private boolean custom;
-
-   @OneToMany(mappedBy = "profile")
-   private Set<InformationProfile> KnowledgeBase = new HashSet<InformationProfile>();
+   @JsonIgnore
+   @ManyToMany(fetch = FetchType.EAGER)
+   @JoinTable(name = "Information_Category", joinColumns = {
+         @JoinColumn(name = "id_information") }, inverseJoinColumns = { @JoinColumn(name = "id_category") })
+   private Set<Information> InformationSet = new HashSet<Information>();
 
    public Long getId() {
       return id;
@@ -70,28 +72,12 @@ public class Profile implements java.io.Serializable {
       this.name = name;
    }
 
-   public String getDescription() {
-      return description;
+   public Set<Information> getInformationSet() {
+      return InformationSet;
    }
 
-   public void setDescription(String description) {
-      this.description = description;
-   }
-
-   public boolean isCustom() {
-      return custom;
-   }
-
-   public void setCustom(boolean custom) {
-      this.custom = custom;
-   }
-
-   public Set<InformationProfile> getKnowledgeBase() {
-      return KnowledgeBase;
-   }
-
-   public void setKnowledgeBase(Set<InformationProfile> knowledgeBase) {
-      KnowledgeBase = knowledgeBase;
+   public void setInformationSet(Set<Information> InformationSet) {
+      this.InformationSet = InformationSet;
    }
 
    @Override
@@ -110,7 +96,7 @@ public class Profile implements java.io.Serializable {
          return false;
       if (getClass() != obj.getClass())
          return false;
-      Profile other = (Profile) obj;
+      Category other = (Category) obj;
       if (id == null) {
          if (other.id != null)
             return false;

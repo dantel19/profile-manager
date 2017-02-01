@@ -28,7 +28,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -67,9 +66,11 @@ public class User implements java.io.Serializable {
          @JoinColumn(name = "id_role") })
    private Set<Role> roles = new HashSet<Role>();
 
-   @ManyToOne
-   @JoinColumn(name = "id_profile", nullable = true)
-   private Profile profile;
+   @JsonIgnore
+   @ManyToMany(fetch = FetchType.EAGER)
+   @JoinTable(name = "Information_User", joinColumns = { @JoinColumn(name = "id_information") }, inverseJoinColumns = {
+         @JoinColumn(name = "id_user") })
+   private Set<Information> InformationSet = new HashSet<Information>();
 
    public Long getId() {
       return id;
@@ -119,12 +120,12 @@ public class User implements java.io.Serializable {
       this.roles = roles;
    }
 
-   public Profile getProfile() {
-      return profile;
+   public Set<Information> getInformationSet() {
+      return InformationSet;
    }
 
-   public void setProfile(Profile profile) {
-      this.profile = profile;
+   public void setInformationSet(Set<Information> informationSet) {
+      InformationSet = informationSet;
    }
 
    @Override
