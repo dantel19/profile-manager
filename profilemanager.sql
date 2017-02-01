@@ -8,7 +8,6 @@ CREATE TABLE profilemanager.Profile (
     id INT UNSIGNED NOT NULL AUTO_INCREMENT,
     name VARCHAR(64) NOT NULL,
     description TEXT(512) NULL,
-    custom BOOLEAN NOT NULL DEFAULT 0,
     PRIMARY KEY (id)
 )  ENGINE=INNODB;
 
@@ -25,11 +24,7 @@ CREATE TABLE profilemanager.User (
     lastname VARCHAR(64) NULL,
     email VARCHAR(128) NOT NULL,
     password VARCHAR(32) NOT NULL,
-    id_profile INT UNSIGNED,
-    PRIMARY KEY (id),
-    FOREIGN KEY (id_profile)
-        REFERENCES profilemanager.Profile (id)
-        ON DELETE NO ACTION ON UPDATE NO ACTION
+    PRIMARY KEY (id)
 )  ENGINE=INNODB;
 
 CREATE TABLE profilemanager.User_Role (
@@ -45,16 +40,34 @@ CREATE TABLE profilemanager.User_Role (
 )  ENGINE=INNODB;
 
 
+CREATE TABLE profilemanager.Category (
+    id INT UNSIGNED NOT NULL AUTO_INCREMENT,
+    name TEXT(64) NOT NULL,
+    PRIMARY KEY (id)
+)  ENGINE=INNODB;
+
 CREATE TABLE profilemanager.Information (
     id INT UNSIGNED NOT NULL AUTO_INCREMENT,
     description TEXT(512) NULL,
     PRIMARY KEY (id)
 )  ENGINE=INNODB;
 
+CREATE TABLE profilemanager.Information_Category (
+    id_information INT UNSIGNED NOT NULL,
+    id_category INT UNSIGNED NOT NULL,
+    PRIMARY KEY (id_category , id_information),
+    FOREIGN KEY (id_category)
+        REFERENCES profilemanager.Category (id)
+        ON DELETE CASCADE ON UPDATE CASCADE,
+    FOREIGN KEY (id_information)
+        REFERENCES profilemanager.Information (id)
+        ON DELETE CASCADE ON UPDATE CASCADE
+)  ENGINE=INNODB;
+
 /* This table represents the Knowledge Base */
 CREATE TABLE profilemanager.Information_Profile (
-    id_profile INT UNSIGNED NOT NULL,
     id_information INT UNSIGNED NOT NULL,
+    id_profile INT UNSIGNED NOT NULL,
     rank DOUBLE UNSIGNED NOT NULL DEFAULT 0,
     PRIMARY KEY (id_profile , id_information),
     FOREIGN KEY (id_profile)
@@ -65,16 +78,28 @@ CREATE TABLE profilemanager.Information_Profile (
         ON DELETE CASCADE ON UPDATE CASCADE
 )  ENGINE=INNODB;
 
+CREATE TABLE profilemanager.Information_User (
+    id_information INT UNSIGNED NOT NULL,
+    id_user INT UNSIGNED NOT NULL,
+    PRIMARY KEY (id_user , id_information),
+    FOREIGN KEY (id_user)
+        REFERENCES profilemanager.User (id)
+        ON DELETE CASCADE ON UPDATE CASCADE,
+    FOREIGN KEY (id_information)
+        REFERENCES profilemanager.Information (id)
+        ON DELETE CASCADE ON UPDATE CASCADE
+)  ENGINE=INNODB;
+
 /* INSERT statements */
  
 /* Table: Profile */
-INSERT INTO profilemanager.Profile (name, description, custom) VALUES ("Unknown", "Profilo di default", 0);
-INSERT INTO profilemanager.Profile (name, description, custom) VALUES ("Ingegnere Civile", "Ingegnere Civile: generalizza le due figure di Ingegnere Civile ed Ingegnere Edile. (Rif. albo degli ingegneri, settore a: civile ed ambientale)", 0);
-INSERT INTO profilemanager.Profile (name, description, custom) VALUES ("Architetto", "Architettura o discipline affini", 0);
-INSERT INTO profilemanager.Profile (name, description, custom) VALUES ("Energy Manager", "Energy Manager", 0);
-INSERT INTO profilemanager.Profile (name, description, custom) VALUES ("Ingegnere Elettronico e dell'Automazione", "Ingegnere Elettronico e dell'Automazione", 0);
-INSERT INTO profilemanager.Profile (name, description, custom) VALUES ("Storico dell'Arte", "Storico dell'Arte o discipline affini", 0);
-INSERT INTO profilemanager.Profile (name, description, custom) VALUES ("Turista", "Turista", 0);
+INSERT INTO profilemanager.Profile (name, description) VALUES ("Unknown", "Profilo di default");
+INSERT INTO profilemanager.Profile (name, description) VALUES ("Ingegnere Civile", "Ingegnere Civile: generalizza le due figure di Ingegnere Civile ed Ingegnere Edile. (Rif. albo degli ingegneri, settore a: civile ed ambientale)");
+INSERT INTO profilemanager.Profile (name, description) VALUES ("Architetto", "Architettura o discipline affini");
+INSERT INTO profilemanager.Profile (name, description) VALUES ("Energy Manager", "Energy Manager");
+INSERT INTO profilemanager.Profile (name, description) VALUES ("Ingegnere Elettronico e dell'Automazione", "Ingegnere Elettronico e dell'Automazione");
+INSERT INTO profilemanager.Profile (name, description) VALUES ("Storico dell'Arte", "Storico dell'Arte o discipline affini");
+INSERT INTO profilemanager.Profile (name, description) VALUES ("Turista", "Turista");
 
 /* Table: Role */
 INSERT INTO profilemanager.Role (name, description) VALUES ("administrator", "Ruolo di Amministratore");
@@ -141,6 +166,12 @@ INSERT INTO profilemanager.Information (description) VALUES
 ("Centri storici"),
 ("Siti archeologici");
 
+/* Table: Category */
+INSERT INTO profilemanager.Category (name) VALUES ("Storia");
+INSERT INTO profilemanager.Category (name) VALUES ("Architettura");
+INSERT INTO profilemanager.Category (name) VALUES ("Cultura");
+INSERT INTO profilemanager.Category (name) VALUES ("Ingegneria");
+
 /* Table: Information_Profile */
 INSERT INTO profilemanager.Information_Profile (id_profile, id_information, rank) VALUES
 /* IngegnereCivile */
@@ -155,3 +186,9 @@ INSERT INTO profilemanager.Information_Profile (id_profile, id_information, rank
 (6, 1, 4.0),(6, 2, 4.0),(6, 3, 3.5),(6, 4, 4.5),(6, 5, 4.5),(6, 6, 4.0),(6, 7, 4.5),(6, 8, 3.0),(6, 9, 3.5),(6, 10, 0.5),(6, 11, 2.0),(6, 12, 2.5),(6, 13, 2.0),(6, 14, 2.5),(6, 15, 2.5),(6, 16, 1.5),(6, 17, 2.0),(6, 18, 0.0),(6, 19, 2.0),(6, 20, 1.0),(6, 21, 1.0),(6, 22, 1.5),(6, 23, 0.0),(6, 24, 0.0),(6, 25, 0.5),(6, 26, 0.5),(6, 27, 2.5),(6, 28, 1.0),(6, 29, 0.5),(6, 30, 1.0),(6, 31, 0.0),(6, 32, 0.5),(6, 33, 0.0),(6, 34, 0.0),(6, 35, 0.5),(6, 36, 0.0),(6, 37, 1.0),(6, 38, 0.5),(6, 39, 1.0),(6, 40, 0.0),(6, 41, 0.0),(6, 42, 0.5),(6, 43, 0.0),(6, 44, 0.0),(6, 45, 1.0),(6, 46, 0.0),(6, 47, 0.5),(6, 48, 1.0),(6, 49, 0.5), 
 /* Turista */
 (7, 1, 2.0),(7, 2, 1.5),(7, 3, 3.0),(7, 4, 4.0),(7, 5, 4.0),(7, 6, 3.5),(7, 7, 2.5),(7, 8, 2.0),(7, 9, 0.0),(7, 10, 0.0),(7, 11, 0.0),(7, 12, 0.0),(7, 13, 0.0),(7, 14, 0.0),(7, 15, 1.0),(7, 16, 2.0),(7, 17, 1.0),(7, 18, 2.0),(7, 19, 0.5),(7, 20, 0.5),(7, 21, 0.0),(7, 22, 2.5),(7, 23, 2.0),(7, 24, 0.5),(7, 25, 0.0),(7, 26, 0.5),(7, 27, 1.0),(7, 28, 0.5),(7, 29, 0.5),(7, 30, 0.0),(7, 31, 0.0),(7, 32, 0.0),(7, 33, 0.5),(7, 34, 0.0),(7, 35, 0.5),(7, 36, 0.5),(7, 37, 1.0),(7, 38, 0.5),(7, 39, 1.0),(7, 40, 0.0),(7, 41, 0.0),(7, 42, 1.0),(7, 43, 0.0),(7, 44, 0.5),(7, 45, 1.0),(7, 46, 0.0),(7, 47, 1.0),(7, 48, 0.5),(7, 49, 0.0);
+
+/* Table: Information_Category */
+INSERT INTO profilemanager.information_Category (id_information, id_category) VALUES (1, 2),(2, 2),(3, 3),(3, 1);
+
+/* Table: Information_User */
+INSERT INTO profilemanager.Information_User (id_information, id_user) VALUES (1, 1),(2, 1),(3, 2),(4, 1),(5,2);
