@@ -17,25 +17,24 @@
 package it.univaq.incipict.profilemanager.business.model;
 
 import javax.persistence.Column;
+import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.IdClass;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@IdClass(InformationProfileId.class)
 @Table(name = "Information_Profile")
 public class InformationProfile implements java.io.Serializable {
    private static final long serialVersionUID = 9046973983171068447L;
 
-   @Id
+   @EmbeddedId
+   private InformationProfilePK id;
+   
    @ManyToOne
    @JoinColumn(name = "id_information")
    private Information information;
 
-   @Id
    @ManyToOne
    @JoinColumn(name = "id_profile")
    private Profile profile;
@@ -43,20 +42,12 @@ public class InformationProfile implements java.io.Serializable {
    @Column(name = "rank", nullable = false)
    private Double rank;
 
-   public Information getInformation() {
-      return information;
+   public InformationProfilePK getId() {
+      return id;
    }
 
-   public void setInformation(Information information) {
-      this.information = information;
-   }
-
-   public Profile getProfile() {
-      return profile;
-   }
-
-   public void setProfile(Profile profile) {
-      this.profile = profile;
+   public void setId(InformationProfilePK id) {
+      this.id = id;
    }
 
    public Double getRank() {
@@ -66,5 +57,4 @@ public class InformationProfile implements java.io.Serializable {
    public void setRank(Double rank) {
       this.rank = rank;
    }
-
 }
