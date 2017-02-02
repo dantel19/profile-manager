@@ -40,8 +40,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
  *
  */
 @Entity
-@Table(name = "User", uniqueConstraints = {
-      @UniqueConstraint(columnNames = "email")})
+@Table(name = "User", uniqueConstraints = { @UniqueConstraint(columnNames = "email") })
 public class User implements java.io.Serializable {
    private static final long serialVersionUID = -5461054434128060682L;
 

@@ -29,7 +29,7 @@ import javax.persistence.Table;
 
 /**
  * 
- * @author Daniele Tellina 
+ * @author Daniele Tellina
  *
  */
 @Entity
@@ -52,7 +52,7 @@ public class Profile implements java.io.Serializable {
    private boolean custom;
 
    @OneToMany(mappedBy = "profile")
-   private Set<InformationProfile> KnowledgeBase = new HashSet<InformationProfile>();
+   private Set<ProfileInformation> KnowledgeBase = new HashSet<ProfileInformation>();
 
    public Long getId() {
       return id;
@@ -86,11 +86,11 @@ public class Profile implements java.io.Serializable {
       this.custom = custom;
    }
 
-   public Set<InformationProfile> getKnowledgeBase() {
+   public Set<ProfileInformation> getKnowledgeBase() {
       return KnowledgeBase;
    }
 
-   public void setKnowledgeBase(Set<InformationProfile> knowledgeBase) {
+   public void setKnowledgeBase(Set<ProfileInformation> knowledgeBase) {
       KnowledgeBase = knowledgeBase;
    }
 

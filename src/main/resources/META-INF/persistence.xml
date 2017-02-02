@@ -28,8 +28,8 @@
       <class>it.univaq.incipict.profilemanager.business.model.Profile</class>
       <class>it.univaq.incipict.profilemanager.business.model.Information</class>
       <class>it.univaq.incipict.profilemanager.business.model.Category</class>
-      <class>it.univaq.incipict.profilemanager.business.model.InformationProfile</class>
-      <class>it.univaq.incipict.profilemanager.business.model.InformationProfilePK</class>
+      <class>it.univaq.incipict.profilemanager.business.model.ProfileInformation</class>
+      <class>it.univaq.incipict.profilemanager.business.model.ProfileInformationPK</class>
 
       <exclude-unlisted-classes>true</exclude-unlisted-classes>
      

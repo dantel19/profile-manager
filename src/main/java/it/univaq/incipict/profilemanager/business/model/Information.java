@@ -29,7 +29,7 @@ import javax.persistence.Table;
 
 /**
  * 
- * @author Daniele Tellina 
+ * @author Daniele Tellina
  *
  */
 @Entity
@@ -50,7 +50,7 @@ public class Information implements java.io.Serializable {
    }
 
    @OneToMany(mappedBy = "information")
-   private Set<InformationProfile> KnowledgeBase = new HashSet<InformationProfile>();
+   private Set<ProfileInformation> KnowledgeBase = new HashSet<ProfileInformation>();
 
    public void setId(Long id) {
       this.id = id;
@@ -64,11 +64,11 @@ public class Information implements java.io.Serializable {
       this.description = description;
    }
 
-   public Set<InformationProfile> getKnowledgeBase() {
+   public Set<ProfileInformation> getKnowledgeBase() {
       return KnowledgeBase;
    }
 
-   public void setKnowledgeBase(Set<InformationProfile> knowledgeBase) {
+   public void setKnowledgeBase(Set<ProfileInformation> knowledgeBase) {
       KnowledgeBase = knowledgeBase;
    }
 

@@ -21,10 +21,10 @@ import java.io.Serializable;
 import javax.persistence.Embeddable;
 
 @Embeddable
-public class InformationProfilePK implements Serializable {
+public class ProfileInformationPK implements Serializable {
    private static final long serialVersionUID = -2875398420719600298L;
    private Long id_information, id_profile;
-   
+
    public Long getId_information() {
       return id_information;
    }
@@ -43,15 +43,33 @@ public class InformationProfilePK implements Serializable {
 
    @Override
    public int hashCode() {
-       return (int) (id_information.hashCode() + id_profile);
+      final int prime = 31;
+      int result = 1;
+      result = prime * result + ((id_information == null) ? 0 : id_information.hashCode());
+      result = prime * result + ((id_profile == null) ? 0 : id_profile.hashCode());
+      return result;
    }
 
    @Override
    public boolean equals(Object obj) {
-       if (obj == this) return true;
-       if (obj == null) return false;
-       if (!(obj instanceof InformationProfilePK)) return false;
-       InformationProfilePK pk = (InformationProfilePK) obj;
-       return pk.id_information == id_information && pk.id_profile == id_profile;
+      if (this == obj)
+         return true;
+      if (obj == null)
+         return false;
+      if (getClass() != obj.getClass())
+         return false;
+      ProfileInformationPK other = (ProfileInformationPK) obj;
+      if (id_information == null) {
+         if (other.id_information != null)
+            return false;
+      } else if (!id_information.equals(other.id_information))
+         return false;
+      if (id_profile == null) {
+         if (other.id_profile != null)
+            return false;
+      } else if (!id_profile.equals(other.id_profile))
+         return false;
+      return true;
    }
+
 }

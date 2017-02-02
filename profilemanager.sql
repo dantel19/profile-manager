@@ -33,10 +33,10 @@ CREATE TABLE profilemanager.User_Role (
     PRIMARY KEY (id_user , id_role),
     FOREIGN KEY (id_user)
         REFERENCES profilemanager.User (id)
-        ON DELETE NO ACTION ON UPDATE NO ACTION,
+        ON DELETE CASCADE ON UPDATE CASCADE,
     FOREIGN KEY (id_role)
         REFERENCES profilemanager.Role (id)
-        ON DELETE NO ACTION ON UPDATE NO ACTION
+        ON DELETE CASCADE ON UPDATE CASCADE
 )  ENGINE=INNODB;
 
 
@@ -65,7 +65,7 @@ CREATE TABLE profilemanager.Category_Information (
 )  ENGINE=INNODB;
 
 /* This table represents the Knowledge Base */
-CREATE TABLE profilemanager.Information_Profile (
+CREATE TABLE profilemanager.Profile_Information (
     id_information INT UNSIGNED NOT NULL,
     id_profile INT UNSIGNED NOT NULL,
     rank DOUBLE UNSIGNED NOT NULL DEFAULT 0,
@@ -172,8 +172,8 @@ INSERT INTO profilemanager.Category (name) VALUES ("Architettura");
 INSERT INTO profilemanager.Category (name) VALUES ("Cultura");
 INSERT INTO profilemanager.Category (name) VALUES ("Ingegneria");
 
-/* Table: Information_Profile */
-INSERT INTO profilemanager.Information_Profile (id_profile, id_information, rank) VALUES
+/* Table: Profile_Information */
+INSERT INTO profilemanager.Profile_Information (id_profile, id_information, rank) VALUES
 /* IngegnereCivile */
 (2, 1, 4.0),(2, 2, 3.5),(2, 3, 3.5),(2, 4, 4.0),(2, 5, 4.0),(2, 6, 4.5),(2, 7, 4.0),(2, 8, 4.0),(2, 9, 4.0),(2, 10, 5.0),(2, 11, 5.0),(2, 12, 5.0),(2, 13, 3.5),(2, 14, 5.0),(2, 15, 4.5),(2, 16, 2.5),(2, 17, 3.0),(2, 18, 3.5),(2, 19, 1.5),(2, 20, 2.0),(2, 21, 2.5),(2, 22, 2.0),(2, 23, 1.5),(2, 24, 1.5),(2, 25, 2.0),(2, 26, 1.5),(2, 27, 2.0),(2, 28, 1.0),(2, 29, 0.5),(2, 30, 0.0),(2, 31, 0.0),(2, 32, 0.5),(2, 33, 0.0),(2, 34, 0.0),(2, 35, 1.0),(2, 36, 0.0),(2, 37, 1.0),(2, 38, 1.0),(2, 39, 1.0),(2, 40, 0.0),(2, 41, 0.0),(2, 42, 1.0),(2, 43, 0.0),(2, 44, 0.0),(2, 45, 1.0),(2, 46, 0.5),(2, 47, 0.0),(2, 48, 0.5),(2, 49, 0.5), 
 /* Architetto */

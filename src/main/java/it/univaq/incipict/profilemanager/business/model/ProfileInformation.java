@@ -24,13 +24,13 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "Information_Profile")
-public class InformationProfile implements java.io.Serializable {
+@Table(name = "Profile_Information")
+public class ProfileInformation implements java.io.Serializable {
    private static final long serialVersionUID = 9046973983171068447L;
 
    @EmbeddedId
-   private InformationProfilePK id;
-   
+   private ProfileInformationPK id;
+
    @ManyToOne
    @JoinColumn(name = "id_information")
    private Information information;
@@ -42,11 +42,11 @@ public class InformationProfile implements java.io.Serializable {
    @Column(name = "rank", nullable = false)
    private Double rank;
 
-   public InformationProfilePK getId() {
+   public ProfileInformationPK getId() {
       return id;
    }
 
-   public void setId(InformationProfilePK id) {
+   public void setId(ProfileInformationPK id) {
       this.id = id;
    }
 
@@ -57,4 +57,29 @@ public class InformationProfile implements java.io.Serializable {
    public void setRank(Double rank) {
       this.rank = rank;
    }
+
+   @Override
+   public int hashCode() {
+      final int prime = 31;
+      int result = 1;
+      result = prime * result + ((id == null) ? 0 : id.hashCode());
+      return result;
+   }
+
+   @Override
+   public boolean equals(Object obj) {
+      if (this == obj)
+         return true;
+      if (obj == null)
+         return false;
+      if (getClass() != obj.getClass())
+         return false;
+      ProfileInformation other = (ProfileInformation) obj;
+      if (id == null) {
+         if (other.id != null)
+            return false;
+      }
+      return true;
+   }
+
 }
