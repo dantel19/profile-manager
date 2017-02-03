@@ -23,6 +23,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name = "Profile_Information")
 public class ProfileInformation implements java.io.Serializable {
@@ -31,12 +33,14 @@ public class ProfileInformation implements java.io.Serializable {
    @EmbeddedId
    private ProfileInformationPK id;
 
+   @JsonIgnore
    @ManyToOne
-   @JoinColumn(name = "id_information")
+   @JoinColumn(name = "id_information", insertable = false, updatable = false)
    private Information information;
 
+   @JsonIgnore
    @ManyToOne
-   @JoinColumn(name = "id_profile")
+   @JoinColumn(name = "id_profile", insertable = false, updatable = false)
    private Profile profile;
 
    @Column(name = "rank", nullable = false)

@@ -21,6 +21,7 @@ import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -49,8 +50,8 @@ public class Information implements java.io.Serializable {
       return id;
    }
 
-   @OneToMany(mappedBy = "information")
-   private Set<ProfileInformation> KnowledgeBase = new HashSet<ProfileInformation>();
+   @OneToMany(mappedBy = "information", fetch = FetchType.EAGER)
+   private Set<ProfileInformation> profileInformationSet = new HashSet<ProfileInformation>();
 
    public void setId(Long id) {
       this.id = id;
@@ -64,12 +65,12 @@ public class Information implements java.io.Serializable {
       this.description = description;
    }
 
-   public Set<ProfileInformation> getKnowledgeBase() {
-      return KnowledgeBase;
+   public Set<ProfileInformation> getProfileInformationSet() {
+      return profileInformationSet;
    }
 
-   public void setKnowledgeBase(Set<ProfileInformation> knowledgeBase) {
-      KnowledgeBase = knowledgeBase;
+   public void setProfileInformationSet(Set<ProfileInformation> profileInformationSet) {
+      this.profileInformationSet = profileInformationSet;
    }
 
    @Override

@@ -21,11 +21,14 @@ import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 /**
  * 
@@ -48,11 +51,9 @@ public class Profile implements java.io.Serializable {
    @Column(name = "description", nullable = true, length = 512)
    private String description;
 
-   @Column(name = "custom", nullable = false)
-   private boolean custom;
-
-   @OneToMany(mappedBy = "profile")
-   private Set<ProfileInformation> KnowledgeBase = new HashSet<ProfileInformation>();
+   @JsonIgnore
+   @OneToMany(mappedBy = "profile", fetch = FetchType.EAGER)
+   private Set<ProfileInformation> profileInformationSet = new HashSet<ProfileInformation>();
 
    public Long getId() {
       return id;
@@ -78,20 +79,12 @@ public class Profile implements java.io.Serializable {
       this.description = description;
    }
 
-   public boolean isCustom() {
-      return custom;
+   public Set<ProfileInformation> getProfileInformationSet() {
+      return profileInformationSet;
    }
 
-   public void setCustom(boolean custom) {
-      this.custom = custom;
-   }
-
-   public Set<ProfileInformation> getKnowledgeBase() {
-      return KnowledgeBase;
-   }
-
-   public void setKnowledgeBase(Set<ProfileInformation> knowledgeBase) {
-      KnowledgeBase = knowledgeBase;
+   public void setProfileInformationSet(Set<ProfileInformation> profileInformationSet) {
+      this.profileInformationSet = profileInformationSet;
    }
 
    @Override
