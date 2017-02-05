@@ -33,6 +33,7 @@
 						   <ul class="nav child_menu">
 							   <li><a href="${pageContext.request.contextPath}/administration/user/list">User</a></li>
 							   <li><a href="${pageContext.request.contextPath}/administration/profile/list">Profile</a></li>
+							   <li><a href="${pageContext.request.contextPath}/administration/information/list">Information</a></li>
 						   </ul>
                     </li>
 					<%--

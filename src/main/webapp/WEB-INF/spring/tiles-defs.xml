@@ -39,56 +39,119 @@
       <put-attribute name="content" value="/WEB-INF/views/user/settings.jsp" />
    </definition>
 
+   <!-- START ADMINISTRATION -->
+   <!-- start administration/user  -->
+   
    <definition name="administration.user.list" extends="base">
       <put-attribute name="view_type" value="list" />
-      <put-attribute name="content" value="/WEB-INF/views/administration/user_list.jsp" />
+      <put-attribute name="content" value="/WEB-INF/views/administration/user/user_list.jsp" />
    </definition>
    
    <definition name="administration.user.create" extends="base">
       <put-attribute name="view_type" value="create" />
       <put-attribute name="action" value="/administration/user/create" />
       <put-attribute name="action_cancel" value="/administration/user/list" />
-      <put-attribute name="content" value="/WEB-INF/views/administration/user_form.jsp" />
+      <put-attribute name="content" value="/WEB-INF/views/administration/user/user_form.jsp" />
    </definition>
 
    <definition name="administration.user.update" extends="base">
       <put-attribute name="view_type" value="update" />
       <put-attribute name="action" value="/administration/user/update" />
       <put-attribute name="action_cancel" value="/administration/user/list" />
-      <put-attribute name="content" value="/WEB-INF/views/administration/user_form.jsp" />
+      <put-attribute name="content" value="/WEB-INF/views/administration/user/user_form.jsp" />
    </definition>
 
    <definition name="administration.user.delete" extends="base">
       <put-attribute name="view_type" value="delete" />
       <put-attribute name="action" value="/administration/user/delete" />
       <put-attribute name="action_cancel" value="/administration/user/list" />
-      <put-attribute name="content" value="/WEB-INF/views/administration/user_form.jsp" />
+      <put-attribute name="content" value="/WEB-INF/views/administration/user/user_form.jsp" />
    </definition>
+   
+   <!-- start administration/profile -->
    
    <definition name="administration.profile.list" extends="base">
       <put-attribute name="view_type" value="list" />
-      <put-attribute name="content" value="/WEB-INF/views/administration/profile_list.jsp" />
+      <put-attribute name="content" value="/WEB-INF/views/administration/profile/profile_list.jsp" />
    </definition>
    
    <definition name="administration.profile.create" extends="base">
       <put-attribute name="view_type" value="create" />
       <put-attribute name="action" value="/administration/profile/create" />
       <put-attribute name="action_cancel" value="/administration/profile/list" />
-      <put-attribute name="content" value="/WEB-INF/views/administration/profile_form.jsp" />
+      <put-attribute name="content" value="/WEB-INF/views/administration/profile/profile_form.jsp" />
    </definition>
    
    <definition name="administration.profile.update" extends="base">
       <put-attribute name="view_type" value="update" />
       <put-attribute name="action" value="/administration/profile/update" />
       <put-attribute name="action_cancel" value="/administration/profile/list" />
-      <put-attribute name="content" value="/WEB-INF/views/administration/profile_form.jsp" />
+      <put-attribute name="content" value="/WEB-INF/views/administration/profile/profile_form.jsp" />
    </definition>
    
    <definition name="administration.profile.delete" extends="base">
       <put-attribute name="view_type" value="delete" />
       <put-attribute name="action" value="/administration/profile/delete" />
       <put-attribute name="action_cancel" value="/administration/profile/list" />
-      <put-attribute name="content" value="/WEB-INF/views/administration/profile_form.jsp" />
+      <put-attribute name="content" value="/WEB-INF/views/administration/profile/profile_form.jsp" />
    </definition>
+   
+   <!-- start administration/information -->
+   
+   <definition name="administration.information.list" extends="base">
+      <put-attribute name="view_type" value="list" />
+      <put-attribute name="content" value="/WEB-INF/views/administration/information/information_list.jsp" />
+   </definition>
+   
+   <definition name="administration.information.create" extends="base">
+      <put-attribute name="view_type" value="create" />
+      <put-attribute name="action" value="/administration/information/create" />
+      <put-attribute name="action_cancel" value="/administration/information/list" />
+      <put-attribute name="content" value="/WEB-INF/views/administration/information/information_form.jsp" />
+   </definition>
+   
+   <definition name="administration.information.update" extends="base">
+      <put-attribute name="view_type" value="update" />
+      <put-attribute name="action" value="/administration/information/update" />
+      <put-attribute name="action_cancel" value="/administration/information/list" />
+      <put-attribute name="content" value="/WEB-INF/views/administration/information/information_form.jsp" />
+   </definition>
+   
+   <definition name="administration.information.delete" extends="base">
+      <put-attribute name="view_type" value="delete" />
+      <put-attribute name="action" value="/administration/information/delete" />
+      <put-attribute name="action_cancel" value="/administration/information/list" />
+      <put-attribute name="content" value="/WEB-INF/views/administration/information/information_form.jsp" />
+   </definition>
+   
+      <!-- start administration/category -->
+   
+   <definition name="administration.category.list" extends="base">
+      <put-attribute name="view_type" value="list" />
+      <put-attribute name="content" value="/WEB-INF/views/administration/category/category_list.jsp" />
+   </definition>
+   
+   <definition name="administration.category.create" extends="base">
+      <put-attribute name="view_type" value="create" />
+      <put-attribute name="action" value="/administration/category/create" />
+      <put-attribute name="action_cancel" value="/administration/category/list" />
+      <put-attribute name="content" value="/WEB-INF/views/administration/category/category_form.jsp" />
+   </definition>
+   
+   <definition name="administration.category.update" extends="base">
+      <put-attribute name="view_type" value="update" />
+      <put-attribute name="action" value="/administration/category/update" />
+      <put-attribute name="action_cancel" value="/administration/category/list" />
+      <put-attribute name="content" value="/WEB-INF/views/administration/category/category_form.jsp" />
+   </definition>
+   
+   <definition name="administration.category.delete" extends="base">
+      <put-attribute name="view_type" value="delete" />
+      <put-attribute name="action" value="/administration/category/delete" />
+      <put-attribute name="action_cancel" value="/administration/category/list" />
+      <put-attribute name="content" value="/WEB-INF/views/administration/category/category_form.jsp" />
+   </definition>
+   
+   <!-- END ADMINISTRATION -->
 
 </tiles-definitions>
