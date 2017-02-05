@@ -32,6 +32,11 @@ footer {
 	padding: 6px;
 }
 
+/* vertical text-center in processing DIV */
+#information_list_processing {
+	height: 48px;
+}
+
 /* END common */
 
 /* START administration */
