@@ -60,7 +60,7 @@ public class User implements java.io.Serializable {
 
    @Column(name = "password", nullable = false, length = 32)
    private String password;
-   
+
    @JsonIgnore
    @ManyToMany(fetch = FetchType.EAGER)
    @JoinTable(name = "User_Role", joinColumns = { @JoinColumn(name = "id_user") }, inverseJoinColumns = {
