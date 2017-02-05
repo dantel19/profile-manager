@@ -22,6 +22,7 @@ import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -46,10 +47,12 @@ public class ProfileInformation implements java.io.Serializable {
    @Column(name = "rank", nullable = false)
    private Double rank;
 
+   @Transient
    public ProfileInformationPK getId() {
       return id;
    }
 
+   @Transient
    public void setId(ProfileInformationPK id) {
       this.id = id;
    }

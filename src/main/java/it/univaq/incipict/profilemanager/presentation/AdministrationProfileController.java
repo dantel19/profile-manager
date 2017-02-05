@@ -32,7 +32,7 @@ import it.univaq.incipict.profilemanager.business.model.Profile;
 
 /**
  * 
- * @author Daniele Tellina 
+ * @author Daniele Tellina
  *
  */
 @Controller

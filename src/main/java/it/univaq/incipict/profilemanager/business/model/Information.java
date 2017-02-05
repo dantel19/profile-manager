@@ -25,8 +25,13 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 /**
  * 
@@ -46,12 +51,18 @@ public class Information implements java.io.Serializable {
    @Column(name = "description", nullable = true, length = 512)
    private String description;
 
+   @JsonIgnore
+   @ManyToMany(fetch = FetchType.EAGER)
+   @JoinTable(name = "Category_Information", joinColumns = { @JoinColumn(name = "id_category") }, inverseJoinColumns = {
+         @JoinColumn(name = "id_information") })
+   private Set<Category> categorySet = new HashSet<Category>();
+
+   @OneToMany(mappedBy = "information", fetch = FetchType.EAGER, orphanRemoval = true)
+   private Set<ProfileInformation> profileInformationSet = new HashSet<ProfileInformation>();
+
    public Long getId() {
       return id;
    }
-
-   @OneToMany(mappedBy = "information", fetch = FetchType.EAGER)
-   private Set<ProfileInformation> profileInformationSet = new HashSet<ProfileInformation>();
 
    public void setId(Long id) {
       this.id = id;
@@ -71,6 +82,14 @@ public class Information implements java.io.Serializable {
 
    public void setProfileInformationSet(Set<ProfileInformation> profileInformationSet) {
       this.profileInformationSet = profileInformationSet;
+   }
+
+   public Set<Category> getCategorySet() {
+      return categorySet;
+   }
+
+   public void setCategorySet(Set<Category> categorySet) {
+      this.categorySet = categorySet;
    }
 
    @Override

@@ -52,7 +52,7 @@ public class Profile implements java.io.Serializable {
    private String description;
 
    @JsonIgnore
-   @OneToMany(mappedBy = "profile", fetch = FetchType.EAGER)
+   @OneToMany(mappedBy = "profile", fetch = FetchType.EAGER, orphanRemoval = true)
    private Set<ProfileInformation> profileInformationSet = new HashSet<ProfileInformation>();
 
    public Long getId() {
