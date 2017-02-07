@@ -34,6 +34,7 @@
 							   <li><a href="${pageContext.request.contextPath}/administration/user/list">User</a></li>
 							   <li><a href="${pageContext.request.contextPath}/administration/profile/list">Profile</a></li>
 							   <li><a href="${pageContext.request.contextPath}/administration/information/list">Information</a></li>
+							   <li><a href="${pageContext.request.contextPath}/administration/category/list">Category</a></li>
 						   </ul>
                     </li>
 					<%--

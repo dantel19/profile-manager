@@ -8,7 +8,7 @@
           "sAjaxDataProp": "rows",
           "aoColumns": [
               {"mData": "id"},
-              {"mData": "description"},
+              {"mData": "name"},
               {"sName": "Actions",
                  "bSearchable": false,
                  "bSortable": false,

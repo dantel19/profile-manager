@@ -23,14 +23,14 @@
                <thead>
                   <tr>
                   	 <th>id</th>
-                     <th><spring:message code="category.description" /></th>
+                     <th><spring:message code="category.name" /></th>
                      <th><spring:message code="common.actions" /></th>
                   </tr>
                </thead>
 					<tfoot>
 						<tr>
 							<th></th>
-							<th><spring:message code="common.search.by" /> <spring:message code="category.description" /></th>
+							<th><spring:message code="common.search.by" /> <spring:message code="category.name" /></th>
 							<th></th>
 						</tr>
 					</tfoot>
