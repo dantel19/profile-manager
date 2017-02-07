@@ -23,7 +23,8 @@ import org.springframework.util.StringUtils;
  * @author Alexander Perucci (http://www.alexanderperucci.com/)
  *
  */
-public class SearchField {
+public class SearchField implements java.io.Serializable{
+   private static final long serialVersionUID = -7260940866954111493L;
 
    private RangeType rangeType;
    private String value;
