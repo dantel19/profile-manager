@@ -16,6 +16,10 @@
  */
 package it.univaq.incipict.profilemanager.presentation;
 
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -27,8 +31,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import it.univaq.incipict.profilemanager.business.DataTablesRequestGrid;
 import it.univaq.incipict.profilemanager.business.DataTablesResponseGrid;
+import it.univaq.incipict.profilemanager.business.ProfileInformationService;
 import it.univaq.incipict.profilemanager.business.ProfileService;
 import it.univaq.incipict.profilemanager.business.model.Profile;
+import it.univaq.incipict.profilemanager.business.model.ProfileInformation;
+import it.univaq.incipict.profilemanager.presentation.form.ProfileInformationForm;
 
 /**
  * 
@@ -41,6 +48,9 @@ public class AdministrationProfileController {
 
    @Autowired
    private ProfileService profileService;
+
+   @Autowired
+   private ProfileInformationService profileInformationService;
 
    @RequestMapping("/list")
    public String list() {
@@ -68,25 +78,49 @@ public class AdministrationProfileController {
    @RequestMapping(value = "/update", method = { RequestMethod.GET })
    public String update_start(@RequestParam("id") Long id, Model model) {
       Profile profile = profileService.findByPK(id);
-      model.addAttribute("profile", profile);
+      List<ProfileInformation> profileInformationList = profileInformationService.findByProfile(profile.getId());
+
+      ProfileInformationForm profileInformationForm = new ProfileInformationForm();
+      profileInformationForm.setProfile(profile);
+      profileInformationForm.setInformationList(profileInformationList);
+
+      model.addAttribute("profileInformationForm", profileInformationForm);
+
       return "administration.profile.update";
    }
 
    @RequestMapping(value = "/update", method = { RequestMethod.POST })
-   public String update(@ModelAttribute Profile profile) {
+   public String update(@ModelAttribute("profileInformationForm") ProfileInformationForm profileInformationForm) {
+
+      Profile profile = profileInformationForm.getProfile();
+      Set<ProfileInformation> informationSet = new HashSet<ProfileInformation>(
+            profileInformationForm.getInformationList());
+
+      profile.setProfileInformationSet(informationSet);
+
       profileService.update(profile);
-      return "redirect:/administration/profile/list";
+      return "redirect:/user/dashboard";
    }
 
    @RequestMapping(value = "/delete", method = { RequestMethod.GET })
    public String delete_start(@RequestParam("id") Long id, Model model) {
       Profile profile = profileService.findByPK(id);
-      model.addAttribute("profile", profile);
+
+      List<ProfileInformation> profileInformationList = profileInformationService.findByProfile(profile.getId());
+
+      ProfileInformationForm profileInformationForm = new ProfileInformationForm();
+      profileInformationForm.setProfile(profile);
+      profileInformationForm.setInformationList(profileInformationList);
+
+      model.addAttribute("profileInformationForm", profileInformationForm);
+
       return "administration.profile.delete";
    }
 
    @RequestMapping(value = "/delete", method = { RequestMethod.POST })
-   public String delete(@ModelAttribute Profile profile) {
+   public String delete(@ModelAttribute("profileInformationForm") ProfileInformationForm profileInformationForm) {
+      Profile profile = profileInformationForm.getProfile();
+
       profileService.delete(profile);
       return "redirect:/administration/profile/list";
    }

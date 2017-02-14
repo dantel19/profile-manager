@@ -19,6 +19,7 @@ package it.univaq.incipict.profilemanager.business.model;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -52,7 +53,7 @@ public class Profile implements java.io.Serializable {
    private String description;
 
    @JsonIgnore
-   @OneToMany(mappedBy = "profile", fetch = FetchType.EAGER, orphanRemoval = true)
+   @OneToMany(mappedBy = "profile", fetch = FetchType.EAGER, orphanRemoval = true, cascade = { CascadeType.ALL })
    private Set<ProfileInformation> profileInformationSet = new HashSet<ProfileInformation>();
 
    public Long getId() {

@@ -22,6 +22,9 @@
                <c:forEach var="role" items="${user.roles}">
                             <form:hidden path="roles" value="${role.id}"/>
                </c:forEach>
+               <c:forEach var="information" items="${user.informationSet}">
+                            <form:hidden path="informationSet" value="${information.id}"/>
+               </c:forEach>
                <div class="form-group">
                   <label class="control-label col-md-3 col-sm-3 col-xs-12" for="firstname"><spring:message code="user.firstname" /><span class="required">*</span>
                   </label>

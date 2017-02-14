@@ -16,13 +16,17 @@
  */
 package it.univaq.incipict.profilemanager.business;
 
+import java.util.List;
+
 import it.univaq.incipict.profilemanager.business.model.ProfileInformation;
+import it.univaq.incipict.profilemanager.business.model.ProfileInformationPK;
 
 /**
  * 
  * @author Daniele Tellina
  *
  */
-public interface ProfileInformationService extends CRUDService<Long, ProfileInformation>{
-
+public interface ProfileInformationService extends CRUDService<ProfileInformationPK, ProfileInformation> {
+   public List<ProfileInformation> findByProfile(Long id) throws ProfileManagerException;
+   public List<ProfileInformation> findByInformation(Long id) throws ProfileManagerException;
 }

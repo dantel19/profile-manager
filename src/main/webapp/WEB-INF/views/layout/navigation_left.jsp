@@ -25,11 +25,19 @@
         
         <%-- sidebar menu --%>
 		<div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
-            <security:authorize access="hasAnyRole('administrator')">
 			<div class="menu_section">
-			    <h3>profilo</h3>
+			    <h3 class="fa fa-info-circle"></h3>
 				<ul class="nav side-menu">
-					<li><a><i class="fa fa-bug"></i> Administration <span class="fa fa-chevron-down"></span></a>
+                    <li><a href="${pageContext.request.contextPath}/user/dashboard"><i class="fa fa-laptop"></i>Dashboard</a></li>
+					<li><a><i class="fa fa-list-ol"></i> My Profile <span class="fa fa-chevron-down"></span></a>
+						   <ul class="nav child_menu">
+							   <li><a href="${pageContext.request.contextPath}/user/information/update?id=<security:authentication property="principal.user.id" />">Update Profile</a></li>
+						   </ul>
+                    </li>
+				</ul>
+            	<security:authorize access="hasAnyRole('administrator')">
+				<ul class="nav side-menu">
+                    <li><a><i class="fa fa-bug"></i> Administration <span class="fa fa-chevron-down"></span></a>
 						   <ul class="nav child_menu">
 							   <li><a href="${pageContext.request.contextPath}/administration/user/list">User</a></li>
 							   <li><a href="${pageContext.request.contextPath}/administration/profile/list">Profile</a></li>
@@ -37,12 +45,9 @@
 							   <li><a href="${pageContext.request.contextPath}/administration/category/list">Category</a></li>
 						   </ul>
                     </li>
-					<%--
-                        <li><a href="javascript:void(0)"><i class="fa fa-laptop"></i> Landing Page <span class="label label-success pull-right">Coming Soon</span></a></li>
-                    --%>
 				</ul>
-			</div>
-            </security:authorize>
+            	</security:authorize>
+            </div>
 		</div>
 		<%-- /sidebar menu --%>
 

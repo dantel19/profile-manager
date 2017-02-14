@@ -1,6 +1,6 @@
 <script type="text/javascript" charset="utf-8">
     function findAllInformation(){
-       $('#information_list').dataTable({
+       var informationTable = $('#information_list').dataTable({
       	  "destroy": true,
           "bProcessing": true,
           "bServerSide": true,
@@ -22,7 +22,7 @@
           "columnDefs": [
              { 
                 "bSearchable": true, 
-                "bVisible": false, 
+                "bVisible" : false,
                 "aTargets": [ 0 ]
              },
            ],
@@ -37,7 +37,6 @@
         "bUseColVis": true
         });
     }
-    
 	
     $(document).ready(function() {
        if ("${requestScope.view_type}" == "list" ) {
@@ -45,8 +44,15 @@
           return;
        }
        
+       $("#categorySet").select2({
+          // maximumSelectionLength: 4,
+          // placeholder: "With Max Selection limit 4",
+          allowClear: true
+        });
+       
        if ("${requestScope.view_type}" == "delete"){
       	  $(":input[type='text']").each(function () { $(this).attr('disabled','disabled'); });
+      	  $("#categorySet").prop("disabled", true);
       }
               
 	});

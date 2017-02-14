@@ -31,6 +31,9 @@ import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
+import org.hibernate.annotations.DynamicUpdate;
+import org.hibernate.annotations.SelectBeforeUpdate;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 /**
@@ -41,6 +44,8 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
  */
 @Entity
 @Table(name = "User", uniqueConstraints = { @UniqueConstraint(columnNames = "email") })
+@DynamicUpdate
+@SelectBeforeUpdate
 public class User implements java.io.Serializable {
    private static final long serialVersionUID = -5461054434128060682L;
 
@@ -69,9 +74,9 @@ public class User implements java.io.Serializable {
 
    @JsonIgnore
    @ManyToMany(fetch = FetchType.EAGER)
-   @JoinTable(name = "User_Information", joinColumns = { @JoinColumn(name = "id_information") }, inverseJoinColumns = {
-         @JoinColumn(name = "id_user") })
-   private Set<Information> InformationSet = new HashSet<Information>();
+   @JoinTable(name = "User_Information", joinColumns = { @JoinColumn(name = "id_user") }, inverseJoinColumns = {
+         @JoinColumn(name = "id_information") })
+   private Set<Information> informationSet = new HashSet<Information>();
 
    public Long getId() {
       return id;
@@ -122,11 +127,11 @@ public class User implements java.io.Serializable {
    }
 
    public Set<Information> getInformationSet() {
-      return InformationSet;
+      return informationSet;
    }
 
    public void setInformationSet(Set<Information> informationSet) {
-      InformationSet = informationSet;
+      this.informationSet = informationSet;
    }
 
    @Override

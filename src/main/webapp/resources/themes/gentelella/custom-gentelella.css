@@ -37,6 +37,27 @@ footer {
 	height: 48px;
 }
 
+/* simply hidden search boxes in <th> */
+th.hidden-pm > input {
+	display: none!important;
+}
+
+
+
+
+input.custom-input-text {
+    text-align: center;
+    font-size: 12px;
+    font-weight: normal;
+    display: inline-block;
+    width: 64px;
+    border: none;
+    border-bottom: 1px solid #ccc;
+    font-family: inherit;
+    background-color: inherit;
+    margin: 0;
+}
+
 /* END common */
 
 /* START administration */

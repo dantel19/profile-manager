@@ -1,6 +1,10 @@
 <%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@page import="it.univaq.incipict.profilemanager.business.model.Information"%>
+<%@page import="it.univaq.incipict.profilemanager.business.model.Category"%>
+<%@page import="java.util.List"%>
+<%@page import="java.util.ArrayList"%>
 
 <%@include file="information_javascript.jsp"%>
 
@@ -22,18 +26,32 @@
             <form:form modelAttribute="information" id="information_form" action="${pageContext.request.contextPath}${requestScope.action}"  class="form-horizontal form-label-left" method="POST">
                <form:hidden path="id"/>
                <div class="form-group">
-                  <label class="control-label col-md-3 col-sm-3 col-xs-12" for="id"><spring:message code="information.description" /> <span class="required">*CATEGORY</span>
-                  </label>
-                  <div class="col-md-6 col-sm-6 col-xs-12">
-                     <form:input path="id" type="text" name="id" required="required" class="form-control col-md-7 col-xs-12"/>
-                  </div>
-               </div>
-               <div class="form-group">
                   <label class="control-label col-md-3 col-sm-3 col-xs-12" for="description"><spring:message code="information.description" /> <span class="required">*</span>
                   </label>
                   <div class="col-md-6 col-sm-6 col-xs-12">
                      <form:textarea rows="3" path="description" type="text" name="description" required="required" class="form-control col-md-7 col-xs-12"/>
                   </div>
+               </div>
+               <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="categorySet"><spring:message code="information.categories" /> <span class="required">*</span></label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                           <select id="categorySet" name="categorySet" class="select2_multiple form-control" multiple="multiple" required="required">
+                               <%
+                                  List<Long> categorySet = new ArrayList<Long>();
+                                  for (Category category : ((Information)pageContext.findAttribute("information")).getCategorySet()) {
+                                     categorySet.add(category.getId());
+                                  }
+                                  
+                                  for (Category category : (List<Category>) pageContext.findAttribute("availableCategories")) {
+                                    if (categorySet.contains(category.getId())) {
+                                       out.print("<option value=\"" + category.getId() + "\" selected=\"selected\">" + category.getName()+"</option>");
+                                    } else {
+                                       out.print("<option value=\"" + category.getId() + "\">"+category.getName()+"</option>");
+                                      }
+                                   }
+                                %>
+                           </select>
+                        </div>
                </div>
                             
                <div class="ln_solid"></div>

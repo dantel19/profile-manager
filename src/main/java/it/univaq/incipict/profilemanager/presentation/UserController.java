@@ -31,8 +31,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import it.univaq.incipict.profilemanager.business.InformationService;
 import it.univaq.incipict.profilemanager.business.RoleService;
 import it.univaq.incipict.profilemanager.business.UserService;
+import it.univaq.incipict.profilemanager.business.model.Information;
 import it.univaq.incipict.profilemanager.business.model.Role;
 import it.univaq.incipict.profilemanager.business.model.User;
 import it.univaq.incipict.profilemanager.common.spring.security.AuthenticationHolder;
@@ -48,10 +50,13 @@ public class UserController {
 
    @Autowired
    private UserService userService;
-   
+
    @Autowired
    private RoleService roleService;
-   
+
+   @Autowired
+   private InformationService informationService;
+
    @InitBinder
    protected void initBinder(HttpServletRequest request, ServletRequestDataBinder binder) throws Exception {
       binder.registerCustomEditor(Role.class, "roles", new PropertyEditorSupport() {
@@ -61,8 +66,21 @@ public class UserController {
             setValue(role);
          }
       });
+
+      binder.registerCustomEditor(Information.class, "informationSet", new PropertyEditorSupport() {
+         @Override
+         public void setAsText(String text) {
+            Information information = informationService.findByPK(Long.parseLong(text));
+            setValue(information);
+         }
+      });
    }
-   
+
+   @RequestMapping(value = "/dashboard", method = { RequestMethod.GET })
+   public String dashboard(@ModelAttribute User user) {
+      return "user.dashboard";
+   }
+
    @RequestMapping(value = "/create", method = { RequestMethod.POST })
    public String crea(@ModelAttribute User user) {
       Role userRole = new Role();
@@ -73,14 +91,14 @@ public class UserController {
 
       // authenticate the user and redirect on the welcome page
       new AuthenticationHolder().updateUser(userService.findByPK(user.getId()));
-      
+
       return "redirect:/welcome";
    }
 
    @RequestMapping(value = "/update", method = { RequestMethod.GET })
    public String modifica_start(@RequestParam("id") Long id, Model model) {
       User user = userService.findByPK(id);
-      if (!(new AuthenticationHolder().isAuthenticated(user))){
+      if (!(new AuthenticationHolder().isAuthenticated(user))) {
          return "standalone.accessdenied";
       }
       model.addAttribute("user", user);
@@ -89,18 +107,35 @@ public class UserController {
 
    @RequestMapping(value = "/update", method = { RequestMethod.POST })
    public String modifica(@ModelAttribute User user) {
-      if (isPasswordChanged(user)){
+      if (isPasswordChanged(user)) {
          user.setPassword(DigestUtils.md5Hex(user.getPassword()));
       }
       userService.update(user);
-      
+
       // authenticate the user and redirect on the welcome page
       new AuthenticationHolder().updateUser(user);
-      
+
       return "redirect:/welcome";
    }
-   
-   private boolean isPasswordChanged(User user){
+
+   @RequestMapping(value = "/information/update", method = { RequestMethod.GET })
+   public String update_start(@RequestParam("id") Long id, Model model) {
+      User user = userService.findByPK(id);
+      if (!(new AuthenticationHolder().isAuthenticated(user))) {
+         return "standalone.accessdenied";
+      }
+      model.addAttribute("user", user);
+      model.addAttribute("informationList", informationService.findAll());
+      return "user.information.update";
+   }
+
+   @RequestMapping(value = "/information/update", method = { RequestMethod.POST })
+   public String update(@ModelAttribute User user) {
+      userService.update(user);
+      return "redirect:/user/dashboard";
+   }
+
+   private boolean isPasswordChanged(User user) {
       User persistentUser = userService.findByPK(user.getId());
       return !persistentUser.getPassword().equals(user.getPassword());
    }

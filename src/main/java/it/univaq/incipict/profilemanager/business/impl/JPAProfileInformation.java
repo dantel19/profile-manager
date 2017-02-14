@@ -16,10 +16,15 @@
  */
 package it.univaq.incipict.profilemanager.business.impl;
 
+import java.util.List;
+
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import it.univaq.incipict.profilemanager.business.ProfileInformationService;
+import it.univaq.incipict.profilemanager.business.ProfileManagerException;
 import it.univaq.incipict.profilemanager.business.model.ProfileInformation;
+import it.univaq.incipict.profilemanager.business.model.ProfileInformationPK;
 
 /**
  * 
@@ -27,6 +32,21 @@ import it.univaq.incipict.profilemanager.business.model.ProfileInformation;
  *
  */
 @Service
-public class JPAProfileInformation extends JPACRUDService<Long, ProfileInformation> implements ProfileInformationService {
+public class JPAProfileInformation extends JPACRUDService<ProfileInformationPK, ProfileInformation>
+      implements ProfileInformationService {
+
+   @Transactional
+   public List<ProfileInformation> findByProfile(Long id) throws ProfileManagerException {
+      return (List<ProfileInformation>) em
+            .createQuery("SELECT t FROM ProfileInformation t WHERE t.profile.id = :id_profile", ProfileInformation.class)
+            .setParameter("id_profile", id).getResultList();
+   }
+
+   @Transactional
+   public List<ProfileInformation> findByInformation(Long id) throws ProfileManagerException {
+      return (List<ProfileInformation>) em
+            .createQuery("SELECT t FROM ProfileInformation t WHERE t.information.id = :id_information", ProfileInformation.class)
+            .setParameter("id_information", id).getResultList();
+   }
 
 }

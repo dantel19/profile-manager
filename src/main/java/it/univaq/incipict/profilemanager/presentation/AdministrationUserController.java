@@ -54,7 +54,7 @@ public class AdministrationUserController {
 
    @Autowired
    private RoleService roleService;
-   
+
    @InitBinder
    protected void initBinder(HttpServletRequest request, ServletRequestDataBinder binder) throws Exception {
       binder.registerCustomEditor(Role.class, "roles", new PropertyEditorSupport() {
@@ -76,7 +76,7 @@ public class AdministrationUserController {
          @ModelAttribute DataTablesRequestGrid requestGrid) {
       return userService.findAllPaginated(requestGrid);
    }
-   
+
    @RequestMapping(value = "/create", method = { RequestMethod.GET })
    public String create_start(Model model) {
       model.addAttribute("user", new User());
@@ -90,7 +90,7 @@ public class AdministrationUserController {
       userService.create(user);
       return "redirect:/administration/user/list";
    }
-   
+
    @RequestMapping(value = "/update", method = { RequestMethod.GET })
    public String update_start(@RequestParam("id") Long id, Model model) {
       User user = userService.findByPK(id);
@@ -101,10 +101,10 @@ public class AdministrationUserController {
 
    @RequestMapping(value = "/update", method = { RequestMethod.POST })
    public String update(@ModelAttribute User user) {
-      if (isPasswordChanged(user)){
+      if (isPasswordChanged(user)) {
          user.setPassword(DigestUtils.md5Hex(user.getPassword()));
       }
-      
+
       userService.update(user);
 
       // change session user information
@@ -131,14 +131,13 @@ public class AdministrationUserController {
    @RequestMapping(value = "/delete", method = { RequestMethod.POST })
    public String delete(@ModelAttribute User user) {
       userService.delete(user);
-      
+
       // TODO if the user equals to the session user remove it in the session
-      
+
       return "redirect:/administration/user/list";
    }
-   
-   
-   private boolean isPasswordChanged(User user){
+
+   private boolean isPasswordChanged(User user) {
       User persistentUser = userService.findByPK(user.getId());
       return !persistentUser.getPassword().equals(user.getPassword());
    }

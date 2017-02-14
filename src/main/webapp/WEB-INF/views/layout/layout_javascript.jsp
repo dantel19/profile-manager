@@ -15,6 +15,9 @@
 <script src="${pageContext.request.contextPath}/resources/plugin_extension/datatables/datatables-columnfilter.js"></script>
 <script src="${pageContext.request.contextPath}/resources/plugin_extension/datatables/datatables-columnfilter-utility.js"></script>
 
+<%-- iCheck --%>
+<script src="${pageContext.request.contextPath}/resources/themes/gentelella/vendors/iCheck/icheck.min.js"></script>
+
 <!-- Select2 -->
 <script src="${pageContext.request.contextPath}/resources/themes/gentelella/vendors/select2/js/select2.full.min.js"></script>
 

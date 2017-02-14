@@ -19,6 +19,7 @@ package it.univaq.incipict.profilemanager.business.model;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -52,9 +53,9 @@ public class Information implements java.io.Serializable {
    private String description;
 
    @JsonIgnore
-   @ManyToMany(fetch = FetchType.EAGER)
-   @JoinTable(name = "Category_Information", joinColumns = { @JoinColumn(name = "id_category") }, inverseJoinColumns = {
-         @JoinColumn(name = "id_information") })
+   @ManyToMany(fetch = FetchType.EAGER, cascade = { CascadeType.ALL })
+   @JoinTable(name = "Category_Information", joinColumns = {
+         @JoinColumn(name = "id_information") }, inverseJoinColumns = { @JoinColumn(name = "id_category") })
    private Set<Category> categorySet = new HashSet<Category>();
 
    @OneToMany(mappedBy = "information", fetch = FetchType.EAGER, orphanRemoval = true)

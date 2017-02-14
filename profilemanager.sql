@@ -53,8 +53,8 @@ CREATE TABLE profilemanager.Information (
 )  ENGINE=INNODB;
 
 CREATE TABLE profilemanager.Category_Information (
+	id_category INT UNSIGNED NOT NULL,
     id_information INT UNSIGNED NOT NULL,
-    id_category INT UNSIGNED NOT NULL,
     PRIMARY KEY (id_category , id_information),
     FOREIGN KEY (id_category)
         REFERENCES profilemanager.Category (id)
@@ -66,8 +66,8 @@ CREATE TABLE profilemanager.Category_Information (
 
 /* This table represents the Knowledge Base */
 CREATE TABLE profilemanager.Profile_Information (
+	id_profile INT UNSIGNED NOT NULL,
     id_information INT UNSIGNED NOT NULL,
-    id_profile INT UNSIGNED NOT NULL,
     rank DOUBLE UNSIGNED NOT NULL DEFAULT 0,
     PRIMARY KEY (id_profile , id_information),
     FOREIGN KEY (id_profile)
@@ -79,8 +79,8 @@ CREATE TABLE profilemanager.Profile_Information (
 )  ENGINE=INNODB;
 
 CREATE TABLE profilemanager.User_Information (
-    id_information INT UNSIGNED NOT NULL,
     id_user INT UNSIGNED NOT NULL,
+    id_information INT UNSIGNED NOT NULL,
     PRIMARY KEY (id_user , id_information),
     FOREIGN KEY (id_user)
         REFERENCES profilemanager.User (id)
@@ -119,17 +119,17 @@ INSERT INTO profilemanager.Information (description) VALUES
 ("Chi ha costruito l'edificio"),
 ("Altre opere dello stesso autore"),
 ("Altri edifici nel territorio con stesse caratteristiche architettoniche"),
-("Contesto culturale in cui è nata l’opera"),
+("Contesto culturale in cui è nata l'opera"),
 ("Vicende storiche che hanno interessato il luogo"),
-("Storia dell’edificio e delle sue trasformazioni architettoniche"),
-("Opere pittoriche e scultoree presenti nell’edificio"),
-("Apparecchiatura costruttiva dell’edificio"),
+("Storia dell'edificio e delle sue trasformazioni architettoniche"),
+("Opere pittoriche e scultoree presenti nell'edificio"),
+("Apparecchiatura costruttiva dell'edificio"),
 ("Degrado dei materiali che compongono la fabbrica"),
 ("Deformazioni e quadro fessurativo"),
-("Meccanismi di danno che hanno interessato l’edificio"),
+("Meccanismi di danno che hanno interessato l'edificio"),
 ("Tecniche e materiali utilizzati nel consolidamento e nella mitigazione della vulnerabilità sismica"),
 ("Informazioni sulla struttura dell'edificio e il terreno circostante"),
-("Valutazione della vulnerabilità sismica dell’edificio"),
+("Valutazione della vulnerabilità sismica dell'edificio"),
 ("Pericolosità sismica del sito"),
 ("Valori di temperatura ed umidità"),
 ("Valori medi di vibrazione della struttura"),
@@ -188,7 +188,7 @@ INSERT INTO profilemanager.Profile_Information (id_profile, id_information, rank
 (7, 1, 2.0),(7, 2, 1.5),(7, 3, 3.0),(7, 4, 4.0),(7, 5, 4.0),(7, 6, 3.5),(7, 7, 2.5),(7, 8, 2.0),(7, 9, 0.0),(7, 10, 0.0),(7, 11, 0.0),(7, 12, 0.0),(7, 13, 0.0),(7, 14, 0.0),(7, 15, 1.0),(7, 16, 2.0),(7, 17, 1.0),(7, 18, 2.0),(7, 19, 0.5),(7, 20, 0.5),(7, 21, 0.0),(7, 22, 2.5),(7, 23, 2.0),(7, 24, 0.5),(7, 25, 0.0),(7, 26, 0.5),(7, 27, 1.0),(7, 28, 0.5),(7, 29, 0.5),(7, 30, 0.0),(7, 31, 0.0),(7, 32, 0.0),(7, 33, 0.5),(7, 34, 0.0),(7, 35, 0.5),(7, 36, 0.5),(7, 37, 1.0),(7, 38, 0.5),(7, 39, 1.0),(7, 40, 0.0),(7, 41, 0.0),(7, 42, 1.0),(7, 43, 0.0),(7, 44, 0.5),(7, 45, 1.0),(7, 46, 0.0),(7, 47, 1.0),(7, 48, 0.5),(7, 49, 0.0);
 
 /* Table: Category_Information */
-INSERT INTO profilemanager.Category_Information (id_information, id_category) VALUES (1, 2),(2, 2),(3, 3),(3, 1);
+INSERT INTO profilemanager.Category_Information (id_category, id_information) VALUES (1, 2),(2, 2),(3, 3),(3, 1);
 
 /* Table: User_Information */
-INSERT INTO profilemanager.User_Information (id_information, id_user) VALUES (1, 1),(2, 1),(3, 2),(4, 1),(5,2);
+INSERT INTO profilemanager.User_Information (id_user, id_information) VALUES (1, 1),(1, 2);

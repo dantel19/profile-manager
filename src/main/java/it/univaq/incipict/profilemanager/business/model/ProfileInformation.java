@@ -36,13 +36,13 @@ public class ProfileInformation implements java.io.Serializable {
 
    @JsonIgnore
    @ManyToOne
-   @JoinColumn(name = "id_information", insertable = false, updatable = false)
-   private Information information;
+   @JoinColumn(name = "id_profile", insertable = false, updatable = false)
+   private Profile profile;
 
    @JsonIgnore
    @ManyToOne
-   @JoinColumn(name = "id_profile", insertable = false, updatable = false)
-   private Profile profile;
+   @JoinColumn(name = "id_information", insertable = false, updatable = false)
+   private Information information;
 
    @Column(name = "rank", nullable = false)
    private Double rank;
@@ -55,6 +55,22 @@ public class ProfileInformation implements java.io.Serializable {
    @Transient
    public void setId(ProfileInformationPK id) {
       this.id = id;
+   }
+
+   public Profile getProfile() {
+      return profile;
+   }
+
+   public void setProfile(Profile profile) {
+      this.profile = profile;
+   }
+
+   public Information getInformation() {
+      return information;
+   }
+
+   public void setInformation(Information information) {
+      this.information = information;
    }
 
    public Double getRank() {

@@ -16,18 +16,26 @@
  */
 package it.univaq.incipict.profilemanager.presentation;
 
+import java.beans.PropertyEditorSupport;
+
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.ServletRequestDataBinder;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import it.univaq.incipict.profilemanager.business.CategoryService;
 import it.univaq.incipict.profilemanager.business.DataTablesRequestGrid;
 import it.univaq.incipict.profilemanager.business.DataTablesResponseGrid;
 import it.univaq.incipict.profilemanager.business.InformationService;
+import it.univaq.incipict.profilemanager.business.model.Category;
 import it.univaq.incipict.profilemanager.business.model.Information;
 
 /**
@@ -42,8 +50,22 @@ public class AdministrationInformationController {
    @Autowired
    private InformationService informationService;
 
+   @Autowired
+   private CategoryService categoryService;
+
+   @InitBinder
+   protected void initBinder(HttpServletRequest request, ServletRequestDataBinder binder) throws Exception {
+      binder.registerCustomEditor(Category.class, "categorySet", new PropertyEditorSupport() {
+         @Override
+         public void setAsText(String text) {
+            Category category = categoryService.findByPK(Long.parseLong(text));
+            setValue(category);
+         }
+      });
+   }
+
    @RequestMapping("/list")
-   public String list() {
+   public String list(Model model) {
       return "administration.information.list";
    }
 
@@ -69,6 +91,7 @@ public class AdministrationInformationController {
    public String update_start(@RequestParam("id") Long id, Model model) {
       Information information = informationService.findByPK(id);
       model.addAttribute("information", information);
+      model.addAttribute("availableCategories", categoryService.findAll());
       return "administration.information.update";
    }
 
@@ -82,6 +105,7 @@ public class AdministrationInformationController {
    public String delete_start(@RequestParam("id") Long id, Model model) {
       Information information = informationService.findByPK(id);
       model.addAttribute("information", information);
+      model.addAttribute("availableCategories", categoryService.findAll());
       return "administration.information.delete";
    }
 
