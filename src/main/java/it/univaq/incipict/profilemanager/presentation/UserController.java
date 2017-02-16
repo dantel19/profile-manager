@@ -17,6 +17,8 @@
 package it.univaq.incipict.profilemanager.presentation;
 
 import java.beans.PropertyEditorSupport;
+import java.util.HashMap;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -29,15 +31,17 @@ import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import it.univaq.incipict.profilemanager.business.InformationService;
+import it.univaq.incipict.profilemanager.business.ProfileService;
 import it.univaq.incipict.profilemanager.business.RoleService;
 import it.univaq.incipict.profilemanager.business.UserService;
 import it.univaq.incipict.profilemanager.business.model.Information;
+import it.univaq.incipict.profilemanager.business.model.Profile;
 import it.univaq.incipict.profilemanager.business.model.Role;
 import it.univaq.incipict.profilemanager.business.model.User;
 import it.univaq.incipict.profilemanager.common.spring.security.AuthenticationHolder;
+import it.univaq.incipict.profilemanager.common.utility.Utility;
 
 /**
  * 
@@ -56,6 +60,9 @@ public class UserController {
 
    @Autowired
    private InformationService informationService;
+
+   @Autowired
+   private ProfileService profileService;
 
    @InitBinder
    protected void initBinder(HttpServletRequest request, ServletRequestDataBinder binder) throws Exception {
@@ -77,7 +84,14 @@ public class UserController {
    }
 
    @RequestMapping(value = "/dashboard", method = { RequestMethod.GET })
-   public String dashboard(@ModelAttribute User user) {
+   public String dashboard(Model model) {
+      User user = userService.findByPK(new AuthenticationHolder().getUser().getId());
+
+      List<Profile> profilesList = profileService.findAll();
+
+      HashMap<Profile, Double> distancesMap = (HashMap<Profile, Double>) Utility.getEuclideanDistances(profilesList,
+            user);
+      model.addAttribute("distancesMap", distancesMap);
       return "user.dashboard";
    }
 
@@ -96,8 +110,8 @@ public class UserController {
    }
 
    @RequestMapping(value = "/update", method = { RequestMethod.GET })
-   public String modifica_start(@RequestParam("id") Long id, Model model) {
-      User user = userService.findByPK(id);
+   public String modifica_start(Model model) {
+      User user = userService.findByPK(new AuthenticationHolder().getUser().getId());
       if (!(new AuthenticationHolder().isAuthenticated(user))) {
          return "standalone.accessdenied";
       }
@@ -119,8 +133,8 @@ public class UserController {
    }
 
    @RequestMapping(value = "/information/update", method = { RequestMethod.GET })
-   public String update_start(@RequestParam("id") Long id, Model model) {
-      User user = userService.findByPK(id);
+   public String update_start(Model model) {
+      User user = userService.findByPK(new AuthenticationHolder().getUser().getId());
       if (!(new AuthenticationHolder().isAuthenticated(user))) {
          return "standalone.accessdenied";
       }

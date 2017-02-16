@@ -108,6 +108,7 @@
       <junit.version>4.12</junit.version>
       <commons-io.version>2.5</commons-io.version>
       <commons-codec.version>1.10</commons-codec.version>
+      <commons-math.version>2.2</commons-math.version>
    </properties>
    
    <dependencies>
@@ -243,6 +244,12 @@
          <artifactId>junit</artifactId>
          <version>${junit.version}</version>
          <scope>test</scope>
+      </dependency>
+      <!-- https://mvnrepository.com/artifact/org.apache.commons/commons-math -->
+      <dependency>
+         <groupId>org.apache.commons</groupId>
+         <artifactId>commons-math</artifactId>
+         <version>${commons-math.version}</version>
       </dependency>
    </dependencies>
    

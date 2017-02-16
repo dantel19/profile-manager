@@ -16,8 +16,7 @@
 						alt=""><security:authentication property="principal.user.firstname" /> <security:authentication property="principal.user.lastname" /> <span class=" fa fa-angle-down"></span>
 				</a>
 					<ul class="dropdown-menu dropdown-usermenu pull-right">
-						<li><a href="javascript:;"> Profile</a></li>
-						<li><a href="${pageContext.request.contextPath}/user/update?id=<security:authentication property="principal.user.id" />"><span><spring:message code="common.settings" /></span></a></li>
+						<li><a href="${pageContext.request.contextPath}/user/update"><span><spring:message code="common.settings" /></span></a></li>
 						<li><a href="${pageContext.request.contextPath}/j_spring_security_logout"><i class="fa fa-sign-out pull-right"></i> <spring:message code="common.signout" /></a></li>
 					</ul></li>
 

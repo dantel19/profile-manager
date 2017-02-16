@@ -26,7 +26,7 @@
 						<spring:message code="information.list.title" />
 					</h2>
 					<ul class="nav navbar-right panel_toolbox">
-						<li><a href="${pageContext.request.contextPath}/user/information/update?id=${user.id}"><i class="fa fa-refresh"></i></a></li>
+						<li><a href="${pageContext.request.contextPath}/user/information/update"><i class="fa fa-refresh"></i></a></li>
 						<li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>
 					</ul>
 					<div class="clearfix"></div>

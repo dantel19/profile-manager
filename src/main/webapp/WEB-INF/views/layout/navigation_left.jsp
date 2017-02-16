@@ -31,7 +31,7 @@
                     <li><a href="${pageContext.request.contextPath}/user/dashboard"><i class="fa fa-laptop"></i>Dashboard</a></li>
 					<li><a><i class="fa fa-list-ol"></i> My Profile <span class="fa fa-chevron-down"></span></a>
 						   <ul class="nav child_menu">
-							   <li><a href="${pageContext.request.contextPath}/user/information/update?id=<security:authentication property="principal.user.id" />">Update Profile</a></li>
+							   <li><a href="${pageContext.request.contextPath}/user/information/update">Update Profile</a></li>
 						   </ul>
                     </li>
 				</ul>
@@ -53,7 +53,7 @@
 
 		<%-- /menu footer buttons --%>
 		<div class="sidebar-footer hidden-small">
-			<a href="${pageContext.request.contextPath}/user/update?id=<security:authentication property="principal.user.id" />" data-toggle="tooltip" data-placement="top" title="<spring:message code="common.settings" />" style="width: 50%;"> <span class="glyphicon glyphicon-cog" aria-hidden="true"></span></a> 
+			<a href="${pageContext.request.contextPath}/user/update" data-toggle="tooltip" data-placement="top" title="<spring:message code="common.settings" />" style="width: 50%;"> <span class="glyphicon glyphicon-cog" aria-hidden="true"></span></a> 
             <%--<a data-toggle="tooltip" data-placement="top" title="FullScreen"> <span class="glyphicon glyphicon-fullscreen" aria-hidden="true"></span> </a>
             <a data-toggle="tooltip" data-placement="top" title="Lock"> <span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span></a>--%>
             <a href="${pageContext.request.contextPath}/j_spring_security_logout" data-toggle="tooltip" data-placement="top" title="<spring:message code="common.signout" />" style="width: 50%;"> <span class="glyphicon glyphicon-off" aria-hidden="true"></span></a>

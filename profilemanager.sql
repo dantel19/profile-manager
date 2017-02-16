@@ -93,7 +93,6 @@ CREATE TABLE profilemanager.User_Information (
 /* INSERT statements */
  
 /* Table: Profile */
-INSERT INTO profilemanager.Profile (name, description) VALUES ("Unknown", "Profilo di default");
 INSERT INTO profilemanager.Profile (name, description) VALUES ("Ingegnere Civile", "Ingegnere Civile: generalizza le due figure di Ingegnere Civile ed Ingegnere Edile. (Rif. albo degli ingegneri, settore a: civile ed ambientale)");
 INSERT INTO profilemanager.Profile (name, description) VALUES ("Architetto", "Architettura o discipline affini");
 INSERT INTO profilemanager.Profile (name, description) VALUES ("Energy Manager", "Energy Manager");
