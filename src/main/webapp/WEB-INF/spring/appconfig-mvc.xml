@@ -48,6 +48,7 @@
    <!-- Scans within the base package of the application for @Controller 
       classes to configure as beans -->
    <context:component-scan base-package="it.univaq.incipict.profilemanager.presentation" scoped-proxy="targetClass" />
+   <context:component-scan base-package="it.univaq.incipict.profilemanager.rest" scoped-proxy="targetClass" />
 
    <!-- Handles HTTP GET requests for /resources/** by efficiently serving 
       up static resources in the ${webappRoot}/resources/ directory -->
