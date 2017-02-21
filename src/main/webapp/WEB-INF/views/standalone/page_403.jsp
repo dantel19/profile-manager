@@ -26,7 +26,7 @@
             <div class="text-center text-center">
               <h1 class="error-number"><spring:message code="common.accessdenied.code" /></h1>
               <h2><spring:message code="common.accessdenied.title" /></h2>
-              <p><spring:message code="common.accessdenied.description" /> <a href="${pageContext.request.contextPath}/welcome"><spring:message code="common.home" /></a>
+              <p><spring:message code="common.accessdenied.description" /> <a href="${pageContext.request.contextPath}/dashboard"><spring:message code="common.home" /></a>
               </p>
             </div>
           </div>

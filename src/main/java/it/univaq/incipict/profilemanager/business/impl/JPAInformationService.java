@@ -28,5 +28,5 @@ import it.univaq.incipict.profilemanager.business.model.Information;
  */
 @Service
 public class JPAInformationService extends JPACRUDService<Long, Information> implements InformationService {
-
+   
 }

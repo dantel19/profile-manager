@@ -10,11 +10,11 @@
 					<spring:message code="information.list.title" />
 				</h2>
 				<ul class="nav navbar-right panel_toolbox">
-					<li><a class="collapse-link"><i class="fa fa-chevron-down"></i></a></li>
+					<li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>
 				</ul>
 				<div class="clearfix"></div>
 			</div>
-			<div class="x_content" style="display: none;">
+			<div class="x_content" style="display: block;">
 				<p class="text-muted font-13 m-b-30"></p>
 				<table id="information_list"
 					class="table table-striped table-bordered dt-responsive th-noborder"

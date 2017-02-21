@@ -29,12 +29,12 @@
       <security:access-denied-handler error-page="/accessdenied" />
       <security:intercept-url pattern="/resources/**" access="permitAll" />
       <security:intercept-url pattern="/" access="permitAll" />
-      <security:intercept-url pattern="/welcome/**" access="isAuthenticated()" />
+      <security:intercept-url pattern="/dashboard/**" access="isAuthenticated()" />
       <security:intercept-url pattern="/user/update/**" access="isAuthenticated()" />
       <security:intercept-url pattern="/administration/**" access="hasAnyRole('administrator')" />
 
       <security:form-login login-page="/login" authentication-failure-url="/login" 
-                           default-target-url="/welcome" always-use-default-target="false" />
+                           default-target-url="/dashboard" always-use-default-target="false" />
    </security:http>
 
    <security:authentication-manager>

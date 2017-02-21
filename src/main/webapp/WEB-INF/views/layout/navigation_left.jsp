@@ -4,7 +4,7 @@
 <div class="col-md-3 left_col">
 	<div class="left_col scroll-view">
 	    <div class="navbar nav_title" style="border: 0;">
-           <a href="${pageContext.request.contextPath}/welcome" class="site_title">
+           <a href="${pageContext.request.contextPath}/dashboard" class="site_title">
            		<i class="fa fa-users"></i> <span><spring:message code="common.application.title" /></span>
            </a>
         </div>
@@ -28,12 +28,8 @@
 			<div class="menu_section">
 			    <h3 class="fa fa-info-circle"></h3>
 				<ul class="nav side-menu">
-                    <li><a href="${pageContext.request.contextPath}/user/dashboard"><i class="fa fa-laptop"></i>Dashboard</a></li>
-					<li><a><i class="fa fa-list-ol"></i> My Profile <span class="fa fa-chevron-down"></span></a>
-						   <ul class="nav child_menu">
-							   <li><a href="${pageContext.request.contextPath}/user/information/update">Update Profile</a></li>
-						   </ul>
-                    </li>
+                    <li><a href="${pageContext.request.contextPath}/dashboard"><i class="fa fa-laptop"></i>Dashboard</a></li>
+                    <li><a href="${pageContext.request.contextPath}/user/information/update"><i class="fa fa-list-ol"></i>My Profile</a></li>
 				</ul>
             	<security:authorize access="hasAnyRole('administrator')">
 				<ul class="nav side-menu">

@@ -16,6 +16,7 @@
  */
 package it.univaq.incipict.profilemanager.presentation;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -31,10 +32,13 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import it.univaq.incipict.profilemanager.business.DataTablesRequestGrid;
 import it.univaq.incipict.profilemanager.business.DataTablesResponseGrid;
+import it.univaq.incipict.profilemanager.business.InformationService;
 import it.univaq.incipict.profilemanager.business.ProfileInformationService;
 import it.univaq.incipict.profilemanager.business.ProfileService;
+import it.univaq.incipict.profilemanager.business.model.Information;
 import it.univaq.incipict.profilemanager.business.model.Profile;
 import it.univaq.incipict.profilemanager.business.model.ProfileInformation;
+import it.univaq.incipict.profilemanager.business.model.ProfileInformationPK;
 import it.univaq.incipict.profilemanager.presentation.form.ProfileInformationForm;
 
 /**
@@ -51,6 +55,9 @@ public class AdministrationProfileController {
 
    @Autowired
    private ProfileInformationService profileInformationService;
+   
+   @Autowired
+   private InformationService informationService;
 
    @RequestMapping("/list")
    public String list() {
@@ -64,14 +71,47 @@ public class AdministrationProfileController {
    }
 
    @RequestMapping(value = "/create", method = { RequestMethod.GET })
-   public String create_start(Model model) {
-      model.addAttribute("profile", new Profile());
+   public String create_start(@ModelAttribute ProfileInformationForm profileInformationForm, Model model) {
+      Profile profile = new Profile();
+      
+      // Create a new empty ProfileInformationList because every Profile have it.
+      profileInformationForm = new ProfileInformationForm();
+      ArrayList<ProfileInformation> profileInformationList = new ArrayList<>();
+      for (Information information : informationService.findAll()) {
+         ProfileInformation profileInformation = new ProfileInformation();
+         ProfileInformationPK pk = new ProfileInformationPK();
+         pk.setId_information(information.getId());
+         profileInformation.setId(pk);
+         profileInformation.setInformation(information);
+         profileInformation.setRank(0d);
+         
+         profileInformationList.add(profileInformation);
+      }
+      profileInformationForm.setProfile(profile);
+      profileInformationForm.setInformationList(profileInformationList);
+      
+      model.addAttribute("profileInformationForm", profileInformationForm);
+      
       return "administration.profile.create";
    }
 
    @RequestMapping(value = "/create", method = { RequestMethod.POST })
-   public String create(@ModelAttribute Profile profile) {
+   public String create(@ModelAttribute ProfileInformationForm profileInformationForm, Model model) {
+
+      Profile profile = profileInformationForm.getProfile();
+      Set<ProfileInformation> profileInformationSet = new HashSet<ProfileInformation>(profileInformationForm.getInformationList());
+      
       profileService.create(profile);
+
+      // Set the id of the new created profile in his profileInfomrationSet
+      for (ProfileInformation profileInformation : profileInformationSet) {
+         profileInformation.getId().setId_profile(profile.getId());
+      }
+      profile.setProfileInformationSet(profileInformationSet);
+
+      // update the profile with the profileInformationSet
+      profileService.update(profile);
+      
       return "redirect:/administration/profile/list";
    }
 
@@ -99,7 +139,7 @@ public class AdministrationProfileController {
       profile.setProfileInformationSet(informationSet);
 
       profileService.update(profile);
-      return "redirect:/user/dashboard";
+      return "redirect:/dashboard";
    }
 
    @RequestMapping(value = "/delete", method = { RequestMethod.GET })

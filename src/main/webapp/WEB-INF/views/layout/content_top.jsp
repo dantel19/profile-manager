@@ -36,7 +36,7 @@
 			<div class="icon">
 				<i class="fa fa-check-square-o"></i>
 			</div>
-			<div class="count">49</div>
+			<div class="count">78</div>
 			<h3>Associated informations</h3>
 			<p>Lorem ipsum psdea itgum rixt.</p>
 		</div>

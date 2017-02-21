@@ -113,7 +113,7 @@ public class AdministrationUserController {
          Role administratorRole = new Role();
          administratorRole.setId(Role.ADMINISTRATOR_ROLE_ID);
          if (!user.getRoles().contains(administratorRole)) {
-            return "redirect:/welcome";
+            return "redirect:/dashboard";
          }
       }
 

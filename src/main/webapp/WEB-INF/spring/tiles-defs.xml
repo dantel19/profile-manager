@@ -29,10 +29,12 @@
       <put-attribute name="content_top" value="/WEB-INF/views/layout/content_top.jsp" />
       <put-attribute name="footer" value="/WEB-INF/views/layout/footer.jsp" />
    </definition>
-
-   <definition name="common.welcome" extends="base">
-      <put-attribute name="content" value="/WEB-INF/views/common/welcome.jsp" />
-   </definition>
+   
+   
+   
+   
+   <definition name="widgets.profilechart" template="/WEB-INF/views/common/widgets/profile_chart.jsp" />
+   <definition name="widgets.distances" template="/WEB-INF/views/common/widgets/distances.jsp" />
 
    <definition name="user.update" extends="base">
       <put-attribute name="action" value="/user/update" />
@@ -40,9 +42,8 @@
    </definition>
    
    <definition name="user.dashboard" extends="base">
-      <put-attribute name="action" value="/user/dashboard" />
       <put-attribute name="controller_path" value="dashboard" />
-      <put-attribute name="content" value="/WEB-INF/views/common/welcome.jsp" />
+      <put-attribute name="content" value="/WEB-INF/views/common/dashboard.jsp" />
    </definition>
    
    <definition name="user.information.update" extends="base">

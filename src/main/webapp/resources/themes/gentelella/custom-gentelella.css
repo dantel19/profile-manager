@@ -42,9 +42,6 @@ th.hidden-pm > input {
 	display: none!important;
 }
 
-
-
-
 input.custom-input-text {
     text-align: center;
     font-size: 12px;
@@ -56,6 +53,16 @@ input.custom-input-text {
     font-family: inherit;
     background-color: inherit;
     margin: 0;
+}
+
+/* Hide overflow text and show dot...) */
+p.hideOverflow {
+/*padding: 1%;*/
+width: 100%;
+overflow: hidden;
+text-overflow: ellipsis;
+white-space: nowrap;
+/*height: 17px;*/
 }
 
 /* END common */

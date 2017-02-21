@@ -24,10 +24,7 @@ import java.util.Set;
 
 import org.apache.commons.math.linear.ArrayRealVector;
 import org.apache.commons.math.linear.RealVector;
-import org.springframework.beans.factory.annotation.Autowired;
 
-import it.univaq.incipict.profilemanager.business.ProfileService;
-import it.univaq.incipict.profilemanager.business.UserService;
 import it.univaq.incipict.profilemanager.business.model.Information;
 import it.univaq.incipict.profilemanager.business.model.Profile;
 import it.univaq.incipict.profilemanager.business.model.ProfileInformation;
@@ -39,12 +36,6 @@ import it.univaq.incipict.profilemanager.business.model.User;
  *
  */
 public class Utility {
-   
-   @Autowired
-   ProfileService profileService;
-   
-   @Autowired
-   UserService userService;
 
    public static Date actualDate() {
         return new Date();
@@ -53,7 +44,7 @@ public class Utility {
    // this method calculate the Euclidean Distances between
    // the answers vector of a single survey and the ranks vector of each
    // different profile.
-   public static Map<Profile, Double> getEuclideanDistances(List<Profile> profilesList, User user) {
+   public static HashMap<Profile, Double> getEuclideanDistances(List<Profile> profilesList, User user) {
       Map<Profile, Double> result = new HashMap<Profile, Double>();
       Set<ProfileInformation> profileInformationSet;
       Set<Information> userInformationSet;
@@ -61,7 +52,7 @@ public class Utility {
       // Retrieve user information set
       userInformationSet = user.getInformationSet();
       if (userInformationSet.isEmpty()) {
-         return result;
+         return (HashMap<Profile, Double>) result;
       }
       
       // For each Profile
@@ -109,7 +100,38 @@ public class Utility {
          
       } // END, goto Next Profile
       
-      return result;
+      //return the HashMap sorted by value (ASC)
+      return (HashMap<Profile, Double>) MapUtil.sortByValueASC(result);
+   }
+   
+   public static HashMap<Profile, Float> getPercentages(HashMap<Profile, Double> distances, int informationSetSize) {
+      Map<Profile, Float> result = new HashMap<Profile, Float>();
+      
+      if (distances.isEmpty() || distances == null) { return new HashMap<Profile, Float>(); }
+      else {
+         for (Map.Entry<Profile, Double> entry : distances.entrySet()) {
+            Profile profile = entry.getKey();
+            Double distance = entry.getValue();
+            
+            // Calculate the percentage for the current distance
+            // The maximum distance is sqrt(informationSetSize) because we have 0-1 vectors
+            // REMARK: Euclidean Distance Theory
+            float maxDistance = (float) Math.sqrt(informationSetSize);
+            float percentage = (float) (maxDistance - distance) * 100 / maxDistance;
+            
+            // put the percentage in Map formatted with two decimals.
+            result.put(profile, (float) (Math.round(percentage * 100.0) / 100.0));
+         }
+      }
+      //return the HashMap sorted by value (DESC)
+      return (HashMap<Profile, Float>) MapUtil.sortByValueDESC(result);
+   }
+
+   public static Profile getBestProfile(HashMap<Profile, Double> distancesMap) {
+      if (distancesMap.isEmpty() || distancesMap == null) return null;
+      //return the first element because the distances map is sorted by values
+      // REF: getEuclideanDistances() method
+      return distancesMap.keySet().iterator().next();
    }
 
 }

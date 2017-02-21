@@ -49,8 +49,8 @@ import it.univaq.incipict.profilemanager.common.utility.Utility;
  *
  */
 @Controller
-@RequestMapping("/user")
-public class UserController {
+@RequestMapping("/layout")
+public class LayoutController {
 
    @Autowired
    private UserService userService;
@@ -83,16 +83,31 @@ public class UserController {
       });
    }
 
-   @RequestMapping(value = "/dashboard", method = { RequestMethod.GET })
-   public String dashboard(Model model) {
+   @RequestMapping(value = "/dashboard/ajax/widget/profilechart", method = { RequestMethod.GET })
+   public String ajax_profilechart(Model model) {
       User user = userService.findByPK(new AuthenticationHolder().getUser().getId());
 
       List<Profile> profilesList = profileService.findAll();
+      int informationSetSize = informationService.findAll().size();
 
-      HashMap<Profile, Double> distancesMap = (HashMap<Profile, Double>) Utility.getEuclideanDistances(profilesList,
-            user);
+      HashMap<Profile, Double> distancesMap = Utility.getEuclideanDistances(profilesList, user);
+      HashMap<Profile, Float> percentagesMap = Utility.getPercentages(distancesMap, informationSetSize);
+      Profile bestProfile = Utility.getBestProfile(distancesMap);
+      
       model.addAttribute("distancesMap", distancesMap);
-      return "user.dashboard";
+      model.addAttribute("percentagesMap", percentagesMap);
+      model.addAttribute("bestProfile", bestProfile);
+      return "widgets.profilechart";
+   }
+   
+   @RequestMapping(value = "/dashboard/ajax/widget/distances", method = { RequestMethod.GET })
+   public String ajax_distances(Model model) {
+      User user = userService.findByPK(new AuthenticationHolder().getUser().getId());
+      List<Profile> profilesList = profileService.findAll();
+      HashMap<Profile, Double> distancesMap = Utility.getEuclideanDistances(profilesList, user);
+      
+      model.addAttribute("distancesMap", distancesMap);
+      return "widgets.distances";
    }
 
    @RequestMapping(value = "/create", method = { RequestMethod.POST })

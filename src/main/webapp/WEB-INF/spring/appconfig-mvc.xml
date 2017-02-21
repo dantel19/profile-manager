@@ -57,7 +57,7 @@
    <mvc:view-controller path="/" view-name="standalone.login" />
    <mvc:view-controller path="/login" view-name="standalone.login"/>
    <mvc:view-controller path="/accessdenied" view-name="standalone.accessdenied"/>
-   <mvc:view-controller path="/welcome" view-name="common.welcome"/>
+   <mvc:view-controller path="/dashboard" view-name="user.dashboard"/>
    
    <!-- ================= AUTHENTICATION HOLDER ================= -->   
    <bean id="authenticationHolder" class="it.univaq.incipict.profilemanager.common.spring.security.AuthenticationHolder"/>

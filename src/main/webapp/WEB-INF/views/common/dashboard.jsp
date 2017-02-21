@@ -1,25 +1,30 @@
-TODO
 <%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
-<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
-<%@page import="java.util.List"%>
-<%@page import="java.util.ArrayList"%>
-<%@page import="java.util.Map"%>
-<%@page import="java.util.HashMap"%>
-<%@page import="it.univaq.incipict.profilemanager.business.model.Profile"%>
+<%@include file="dashboard_widgets_ajax.jsp"%>
 
-<p> ${nomemio} <br />
-<%
-	Map<Profile, Double> distances = (HashMap<Profile, Double>)pageContext.findAttribute("distancesMap");
-	if (distances.isEmpty() || distances == null) { out.print("<p> NULL, COMPLETA IL PROFILO!</p>"); }
-	else {
-		for (Map.Entry<Profile, Double> entry : distances.entrySet()) {
-	    	out.print("<br />Profile: " +entry.getKey().getName() + " / " + entry.getValue());
-		}
-	}
-%>
+<div class="row">
+	<div class="col-xs-12 col-sm-6 col-md-6">
+		<div id="profile_chart_widget"></div>
+	</div>
+	
+	<div class="col-xs-12 col-sm-6 col-md-6">
+		<div id="distances_widget"></div>
+	</div>
+</div>
+	
+<div class="row">
+	<div class="col-xs-12 col-sm-6 col-md-6">
+		<div id="last_profiles_widget"><%@include file="widgets/last_profiles.jsp"%></div>
+	</div>
+	
+	<div class="col-xs-12 col-sm-6 col-md-6">
+		<div id="last_profiles_widget"><%@include file="widgets/last_profiles.jsp"%></div>
+	</div>
+</div>
 
 
-
-
-</p>
+<div class="row">
+	<div class="col-xs-12">
+		<div id="last_information_widget"><%@include file="widgets/last_information.jsp"%></div>
+	</div>
+</div>

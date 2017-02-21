@@ -17,6 +17,12 @@
 package it.univaq.incipict.profilemanager.presentation;
 
 import java.beans.PropertyEditorSupport;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Iterator;
+import java.util.List;
+import java.util.ListIterator;
+import java.util.Set;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -35,8 +41,13 @@ import it.univaq.incipict.profilemanager.business.CategoryService;
 import it.univaq.incipict.profilemanager.business.DataTablesRequestGrid;
 import it.univaq.incipict.profilemanager.business.DataTablesResponseGrid;
 import it.univaq.incipict.profilemanager.business.InformationService;
+import it.univaq.incipict.profilemanager.business.ProfileInformationService;
+import it.univaq.incipict.profilemanager.business.ProfileService;
 import it.univaq.incipict.profilemanager.business.model.Category;
 import it.univaq.incipict.profilemanager.business.model.Information;
+import it.univaq.incipict.profilemanager.business.model.Profile;
+import it.univaq.incipict.profilemanager.business.model.ProfileInformation;
+import it.univaq.incipict.profilemanager.business.model.ProfileInformationPK;
 
 /**
  * 
@@ -52,6 +63,12 @@ public class AdministrationInformationController {
 
    @Autowired
    private CategoryService categoryService;
+   
+   @Autowired
+   private ProfileService profileService;
+   
+   @Autowired
+   private ProfileInformationService profileInformationService;
 
    @InitBinder
    protected void initBinder(HttpServletRequest request, ServletRequestDataBinder binder) throws Exception {
@@ -76,14 +93,42 @@ public class AdministrationInformationController {
    }
 
    @RequestMapping(value = "/create", method = { RequestMethod.GET })
-   public String create_start(Model model) {
-      model.addAttribute("information", new Information());
+   public String create_start(@ModelAttribute Information information, Model model) {
+      information = new Information();
+      List<Profile> profilesList = profileService.findAll();
+      
+      List<ProfileInformation> profileInformationSet = information.getProfileInformationSet();
+      // Set the new profileInformation Collection 
+      for (Profile profile : profilesList) {
+         ProfileInformation profileInformation = new ProfileInformation();
+         ProfileInformationPK pk = new ProfileInformationPK();
+         pk.setId_profile(profile.getId());
+         profileInformation.setId(pk);
+         profileInformation.setRank(0d);
+         profileInformation.setProfile(profile);
+         
+         profileInformationSet.add(profileInformation);
+      }
+      information.setProfileInformationSet(profileInformationSet);
+      
+      model.addAttribute("information", information);
+      model.addAttribute("availableCategories", categoryService.findAll());
+      model.addAttribute("profilesList", profilesList);
       return "administration.information.create";
    }
 
    @RequestMapping(value = "/create", method = { RequestMethod.POST })
-   public String create(@ModelAttribute Information information) {
+   public String create(@ModelAttribute("information") Information information) {
+      List<ProfileInformation> profileInformationSet = information.getProfileInformationSet();
+      information.setProfileInformationSet(new ArrayList<ProfileInformation>());
+      
       informationService.create(information);
+      for (ProfileInformation profileInformation : profileInformationSet) {
+         profileInformation.getId().setId_information(information.getId());
+         profileInformation.setInformation(information);
+      }
+      information.setProfileInformationSet(profileInformationSet);
+      informationService.update(information);
       return "redirect:/administration/information/list";
    }
 

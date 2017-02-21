@@ -16,7 +16,9 @@
  */
 package it.univaq.incipict.profilemanager.business.model;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -53,14 +55,14 @@ public class Information implements java.io.Serializable {
    private String description;
 
    @JsonIgnore
-   @ManyToMany(fetch = FetchType.EAGER, cascade = { CascadeType.ALL })
+   @ManyToMany(fetch = FetchType.EAGER)
    @JoinTable(name = "Category_Information", joinColumns = {
          @JoinColumn(name = "id_information") }, inverseJoinColumns = { @JoinColumn(name = "id_category") })
    private Set<Category> categorySet = new HashSet<Category>();
 
-   @OneToMany(mappedBy = "information", fetch = FetchType.EAGER, orphanRemoval = true)
-   private Set<ProfileInformation> profileInformationSet = new HashSet<ProfileInformation>();
-
+   @OneToMany(mappedBy = "information", fetch = FetchType.EAGER, orphanRemoval = true, cascade = { CascadeType.ALL })
+   private List<ProfileInformation> profileInformationSet = new ArrayList<ProfileInformation>();
+   
    public Long getId() {
       return id;
    }
@@ -77,13 +79,22 @@ public class Information implements java.io.Serializable {
       this.description = description;
    }
 
-   public Set<ProfileInformation> getProfileInformationSet() {
+   public List<ProfileInformation> getProfileInformationSet() {
       return profileInformationSet;
    }
 
-   public void setProfileInformationSet(Set<ProfileInformation> profileInformationSet) {
+   public void setProfileInformationSet(List<ProfileInformation> profileInformationSet) {
       this.profileInformationSet = profileInformationSet;
    }
+   
+   // Spring binding method for indexing a collection in JSTL
+  // public List<ProfileInformation> getProfileInformationSetAsList() {
+  //    return new ArrayList<ProfileInformation>(getProfileInformationSet());
+  // }
+   // Spring binding method for indexing a collection in JSTL
+   //public void setProfileInformationSetAsList(List<ProfileInformation> profileInformationList) {
+   //   this.profileInformationSet = new HashSet<ProfileInformation>(profileInformationList);
+  // }
 
    public Set<Category> getCategorySet() {
       return categorySet;
