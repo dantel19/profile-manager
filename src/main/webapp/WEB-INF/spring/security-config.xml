@@ -30,6 +30,7 @@
       <security:intercept-url pattern="/resources/**" access="permitAll" />
       <security:intercept-url pattern="/" access="permitAll" />
       <security:intercept-url pattern="/dashboard/**" access="isAuthenticated()" />
+      <security:intercept-url pattern="/rest/**" access="isAuthenticated()" />
       <security:intercept-url pattern="/user/update/**" access="isAuthenticated()" />
       <security:intercept-url pattern="/administration/**" access="hasAnyRole('administrator')" />
 
