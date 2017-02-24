@@ -21,7 +21,6 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -64,8 +63,7 @@ public class Information implements java.io.Serializable {
          @JoinColumn(name = "id_information") }, inverseJoinColumns = { @JoinColumn(name = "id_category") })
    private Set<Category> categorySet = new HashSet<Category>();
 
-   @OneToMany(mappedBy = "information", fetch = FetchType.EAGER, orphanRemoval = true, cascade = { CascadeType.PERSIST,
-         CascadeType.MERGE })
+   @OneToMany(mappedBy = "information", fetch = FetchType.EAGER, orphanRemoval = true)
    private List<ProfileInformation> profileInformationSet = new ArrayList<ProfileInformation>();
 
    public Long getId() {
