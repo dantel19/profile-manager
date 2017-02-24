@@ -31,9 +31,6 @@ import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
-import org.hibernate.annotations.DynamicUpdate;
-import org.hibernate.annotations.SelectBeforeUpdate;
-
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 /**
@@ -44,8 +41,6 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
  */
 @Entity
 @Table(name = "User", uniqueConstraints = { @UniqueConstraint(columnNames = "email") })
-@DynamicUpdate
-@SelectBeforeUpdate
 public class User implements java.io.Serializable {
    private static final long serialVersionUID = -5461054434128060682L;
 

@@ -18,11 +18,7 @@ package it.univaq.incipict.profilemanager.presentation;
 
 import java.beans.PropertyEditorSupport;
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Iterator;
 import java.util.List;
-import java.util.ListIterator;
-import java.util.Set;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -41,7 +37,6 @@ import it.univaq.incipict.profilemanager.business.CategoryService;
 import it.univaq.incipict.profilemanager.business.DataTablesRequestGrid;
 import it.univaq.incipict.profilemanager.business.DataTablesResponseGrid;
 import it.univaq.incipict.profilemanager.business.InformationService;
-import it.univaq.incipict.profilemanager.business.ProfileInformationService;
 import it.univaq.incipict.profilemanager.business.ProfileService;
 import it.univaq.incipict.profilemanager.business.model.Category;
 import it.univaq.incipict.profilemanager.business.model.Information;
@@ -63,12 +58,9 @@ public class AdministrationInformationController {
 
    @Autowired
    private CategoryService categoryService;
-   
+
    @Autowired
    private ProfileService profileService;
-   
-   @Autowired
-   private ProfileInformationService profileInformationService;
 
    @InitBinder
    protected void initBinder(HttpServletRequest request, ServletRequestDataBinder binder) throws Exception {
@@ -96,9 +88,9 @@ public class AdministrationInformationController {
    public String create_start(@ModelAttribute Information information, Model model) {
       information = new Information();
       List<Profile> profilesList = profileService.findAll();
-      
+
       List<ProfileInformation> profileInformationSet = information.getProfileInformationSet();
-      // Set the new profileInformation Collection 
+      // Set the new profileInformation Collection
       for (Profile profile : profilesList) {
          ProfileInformation profileInformation = new ProfileInformation();
          ProfileInformationPK pk = new ProfileInformationPK();
@@ -106,11 +98,11 @@ public class AdministrationInformationController {
          profileInformation.setId(pk);
          profileInformation.setRank(0d);
          profileInformation.setProfile(profile);
-         
+
          profileInformationSet.add(profileInformation);
       }
       information.setProfileInformationSet(profileInformationSet);
-      
+
       model.addAttribute("information", information);
       model.addAttribute("availableCategories", categoryService.findAll());
       model.addAttribute("profilesList", profilesList);
@@ -121,11 +113,10 @@ public class AdministrationInformationController {
    public String create(@ModelAttribute("information") Information information) {
       List<ProfileInformation> profileInformationSet = information.getProfileInformationSet();
       information.setProfileInformationSet(new ArrayList<ProfileInformation>());
-      
+
       informationService.create(information);
       for (ProfileInformation profileInformation : profileInformationSet) {
          profileInformation.getId().setId_information(information.getId());
-         profileInformation.setInformation(information);
       }
       information.setProfileInformationSet(profileInformationSet);
       informationService.update(information);

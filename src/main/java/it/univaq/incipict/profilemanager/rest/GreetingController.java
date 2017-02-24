@@ -17,7 +17,6 @@
 package it.univaq.incipict.profilemanager.rest;
 
 import java.util.Set;
-import java.util.concurrent.atomic.AtomicLong;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -26,23 +25,37 @@ import org.springframework.web.bind.annotation.RestController;
 
 import it.univaq.incipict.profilemanager.business.UserService;
 import it.univaq.incipict.profilemanager.business.model.Information;
+import it.univaq.incipict.profilemanager.business.model.User;
+import it.univaq.incipict.profilemanager.common.spring.security.AuthenticationHolder;
 
 @RestController
 @RequestMapping("/rest")
 public class GreetingController {
    @Autowired
    private UserService userService;
-    private static final String template = "Hello, %s!";
-    private final AtomicLong counter = new AtomicLong();
+   private static final String template = "Hello, %s!";
 
-    @RequestMapping("/greeting")
-    public String greeting(@RequestParam(value="name", defaultValue="World") String name) {
-        return String.format(template, name);
-    }
+   @RequestMapping("/sayhello")
+   public String sayHello(@RequestParam(value = "name", defaultValue = "World") String name) {
+      User user = userService.findByPK(new AuthenticationHolder().getUser().getId());
 
-    @RequestMapping("/ciao")
-    public Set<Information> greeting2(@RequestParam(value="name", defaultValue="World") String name) {
-        return  userService.findByPK(1L).getInformationSet();
-    }
-    
+      return String.format(template, user.getFirstname() + " " + user.getLastname());
+   }
+
+   @RequestMapping("/user/information/list")
+   public Set<Information> list(@RequestParam(value = "name", defaultValue = "World") String name) {
+      User user = userService.findByPK(new AuthenticationHolder().getUser().getId());
+
+      return userService.findByPK(user.getId()).getInformationSet();
+   }
+
+   // This API returns all the information associated with the user profile that
+   // he has not selected
+   // information is associated with a profile if their rank is greater or equal
+   // to 0.7
+   @RequestMapping("/user/information/profilecompletion")
+   public Set<Information> profileCompletion(@RequestParam(value = "name", defaultValue = "World") String name) {
+      return userService.findByPK(1L).getInformationSet();
+   }
+
 }

@@ -52,8 +52,8 @@ public class Category implements java.io.Serializable {
 
    @JsonIgnore
    @ManyToMany(fetch = FetchType.EAGER)
-   @JoinTable(name = "Category_Information", joinColumns = {
-         @JoinColumn(name = "id_information") }, inverseJoinColumns = { @JoinColumn(name = "id_category") })
+   @JoinTable(name = "Category_Information", joinColumns = { @JoinColumn(name = "id_category") }, inverseJoinColumns = {
+         @JoinColumn(name = "id_information") })
    private Set<Information> InformationSet = new HashSet<Information>();
 
    public Long getId() {

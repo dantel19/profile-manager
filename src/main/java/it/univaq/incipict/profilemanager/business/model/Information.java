@@ -34,6 +34,9 @@ import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 /**
@@ -56,13 +59,15 @@ public class Information implements java.io.Serializable {
 
    @JsonIgnore
    @ManyToMany(fetch = FetchType.EAGER)
+   @Fetch(FetchMode.SELECT)
    @JoinTable(name = "Category_Information", joinColumns = {
          @JoinColumn(name = "id_information") }, inverseJoinColumns = { @JoinColumn(name = "id_category") })
    private Set<Category> categorySet = new HashSet<Category>();
 
-   @OneToMany(mappedBy = "information", fetch = FetchType.EAGER, orphanRemoval = true, cascade = { CascadeType.ALL })
+   @OneToMany(mappedBy = "information", fetch = FetchType.EAGER, orphanRemoval = true, cascade = { CascadeType.PERSIST,
+         CascadeType.MERGE })
    private List<ProfileInformation> profileInformationSet = new ArrayList<ProfileInformation>();
-   
+
    public Long getId() {
       return id;
    }
@@ -86,15 +91,6 @@ public class Information implements java.io.Serializable {
    public void setProfileInformationSet(List<ProfileInformation> profileInformationSet) {
       this.profileInformationSet = profileInformationSet;
    }
-   
-   // Spring binding method for indexing a collection in JSTL
-  // public List<ProfileInformation> getProfileInformationSetAsList() {
-  //    return new ArrayList<ProfileInformation>(getProfileInformationSet());
-  // }
-   // Spring binding method for indexing a collection in JSTL
-   //public void setProfileInformationSetAsList(List<ProfileInformation> profileInformationList) {
-   //   this.profileInformationSet = new HashSet<ProfileInformation>(profileInformationList);
-  // }
 
    public Set<Category> getCategorySet() {
       return categorySet;
