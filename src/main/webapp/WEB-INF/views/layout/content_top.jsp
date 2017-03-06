@@ -38,7 +38,6 @@
 			</div>
 			<div class="count">78</div>
 			<h3>Associated informations</h3>
-			<p>Lorem ipsum psdea itgum rixt.</p>
 		</div>
 	</div>
 </div>

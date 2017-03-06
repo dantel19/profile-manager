@@ -16,46 +16,67 @@
  */
 package it.univaq.incipict.profilemanager.rest;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import it.univaq.incipict.profilemanager.business.InformationService;
+import it.univaq.incipict.profilemanager.business.ProfileService;
 import it.univaq.incipict.profilemanager.business.UserService;
 import it.univaq.incipict.profilemanager.business.model.Information;
+import it.univaq.incipict.profilemanager.business.model.Profile;
+import it.univaq.incipict.profilemanager.business.model.ProfileInformation;
 import it.univaq.incipict.profilemanager.business.model.User;
 import it.univaq.incipict.profilemanager.common.spring.security.AuthenticationHolder;
+import it.univaq.incipict.profilemanager.common.utility.Utility;
 
 @RestController
 @RequestMapping("/rest")
 public class GreetingController {
    @Autowired
    private UserService userService;
-   private static final String template = "Hello, %s!";
-
-   @RequestMapping("/sayhello")
-   public String sayHello(@RequestParam(value = "name", defaultValue = "World") String name) {
-      User user = userService.findByPK(new AuthenticationHolder().getUser().getId());
-
-      return String.format(template, user.getFirstname() + " " + user.getLastname());
-   }
-
+   
+   @Autowired
+   private ProfileService profileService;
+   
+   @Autowired
+   private InformationService informationService;
+   
    @RequestMapping("/user/information/list")
-   public Set<Information> list(@RequestParam(value = "name", defaultValue = "World") String name) {
+   public Set<Information> user_information_list() {
       User user = userService.findByPK(new AuthenticationHolder().getUser().getId());
-
-      return userService.findByPK(user.getId()).getInformationSet();
+      
+      for (Information information : user.getInformationSet()) {
+         // set profileInformationSet to null, because we don't need it in REST client
+         information.setProfileInformationSet(null);
+      }
+      
+      return user.getInformationSet();
    }
-
-   // This API returns all the information associated with the user profile that
-   // he has not selected
-   // information is associated with a profile if their rank is greater or equal
-   // to 0.7
-   @RequestMapping("/user/information/profilecompletion")
-   public Set<Information> profileCompletion(@RequestParam(value = "name", defaultValue = "World") String name) {
-      return userService.findByPK(1L).getInformationSet();
+   
+   @RequestMapping("profile/information/list")
+   public List<Information> profile_information_list() {
+      User user = userService.findByPK(new AuthenticationHolder().getUser().getId());
+      List<Profile> profilesList = profileService.findAll();
+      HashMap<Profile, Double> distancesMap = Utility.getEuclideanDistances(profilesList, user);
+      Profile profile = Utility.getBestProfile(distancesMap);
+      List<Information> informationList = new ArrayList<Information>();
+      
+      for (Information information : informationService.findAll()) {
+         for (ProfileInformation profileInformation : information.getProfileInformationSet()) {
+            if (profileInformation.getProfile().getId() == profile.getId() && profileInformation.getRank() >= 0.7) {
+               // set profileInformationSet to null, because we don't need it in REST client
+               information.setProfileInformationSet(null);
+               informationList.add(information);
+            }
+         }
+      }
+      return informationList;
    }
 
 }

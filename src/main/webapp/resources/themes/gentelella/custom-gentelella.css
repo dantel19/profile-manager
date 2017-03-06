@@ -17,6 +17,16 @@
 
 /* START common */
 
+.no-margin {
+	margin: 0!important;
+}
+.no-padding {
+	padding: 0!important;
+}
+.no-radius {
+	border-radius: 0px!important;
+}
+
 /* navbar-right panel_toolbox remove margin right when icons are < 3 */
 ul.nav.navbar-right.panel_toolbox {
 	min-width: 0px;
@@ -56,14 +66,96 @@ input.custom-input-text {
 }
 
 /* Hide overflow text and show dot...) */
-p.hideOverflow {
-/*padding: 1%;*/
-width: 100%;
-overflow: hidden;
-text-overflow: ellipsis;
-white-space: nowrap;
-/*height: 17px;*/
+p.hideOverflow, h3.hideOverflow {
+	width: 100%;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
 }
+.tilesCheckbox h5.hideOverflow {
+	width: 100%;
+	height: 80px;
+    display: block;
+    display: -webkit-box;
+    max-width: 100%;
+    margin: 0 auto;
+    font-size: 16px;
+    line-height: 1;
+    -webkit-line-clamp: 5;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis
+}
+
+/* profileChart Legend */
+div#canvasDoughnut-Legend > ul {
+	padding-left: 0;
+}
+div#canvasDoughnut-Legend li {
+	list-style-type: none;
+}
+div#canvasDoughnut-Legend li span {
+	width: 10px;
+    background-color: #BDC3C7;
+    height: 10px;
+    margin-right: 5px;
+    display: inline-block;
+    border-radius: 50%;
+}
+
+/* Registration form in login page */
+.informationset_form{
+	position:absolute;
+	top:0px;
+	z-index:21;
+	opacity:0;
+	width:100%
+}
+#signup:target ~ .login_wrapper .registration_form,
+#signin:target ~ .login_wrapper .login_form,
+#informationset:target ~ .login_wrapper .informationset_form{
+	z-index:22;
+	animation-name:fadeInLeft;
+	animation-delay:.0s;
+}
+#informationset:target ~ .login_wrapper{
+	max-width: 1024px;
+}
+#signup:target ~ .login_wrapper .login_form,
+#signup:target ~ .login_wrapper .informationset_form,
+#signin:target ~ .login_wrapper .registration_form,
+#signin:target ~ .login_wrapper .informationset_form,
+#informationset:target ~ .login_wrapper .registration_form,
+#informationset:target ~ .login_wrapper .login_form
+{
+	animation-name:fadeOutLeft;
+}
+a.to_register_btn {
+	background-color: buttonface;
+    text-decoration: none;
+    color: #73879c;
+    font-size: 14px!important;
+}
+a.to_register_btn:hover {
+    text-decoration: none;
+    color: #333;
+}
+#information-set .tile-stats {
+	margin: 1px;
+}
+#information-set .tile-stats .icon {
+	opacity: 0;
+}
+.tilesCheckbox {
+	cursor: pointer;
+	padding: 10px;
+}
+.tilesCheckbox input[type=checkbox] {
+	position: absolute;
+	top: 50%;
+	visibility: hidden; 
+}
+/* End: Registration form in login page */
 
 /* END common */
 

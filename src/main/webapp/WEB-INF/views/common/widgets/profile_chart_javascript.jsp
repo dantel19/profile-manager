@@ -30,11 +30,8 @@ $(document).ready(function() {
       datasets: [{
         data: [
            <%
-        	if (percentages.isEmpty() || percentages == null) { out.print("<p> NULL, COMPLLLETA IL PROFILO!</p>"); }
-        	else {
         		for (Map.Entry<Profile, Float> entry : percentages.entrySet()) {
         	    	out.print(entry.getValue() + ", ");
-        		}
         	}
         	%>
         	],

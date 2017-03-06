@@ -56,7 +56,7 @@ span.absolute {
 			@SuppressWarnings("unchecked")
 			Map<Profile, Double> distancesMap = (HashMap<Profile, Double>)pageContext.findAttribute("distancesMap");
 			
-			if (distancesMap.isEmpty() || distancesMap == null) { out.print("<p> NULL, COMPLLLETA IL PROFILO!</p>"); }
+			if (distancesMap.isEmpty() || distancesMap == null) { out.print("<p>Your information set is empty.</p> <a href=\"user/information/update\"><b>Edit your profile</b></a>"); }
 			
 			else {
 			    int i = 1;

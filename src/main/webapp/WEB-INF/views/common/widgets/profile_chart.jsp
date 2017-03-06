@@ -13,7 +13,7 @@
 		<div class="clearfix"></div>
 	</div>
 	<div class="x_content">
-		<span>Best profile matching: <b>${bestProfile.name}</b><br />
+		<span>Your Profile: <b>${bestProfile.name}</b><br />
 		<br /></span>
 		<canvas id="canvasDoughnut"></canvas>
 		<br /><br />

@@ -11,17 +11,6 @@
 		<div id="distances_widget"></div>
 	</div>
 </div>
-	
-<div class="row">
-	<div class="col-xs-12 col-sm-6 col-md-6">
-		<div id="last_profiles_widget"><%@include file="widgets/last_profiles.jsp"%></div>
-	</div>
-	
-	<div class="col-xs-12 col-sm-6 col-md-6">
-		<div id="last_profiles_widget"><%@include file="widgets/last_profiles.jsp"%></div>
-	</div>
-</div>
-
 
 <div class="row">
 	<div class="col-xs-12">
